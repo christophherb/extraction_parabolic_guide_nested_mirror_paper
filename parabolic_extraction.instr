@@ -26,13 +26,13 @@
 DEFINE INSTRUMENT template_simple(
     det_width = 0.2,
     det_width_focus = 0.02,
-    source_width = 0.02,
-    guide_width = 0.1,
-    L_source = 4,
+    source_width = 0.03,
+    guide_width = 0.218,
+    L_source = 5,
     guide_length = 160,
-    dL = 1,
-    L_min = 3,
-    L_max = 5,
+    dL = 3,
+    L_min = 2,
+    L_max = 8,
     source_width = 0.01,
     source_divergence = 0.8,
     divergence_max = 1,
@@ -73,24 +73,29 @@ COMPONENT source_div = Source_div(
     dlambda=dL)
 AT (0, 0, 0) RELATIVE source
 
+//COMPONENT slit = Slit(
+//    radius=source_width/2
+//)
+//AT (0, 0, 0) RELATIVE source
+
 COMPONENT psd_monitor_source = PSD_monitor(
     filename="source_psd.dat",
-    xwidth=det_width,
-    yheight=det_width,
+    xwidth=guide_width,
+    yheight=guide_width,
     nx=pixels,
     ny=pixels,
     restore_neutron=1)
-AT (0, 0, focal_length-1) RELATIVE source
+AT (0, 0, focal_length-0.6) RELATIVE source
 
 //------------------------------------ Before the guide 2 d defocusing
 
 COMPONENT parabolic_optic_before_guide_v = FlatEllipse_finite_mirror(
-    sourceDist=-focal_length+1,
-    LStart=-focal_length+1,
-    LEnd=incoming_length+1,
+    sourceDist=-(focal_length-0.6),
+    LStart=-(focal_length-0.6),
+    LEnd=incoming_length+0.6,
     lStart=0,
-    lEnd=1,
-    r_0 = 0.0457293,
+    lEnd=0.6,
+    r_0 = guide_width/2,
     mirror_width = 0,//0.15 mm
     nummirror = mirrors,
     doubleReflections=1,
@@ -98,7 +103,7 @@ COMPONENT parabolic_optic_before_guide_v = FlatEllipse_finite_mirror(
     mb = 0
 )
 WHEN (placeholder>0)
-AT (0, 0, focal_length-1) RELATIVE source
+AT (0, 0, focal_length-0.6) RELATIVE source
 ROTATED (0, 0, 90) RELATIVE source
 
 
@@ -107,8 +112,8 @@ COMPONENT parabolic_optic_before_guide_h = FlatEllipse_finite_mirror(
     LStart=-focal_length,
     LEnd=incoming_length,
     lStart=0,
-    lEnd=1,
-    r_0 = 0.048502,
+    lEnd=0.6,
+    r_0 = guide_width/2,
     mirror_width = 0,//0.15 mm
     nummirror = mirrors,
     doubleReflections=1,
@@ -124,7 +129,7 @@ ROTATED (0, 0, 0) RELATIVE source
 COMPONENT after_optic_source = Arm()
 AT (0, 0, focal_length+1) RELATIVE source
 
-COMPONENT psd_monitor_afteropticsource = PSD_monitor(
+COMPONENT psd_monitor_afteropticsource = PSD_monitor(//PSD looking at the beam behind the guide
     filename="sourceafteroptic_psd.dat",
     xwidth=det_width,
     yheight=det_width,
@@ -254,10 +259,10 @@ ROTATED (0, 0, 90) RELATIVE monitor_1
 COMPONENT parabolic_optic1 = FlatEllipse_finite_mirror(
     sourceDist=-incoming_length,
     LStart=-incoming_length,
-    LEnd=focal_length+1,
+    LEnd=focal_length+0.6,
     lStart=0,
-    lEnd=1,
-    r_0 = guide_width/2+0.001+0.005,
+    lEnd=0.6,
+    r_0 = guide_width/2,
     mirror_width = 0,//0.15 mm
     nummirror = mirrors,
     doubleReflections=1,
@@ -269,11 +274,11 @@ AT (0, 0, 0) RELATIVE monitor_1
 ROTATED (0, 0, 90) RELATIVE monitor_1
 
 COMPONENT parabolic_optic2 = FlatEllipse_finite_mirror(
-    sourceDist=-incoming_length-1,
-    LStart=-incoming_length-1,
-    LEnd=focal_length+0,
+    sourceDist=-incoming_length-0.6,
+    LStart=-incoming_length-0.6,
+    LEnd=focal_length,
     lStart=0,
-    lEnd=1,
+    lEnd=0.6,
     r_0 = guide_width/2+0.001+0.005,
     mirror_width = 0,//0.15 mm
     nummirror = mirrors,
@@ -282,14 +287,14 @@ COMPONENT parabolic_optic2 = FlatEllipse_finite_mirror(
     mb = 0
 )
 WHEN (placeholder>0)
-AT (0, 0, 1) RELATIVE monitor_1
+AT (0, 0, 0.6) RELATIVE monitor_1
 ROTATED (0, 0, 0) RELATIVE monitor_1
 
 
 //---------------------------------------- Monitor set in the focal point ----------------------------------
 
 COMPONENT monitor_2 = Arm()
-AT (0, 0, focal_length+1) RELATIVE monitor_1
+AT (0, 0, focal_length+0.6) RELATIVE monitor_1
 ROTATED (0, 0, 0) RELATIVE monitor_1
 
 
