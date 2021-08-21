@@ -34,10 +34,10 @@ DEFINE INSTRUMENT template_simple(
     L_min = 2,
     L_max = 8,
     source_width = 0.01,
-    source_divergence = 0.8,
+    source_divergence = 2.5,
     divergence_max = 1,
     focal_length = 3,
-    mirrors = 20,
+    mirrors = 60,
     incoming_length = 5000,
     g = -9.81,
     max_div = 10,
@@ -73,15 +73,24 @@ COMPONENT source_div = Source_div(
     dlambda=dL)
 AT (0, 0, 0) RELATIVE source
 
-//COMPONENT slit = Slit(
-//    radius=source_width/2
-//)
-//AT (0, 0, 0) RELATIVE source
+COMPONENT slit = Slit(
+    radius=source_width/2
+)
+AT (0, 0, 0) RELATIVE source
 
 COMPONENT psd_monitor_source = PSD_monitor(
     filename="source_psd.dat",
-    xwidth=guide_width,
-    yheight=guide_width,
+    xwidth=det_width,
+    yheight=det_width,
+    nx=pixels,
+    ny=pixels,
+    restore_neutron=1)
+AT (0, 0, 0) RELATIVE source
+
+COMPONENT psd_monitor_source_before_optic = PSD_monitor(
+    filename="source_psd_beforeoptic.dat",
+    xwidth=0.10815692497298013*2,
+    yheight=0.10815692497298013*2,
     nx=pixels,
     ny=pixels,
     restore_neutron=1)

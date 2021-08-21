@@ -2,14 +2,14 @@
  * Format:     ANSI C source code
  * Creator:    McStas <http://www.mcstas.org>
  * Instrument: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr (template_simple)
- * Date:       Fri Aug 20 16:18:01 2021
+ * Date:       Sat Aug 21 11:15:26 2021
  * File:       ./parabolic_extraction.c
  * Compile:    cc -o template_simple.out ./parabolic_extraction.c 
  * CFLAGS=
  */
 
 
-#define MCCODE_STRING "McStas 2.6.1 - May. 04, 2020"
+#define MCCODE_STRING "McStas 2.7 - Nov. 27, 2020"
 #define FLAVOR "mcstas"
 #define FLAVOR_UPPER "MCSTAS"
 #define MC_USE_DEFAULT_MAIN
@@ -29,7 +29,7 @@
 * %Identification
 * Written by: KN
 * Date:    Aug 29, 1997
-* Release: McStas 2.6.1
+* Release: McStas 2.7
 * Version: $Revision$
 *
 * Runtime system header for McStas/McXtrace.
@@ -112,15 +112,15 @@
 
 /* the version string is replaced when building distribution with mkdist */
 #ifndef MCCODE_STRING
-#define MCCODE_STRING "McStas 2.6.1 - May. 04, 2020"
+#define MCCODE_STRING "McStas 2.7 - Nov. 27, 2020"
 #endif
 
 #ifndef MCCODE_DATE
-#define MCCODE_DATE "May. 04, 2020"
+#define MCCODE_DATE "Nov. 27, 2020"
 #endif
 
 #ifndef MCCODE_VERSION
-#define MCCODE_VERSION "2.6.1"
+#define MCCODE_VERSION "2.7"
 #endif
 
 #ifndef MCCODE_NAME
@@ -750,7 +750,7 @@ NXhandle nxhandle;
 #ifndef MCSTAS_R_H
 #define MCSTAS_R_H "$Revision$"
 
-/* Following part is only embedded when not redundent with mcstas.h ========= */
+/* Following part is only embedded when not redundant with mcstas.h ========= */
 
 #ifndef MCCODE_H
 
@@ -1462,7 +1462,7 @@ MCDETECTOR mcdetector_statistics(
   MCDETECTOR detector)
 {
 
-  if (!detector.p1 || !detector.m || !detector.filename)
+  if (!detector.p1 || !detector.m)
     return(detector);
   
   /* compute statistics and update MCDETECTOR structure ===================== */
@@ -5340,7 +5340,7 @@ int mctraceenabled = 1;
 #else
 int mctraceenabled = 0;
 #endif
-#define MCSTAS "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../"
+#define MCSTAS "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../"
 int mcdefaultmain = 1;
 char mcinstrument_name[] = "template_simple";
 char mcinstrument_source[] = "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr";
@@ -5353,7 +5353,7 @@ void mcfinally(void);
 void mcdisplay(void);
 
 /* Shared user declarations for all components 'PSD_monitor'. */
-#line 57 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 57 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 
 #ifndef ARRAYS_H
 #define ARRAYS_H
@@ -7195,7 +7195,7 @@ double * get_r_at_z0(int number, double z_0, double r_0, double LStart, double L
 #line 7195 "./parabolic_extraction.c"
 
 /* Shared user declarations for all components 'Guide_gravity'. */
-#line 124 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 124 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 /*****************************************************************************
 *
 * McStas, neutron ray-tracing package
@@ -8163,8 +8163,8 @@ double Table_Value(t_Table Table, double X, long j)
       } /* end for Index */
   }
 
-  Y1 = Table_Index(Table,Index-1,j);
-  Y2 = Table_Index(Table,Index  ,j);
+  Y1 = Table_Index(Table,Index, j);
+  Y2 = Table_Index(Table,Index+1, j);
 
   if (!strcmp(Table.method,"linear")) {
     ret = Table_Interp1d(X, X1,Y1, X2,Y2);
@@ -9025,14 +9025,14 @@ struct mcinputtable_struct mcinputtable[mcNUMIPAR+1] = {
   "dL", &mcipdL, instr_type_double, "3", 
   "L_min", &mcipL_min, instr_type_double, "2", 
   "L_max", &mcipL_max, instr_type_double, "8", 
-  "source_divergence", &mcipsource_divergence, instr_type_double, "0.8", 
+  "source_divergence", &mcipsource_divergence, instr_type_double, "2.5", 
   "divergence_max", &mcipdivergence_max, instr_type_double, "1", 
   "focal_length", &mcipfocal_length, instr_type_double, "3", 
-  "mirrors", &mcipmirrors, instr_type_double, "20", 
+  "mirrors", &mcipmirrors, instr_type_double, "60", 
   "incoming_length", &mcipincoming_length, instr_type_double, "5000", 
   "g", &mcipg, instr_type_double, "-9.81", 
   "max_div", &mcipmax_div, instr_type_double, "10", 
-  "pixels", &mcippixels, instr_type_double, "50", 
+  "pixels", &mcippixels, instr_type_double, "100", 
   "flux", &mcipflux, instr_type_double, "1", 
   "placeholder", &mcipplaceholder, instr_type_double, "1", 
   NULL, NULL, instr_type_double, ""
@@ -9088,17 +9088,17 @@ struct mcinputtable_struct mcinputtable[mcNUMIPAR+1] = {
 
 /* neutron state table at each component input (local coords) */
 /* [x, y, z, vx, vy, vz, t, sx, sy, sz, p] */
-MCNUM mccomp_storein[11*22];
+MCNUM mccomp_storein[11*24];
 /* Components position table (absolute and relative coords) */
-Coords mccomp_posa[22];
-Coords mccomp_posr[22];
+Coords mccomp_posa[24];
+Coords mccomp_posr[24];
 /* Counter for each comp to check for inactive ones */
-MCNUM  mcNCounter[22];
-MCNUM  mcPCounter[22];
-MCNUM  mcP2Counter[22];
-#define mcNUMCOMP 21 /* number of components */
+MCNUM  mcNCounter[24];
+MCNUM  mcPCounter[24];
+MCNUM  mcP2Counter[24];
+#define mcNUMCOMP 23 /* number of components */
 /* Counter for PROP ABSORB */
-MCNUM  mcAbsorbProp[22];
+MCNUM  mcAbsorbProp[24];
 /* Flag true when previous component acted on the neutron (SCATTER) */
 MCNUM mcScattered=0;
 /* Flag true when neutron should be restored (RESTORE) */
@@ -9123,7 +9123,16 @@ MCNUM mccsource_div_dlambda;
 MCNUM mccsource_div_gauss;
 MCNUM mccsource_div_flux;
 
-/* Setting parameters for component 'psd_monitor_source' [4]. */
+/* Setting parameters for component 'slit' [4]. */
+MCNUM mccslit_xmin;
+MCNUM mccslit_xmax;
+MCNUM mccslit_ymin;
+MCNUM mccslit_ymax;
+MCNUM mccslit_radius;
+MCNUM mccslit_xwidth;
+MCNUM mccslit_yheight;
+
+/* Setting parameters for component 'psd_monitor_source' [5]. */
 int mccpsd_monitor_source_nx;
 int mccpsd_monitor_source_ny;
 char mccpsd_monitor_source_filename[16384];
@@ -9135,9 +9144,21 @@ MCNUM mccpsd_monitor_source_xwidth;
 MCNUM mccpsd_monitor_source_yheight;
 MCNUM mccpsd_monitor_source_restore_neutron;
 
-/* Definition parameters for component 'parabolic_optic_before_guide_v' [5]. */
+/* Setting parameters for component 'psd_monitor_source_before_optic' [6]. */
+int mccpsd_monitor_source_before_optic_nx;
+int mccpsd_monitor_source_before_optic_ny;
+char mccpsd_monitor_source_before_optic_filename[16384];
+MCNUM mccpsd_monitor_source_before_optic_xmin;
+MCNUM mccpsd_monitor_source_before_optic_xmax;
+MCNUM mccpsd_monitor_source_before_optic_ymin;
+MCNUM mccpsd_monitor_source_before_optic_ymax;
+MCNUM mccpsd_monitor_source_before_optic_xwidth;
+MCNUM mccpsd_monitor_source_before_optic_yheight;
+MCNUM mccpsd_monitor_source_before_optic_restore_neutron;
+
+/* Definition parameters for component 'parabolic_optic_before_guide_v' [7]. */
 #define mccparabolic_optic_before_guide_v_reflect "supermirror_m3.rfl" /* declared as a string. May produce warnings at compile */
-/* Setting parameters for component 'parabolic_optic_before_guide_v' [5]. */
+/* Setting parameters for component 'parabolic_optic_before_guide_v' [7]. */
 MCNUM mccparabolic_optic_before_guide_v_sourceDist;
 MCNUM mccparabolic_optic_before_guide_v_LStart;
 MCNUM mccparabolic_optic_before_guide_v_LEnd;
@@ -9150,9 +9171,9 @@ MCNUM mccparabolic_optic_before_guide_v_mb;
 MCNUM mccparabolic_optic_before_guide_v_mirror_width;
 MCNUM mccparabolic_optic_before_guide_v_doubleReflections;
 
-/* Definition parameters for component 'parabolic_optic_before_guide_h' [6]. */
+/* Definition parameters for component 'parabolic_optic_before_guide_h' [8]. */
 #define mccparabolic_optic_before_guide_h_reflect "supermirror_m3.rfl" /* declared as a string. May produce warnings at compile */
-/* Setting parameters for component 'parabolic_optic_before_guide_h' [6]. */
+/* Setting parameters for component 'parabolic_optic_before_guide_h' [8]. */
 MCNUM mccparabolic_optic_before_guide_h_sourceDist;
 MCNUM mccparabolic_optic_before_guide_h_LStart;
 MCNUM mccparabolic_optic_before_guide_h_LEnd;
@@ -9165,7 +9186,7 @@ MCNUM mccparabolic_optic_before_guide_h_mb;
 MCNUM mccparabolic_optic_before_guide_h_mirror_width;
 MCNUM mccparabolic_optic_before_guide_h_doubleReflections;
 
-/* Setting parameters for component 'psd_monitor_afteropticsource' [8]. */
+/* Setting parameters for component 'psd_monitor_afteropticsource' [10]. */
 int mccpsd_monitor_afteropticsource_nx;
 int mccpsd_monitor_afteropticsource_ny;
 char mccpsd_monitor_afteropticsource_filename[16384];
@@ -9177,7 +9198,7 @@ MCNUM mccpsd_monitor_afteropticsource_xwidth;
 MCNUM mccpsd_monitor_afteropticsource_yheight;
 MCNUM mccpsd_monitor_afteropticsource_restore_neutron;
 
-/* Setting parameters for component 'guide_gravity_1' [9]. */
+/* Setting parameters for component 'guide_gravity_1' [11]. */
 MCNUM mccguide_gravity_1_w1;
 MCNUM mccguide_gravity_1_h1;
 MCNUM mccguide_gravity_1_w2;
@@ -9213,10 +9234,10 @@ MCNUM mccguide_gravity_1_nu;
 MCNUM mccguide_gravity_1_phase;
 char mccguide_gravity_1_reflect[16384];
 
-/* Definition parameters for component 'divpos_monitor' [11]. */
+/* Definition parameters for component 'divpos_monitor' [13]. */
 #define mccdivpos_monitor_nh 100
 #define mccdivpos_monitor_ndiv 100
-/* Setting parameters for component 'divpos_monitor' [11]. */
+/* Setting parameters for component 'divpos_monitor' [13]. */
 char mccdivpos_monitor_filename[16384];
 MCNUM mccdivpos_monitor_xmin;
 MCNUM mccdivpos_monitor_xmax;
@@ -9231,7 +9252,7 @@ MCNUM mccdivpos_monitor_ny;
 MCNUM mccdivpos_monitor_nz;
 int mccdivpos_monitor_nowritefile;
 
-/* Setting parameters for component 'psd_monitor_g1' [12]. */
+/* Setting parameters for component 'psd_monitor_g1' [14]. */
 int mccpsd_monitor_g1_nx;
 int mccpsd_monitor_g1_ny;
 char mccpsd_monitor_g1_filename[16384];
@@ -9243,10 +9264,10 @@ MCNUM mccpsd_monitor_g1_xwidth;
 MCNUM mccpsd_monitor_g1_yheight;
 MCNUM mccpsd_monitor_g1_restore_neutron;
 
-/* Definition parameters for component 'divhlambda_monitor_g1' [13]. */
+/* Definition parameters for component 'divhlambda_monitor_g1' [15]. */
 #define mccdivhlambda_monitor_g1_nL 100
 #define mccdivhlambda_monitor_g1_nh 100
-/* Setting parameters for component 'divhlambda_monitor_g1' [13]. */
+/* Setting parameters for component 'divhlambda_monitor_g1' [15]. */
 char mccdivhlambda_monitor_g1_filename[16384];
 MCNUM mccdivhlambda_monitor_g1_xmin;
 MCNUM mccdivhlambda_monitor_g1_xmax;
@@ -9263,9 +9284,9 @@ MCNUM mccdivhlambda_monitor_g1_ny;
 MCNUM mccdivhlambda_monitor_g1_nz;
 int mccdivhlambda_monitor_g1_nowritefile;
 
-/* Definition parameters for component 'parabolic_optic1' [14]. */
+/* Definition parameters for component 'parabolic_optic1' [16]. */
 #define mccparabolic_optic1_reflect "supermirror_m3.rfl" /* declared as a string. May produce warnings at compile */
-/* Setting parameters for component 'parabolic_optic1' [14]. */
+/* Setting parameters for component 'parabolic_optic1' [16]. */
 MCNUM mccparabolic_optic1_sourceDist;
 MCNUM mccparabolic_optic1_LStart;
 MCNUM mccparabolic_optic1_LEnd;
@@ -9278,9 +9299,9 @@ MCNUM mccparabolic_optic1_mb;
 MCNUM mccparabolic_optic1_mirror_width;
 MCNUM mccparabolic_optic1_doubleReflections;
 
-/* Definition parameters for component 'parabolic_optic2' [15]. */
+/* Definition parameters for component 'parabolic_optic2' [17]. */
 #define mccparabolic_optic2_reflect "supermirror_m3.rfl" /* declared as a string. May produce warnings at compile */
-/* Setting parameters for component 'parabolic_optic2' [15]. */
+/* Setting parameters for component 'parabolic_optic2' [17]. */
 MCNUM mccparabolic_optic2_sourceDist;
 MCNUM mccparabolic_optic2_LStart;
 MCNUM mccparabolic_optic2_LEnd;
@@ -9293,7 +9314,7 @@ MCNUM mccparabolic_optic2_mb;
 MCNUM mccparabolic_optic2_mirror_width;
 MCNUM mccparabolic_optic2_doubleReflections;
 
-/* Setting parameters for component 'psd_monitor_f_zoom' [17]. */
+/* Setting parameters for component 'psd_monitor_f_zoom' [19]. */
 int mccpsd_monitor_f_zoom_nx;
 int mccpsd_monitor_f_zoom_ny;
 char mccpsd_monitor_f_zoom_filename[16384];
@@ -9305,7 +9326,7 @@ MCNUM mccpsd_monitor_f_zoom_xwidth;
 MCNUM mccpsd_monitor_f_zoom_yheight;
 MCNUM mccpsd_monitor_f_zoom_restore_neutron;
 
-/* Setting parameters for component 'psd_monitor_f' [18]. */
+/* Setting parameters for component 'psd_monitor_f' [20]. */
 int mccpsd_monitor_f_nx;
 int mccpsd_monitor_f_ny;
 char mccpsd_monitor_f_filename[16384];
@@ -9317,10 +9338,10 @@ MCNUM mccpsd_monitor_f_xwidth;
 MCNUM mccpsd_monitor_f_yheight;
 MCNUM mccpsd_monitor_f_restore_neutron;
 
-/* Definition parameters for component 'f_divpos' [19]. */
+/* Definition parameters for component 'f_divpos' [21]. */
 #define mccf_divpos_nh 100
 #define mccf_divpos_ndiv 100
-/* Setting parameters for component 'f_divpos' [19]. */
+/* Setting parameters for component 'f_divpos' [21]. */
 char mccf_divpos_filename[16384];
 MCNUM mccf_divpos_xmin;
 MCNUM mccf_divpos_xmax;
@@ -9335,10 +9356,10 @@ MCNUM mccf_divpos_ny;
 MCNUM mccf_divpos_nz;
 int mccf_divpos_nowritefile;
 
-/* Definition parameters for component 'divhlambda_monitor_f' [20]. */
+/* Definition parameters for component 'divhlambda_monitor_f' [22]. */
 #define mccdivhlambda_monitor_f_nL 100
 #define mccdivhlambda_monitor_f_nh 100
-/* Setting parameters for component 'divhlambda_monitor_f' [20]. */
+/* Setting parameters for component 'divhlambda_monitor_f' [22]. */
 char mccdivhlambda_monitor_f_filename[16384];
 MCNUM mccdivhlambda_monitor_f_xmin;
 MCNUM mccdivhlambda_monitor_f_xmax;
@@ -9369,7 +9390,7 @@ int mccdivhlambda_monitor_f_nowritefile;
 #define percent mccorigin_percent
 #define flag_save mccorigin_flag_save
 #define minutes mccorigin_minutes
-#line 44 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 44 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 #ifndef PROGRESS_BAR
 #define PROGRESS_BAR
 #else
@@ -9380,7 +9401,7 @@ double IntermediateCnts;
 time_t StartTime;
 time_t EndTime;
 time_t CurrentTime;
-#line 9383 "./parabolic_extraction.c"
+#line 9404 "./parabolic_extraction.c"
 #undef minutes
 #undef flag_save
 #undef percent
@@ -9425,9 +9446,9 @@ time_t CurrentTime;
 #define dlambda mccsource_div_dlambda
 #define gauss mccsource_div_gauss
 #define flux mccsource_div_flux
-#line 69 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 69 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, focus_yh;
-#line 9430 "./parabolic_extraction.c"
+#line 9451 "./parabolic_extraction.c"
 #undef flux
 #undef gauss
 #undef dlambda
@@ -9452,10 +9473,32 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'psd_monitor_source' [4]. */
+/* User declarations for component 'slit' [4]. */
+#define mccompcurname  slit
+#define mccompcurtype  Slit
+#define mccompcurindex 4
+#define xmin mccslit_xmin
+#define xmax mccslit_xmax
+#define ymin mccslit_ymin
+#define ymax mccslit_ymax
+#define radius mccslit_radius
+#define xwidth mccslit_xwidth
+#define yheight mccslit_yheight
+#undef yheight
+#undef xwidth
+#undef radius
+#undef ymax
+#undef ymin
+#undef xmax
+#undef xmin
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
+/* User declarations for component 'psd_monitor_source' [5]. */
 #define mccompcurname  psd_monitor_source
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 4
+#define mccompcurindex 5
 #define PSD_N mccpsd_monitor_source_PSD_N
 #define PSD_p mccpsd_monitor_source_PSD_p
 #define PSD_p2 mccpsd_monitor_source_PSD_p2
@@ -9469,11 +9512,11 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define xwidth mccpsd_monitor_source_xwidth
 #define yheight mccpsd_monitor_source_yheight
 #define restore_neutron mccpsd_monitor_source_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
-#line 9476 "./parabolic_extraction.c"
+#line 9519 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -9491,10 +9534,49 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'parabolic_optic_before_guide_v' [5]. */
+/* User declarations for component 'psd_monitor_source_before_optic' [6]. */
+#define mccompcurname  psd_monitor_source_before_optic
+#define mccompcurtype  PSD_monitor
+#define mccompcurindex 6
+#define PSD_N mccpsd_monitor_source_before_optic_PSD_N
+#define PSD_p mccpsd_monitor_source_before_optic_PSD_p
+#define PSD_p2 mccpsd_monitor_source_before_optic_PSD_p2
+#define nx mccpsd_monitor_source_before_optic_nx
+#define ny mccpsd_monitor_source_before_optic_ny
+#define filename mccpsd_monitor_source_before_optic_filename
+#define xmin mccpsd_monitor_source_before_optic_xmin
+#define xmax mccpsd_monitor_source_before_optic_xmax
+#define ymin mccpsd_monitor_source_before_optic_ymin
+#define ymax mccpsd_monitor_source_before_optic_ymax
+#define xwidth mccpsd_monitor_source_before_optic_xwidth
+#define yheight mccpsd_monitor_source_before_optic_yheight
+#define restore_neutron mccpsd_monitor_source_before_optic_restore_neutron
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+  DArray2d PSD_N;
+  DArray2d PSD_p;
+  DArray2d PSD_p2;
+#line 9558 "./parabolic_extraction.c"
+#undef restore_neutron
+#undef yheight
+#undef xwidth
+#undef ymax
+#undef ymin
+#undef xmax
+#undef xmin
+#undef filename
+#undef ny
+#undef nx
+#undef PSD_p2
+#undef PSD_p
+#undef PSD_N
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
+/* User declarations for component 'parabolic_optic_before_guide_v' [7]. */
 #define mccompcurname  parabolic_optic_before_guide_v
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 5
+#define mccompcurindex 7
 #define reflect mccparabolic_optic_before_guide_v_reflect
 #define s mccparabolic_optic_before_guide_v_s
 #define pTable mccparabolic_optic_before_guide_v_pTable
@@ -9530,7 +9612,7 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
     double *rs;
     double dt;
     int silicon; // +1: neutron in silicon, -1: neutron in air, 0: mirrorwidth is 0; neutron cannot be in silicon
-#line 9533 "./parabolic_extraction.c"
+#line 9615 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -9554,10 +9636,10 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'parabolic_optic_before_guide_h' [6]. */
+/* User declarations for component 'parabolic_optic_before_guide_h' [8]. */
 #define mccompcurname  parabolic_optic_before_guide_h
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 6
+#define mccompcurindex 8
 #define reflect mccparabolic_optic_before_guide_h_reflect
 #define s mccparabolic_optic_before_guide_h_s
 #define pTable mccparabolic_optic_before_guide_h_pTable
@@ -9593,7 +9675,7 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
     double *rs;
     double dt;
     int silicon; // +1: neutron in silicon, -1: neutron in air, 0: mirrorwidth is 0; neutron cannot be in silicon
-#line 9596 "./parabolic_extraction.c"
+#line 9678 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -9617,18 +9699,18 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'after_optic_source' [7]. */
+/* User declarations for component 'after_optic_source' [9]. */
 #define mccompcurname  after_optic_source
 #define mccompcurtype  Arm
-#define mccompcurindex 7
+#define mccompcurindex 9
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'psd_monitor_afteropticsource' [8]. */
+/* User declarations for component 'psd_monitor_afteropticsource' [10]. */
 #define mccompcurname  psd_monitor_afteropticsource
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 8
+#define mccompcurindex 10
 #define PSD_N mccpsd_monitor_afteropticsource_PSD_N
 #define PSD_p mccpsd_monitor_afteropticsource_PSD_p
 #define PSD_p2 mccpsd_monitor_afteropticsource_PSD_p2
@@ -9642,11 +9724,11 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define xwidth mccpsd_monitor_afteropticsource_xwidth
 #define yheight mccpsd_monitor_afteropticsource_yheight
 #define restore_neutron mccpsd_monitor_afteropticsource_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
-#line 9649 "./parabolic_extraction.c"
+#line 9731 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -9664,10 +9746,10 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'guide_gravity_1' [9]. */
+/* User declarations for component 'guide_gravity_1' [11]. */
 #define mccompcurname  guide_gravity_1
 #define mccompcurtype  Guide_gravity
-#define mccompcurindex 9
+#define mccompcurindex 11
 #define GVars mccguide_gravity_1_GVars
 #define pTable mccguide_gravity_1_pTable
 #define w1 mccguide_gravity_1_w1
@@ -9704,10 +9786,10 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define nu mccguide_gravity_1_nu
 #define phase mccguide_gravity_1_phase
 #define reflect mccguide_gravity_1_reflect
-#line 334 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 334 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
   Gravity_guide_Vars_type GVars;
   t_Table pTable;
-#line 9710 "./parabolic_extraction.c"
+#line 9792 "./parabolic_extraction.c"
 #undef reflect
 #undef phase
 #undef nu
@@ -9748,18 +9830,18 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'monitor_1' [10]. */
+/* User declarations for component 'monitor_1' [12]. */
 #define mccompcurname  monitor_1
 #define mccompcurtype  Arm
-#define mccompcurindex 10
+#define mccompcurindex 12
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'divpos_monitor' [11]. */
+/* User declarations for component 'divpos_monitor' [13]. */
 #define mccompcurname  divpos_monitor
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 11
+#define mccompcurindex 13
 #define nh mccdivpos_monitor_nh
 #define ndiv mccdivpos_monitor_ndiv
 #define Div_N mccdivpos_monitor_Div_N
@@ -9778,11 +9860,11 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define ny mccdivpos_monitor_ny
 #define nz mccdivpos_monitor_nz
 #define nowritefile mccdivpos_monitor_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 double Div_N[nh][ndiv];
 double Div_p[nh][ndiv];
 double Div_p2[nh][ndiv];
-#line 9785 "./parabolic_extraction.c"
+#line 9867 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -9805,10 +9887,10 @@ double Div_p2[nh][ndiv];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'psd_monitor_g1' [12]. */
+/* User declarations for component 'psd_monitor_g1' [14]. */
 #define mccompcurname  psd_monitor_g1
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 12
+#define mccompcurindex 14
 #define PSD_N mccpsd_monitor_g1_PSD_N
 #define PSD_p mccpsd_monitor_g1_PSD_p
 #define PSD_p2 mccpsd_monitor_g1_PSD_p2
@@ -9822,11 +9904,11 @@ double Div_p2[nh][ndiv];
 #define xwidth mccpsd_monitor_g1_xwidth
 #define yheight mccpsd_monitor_g1_yheight
 #define restore_neutron mccpsd_monitor_g1_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
-#line 9829 "./parabolic_extraction.c"
+#line 9911 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -9844,10 +9926,10 @@ double Div_p2[nh][ndiv];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'divhlambda_monitor_g1' [13]. */
+/* User declarations for component 'divhlambda_monitor_g1' [15]. */
 #define mccompcurname  divhlambda_monitor_g1
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 13
+#define mccompcurindex 15
 #define nL mccdivhlambda_monitor_g1_nL
 #define nh mccdivhlambda_monitor_g1_nh
 #define Div_N mccdivhlambda_monitor_g1_Div_N
@@ -9868,11 +9950,11 @@ double Div_p2[nh][ndiv];
 #define ny mccdivhlambda_monitor_g1_ny
 #define nz mccdivhlambda_monitor_g1_nz
 #define nowritefile mccdivhlambda_monitor_g1_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 double Div_N[nL][nh];
 double Div_p[nL][nh];
 double Div_p2[nL][nh];
-#line 9875 "./parabolic_extraction.c"
+#line 9957 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -9897,10 +9979,10 @@ double Div_p2[nL][nh];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'parabolic_optic1' [14]. */
+/* User declarations for component 'parabolic_optic1' [16]. */
 #define mccompcurname  parabolic_optic1
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 14
+#define mccompcurindex 16
 #define reflect mccparabolic_optic1_reflect
 #define s mccparabolic_optic1_s
 #define pTable mccparabolic_optic1_pTable
@@ -9936,7 +10018,7 @@ double Div_p2[nL][nh];
     double *rs;
     double dt;
     int silicon; // +1: neutron in silicon, -1: neutron in air, 0: mirrorwidth is 0; neutron cannot be in silicon
-#line 9939 "./parabolic_extraction.c"
+#line 10021 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -9960,10 +10042,10 @@ double Div_p2[nL][nh];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'parabolic_optic2' [15]. */
+/* User declarations for component 'parabolic_optic2' [17]. */
 #define mccompcurname  parabolic_optic2
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 15
+#define mccompcurindex 17
 #define reflect mccparabolic_optic2_reflect
 #define s mccparabolic_optic2_s
 #define pTable mccparabolic_optic2_pTable
@@ -9999,7 +10081,7 @@ double Div_p2[nL][nh];
     double *rs;
     double dt;
     int silicon; // +1: neutron in silicon, -1: neutron in air, 0: mirrorwidth is 0; neutron cannot be in silicon
-#line 10002 "./parabolic_extraction.c"
+#line 10084 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -10023,18 +10105,18 @@ double Div_p2[nL][nh];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'monitor_2' [16]. */
+/* User declarations for component 'monitor_2' [18]. */
 #define mccompcurname  monitor_2
 #define mccompcurtype  Arm
-#define mccompcurindex 16
+#define mccompcurindex 18
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'psd_monitor_f_zoom' [17]. */
+/* User declarations for component 'psd_monitor_f_zoom' [19]. */
 #define mccompcurname  psd_monitor_f_zoom
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 17
+#define mccompcurindex 19
 #define PSD_N mccpsd_monitor_f_zoom_PSD_N
 #define PSD_p mccpsd_monitor_f_zoom_PSD_p
 #define PSD_p2 mccpsd_monitor_f_zoom_PSD_p2
@@ -10048,11 +10130,11 @@ double Div_p2[nL][nh];
 #define xwidth mccpsd_monitor_f_zoom_xwidth
 #define yheight mccpsd_monitor_f_zoom_yheight
 #define restore_neutron mccpsd_monitor_f_zoom_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
-#line 10055 "./parabolic_extraction.c"
+#line 10137 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -10070,10 +10152,10 @@ double Div_p2[nL][nh];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'psd_monitor_f' [18]. */
+/* User declarations for component 'psd_monitor_f' [20]. */
 #define mccompcurname  psd_monitor_f
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 18
+#define mccompcurindex 20
 #define PSD_N mccpsd_monitor_f_PSD_N
 #define PSD_p mccpsd_monitor_f_PSD_p
 #define PSD_p2 mccpsd_monitor_f_PSD_p2
@@ -10087,11 +10169,11 @@ double Div_p2[nL][nh];
 #define xwidth mccpsd_monitor_f_xwidth
 #define yheight mccpsd_monitor_f_yheight
 #define restore_neutron mccpsd_monitor_f_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
-#line 10094 "./parabolic_extraction.c"
+#line 10176 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -10109,10 +10191,10 @@ double Div_p2[nL][nh];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'f_divpos' [19]. */
+/* User declarations for component 'f_divpos' [21]. */
 #define mccompcurname  f_divpos
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 19
+#define mccompcurindex 21
 #define nh mccf_divpos_nh
 #define ndiv mccf_divpos_ndiv
 #define Div_N mccf_divpos_Div_N
@@ -10131,11 +10213,11 @@ double Div_p2[nL][nh];
 #define ny mccf_divpos_ny
 #define nz mccf_divpos_nz
 #define nowritefile mccf_divpos_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 double Div_N[nh][ndiv];
 double Div_p[nh][ndiv];
 double Div_p2[nh][ndiv];
-#line 10138 "./parabolic_extraction.c"
+#line 10220 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -10158,10 +10240,10 @@ double Div_p2[nh][ndiv];
 #undef mccompcurtype
 #undef mccompcurindex
 
-/* User declarations for component 'divhlambda_monitor_f' [20]. */
+/* User declarations for component 'divhlambda_monitor_f' [22]. */
 #define mccompcurname  divhlambda_monitor_f
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 20
+#define mccompcurindex 22
 #define nL mccdivhlambda_monitor_f_nL
 #define nh mccdivhlambda_monitor_f_nh
 #define Div_N mccdivhlambda_monitor_f_Div_N
@@ -10182,11 +10264,11 @@ double Div_p2[nh][ndiv];
 #define ny mccdivhlambda_monitor_f_ny
 #define nz mccdivhlambda_monitor_f_nz
 #define nowritefile mccdivhlambda_monitor_f_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 double Div_N[nL][nh];
 double Div_p[nL][nh];
 double Div_p2[nL][nh];
-#line 10189 "./parabolic_extraction.c"
+#line 10271 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -10217,8 +10299,12 @@ Coords mcposasource, mcposrsource;
 Rotation mcrotasource, mcrotrsource;
 Coords mcposasource_div, mcposrsource_div;
 Rotation mcrotasource_div, mcrotrsource_div;
+Coords mcposaslit, mcposrslit;
+Rotation mcrotaslit, mcrotrslit;
 Coords mcposapsd_monitor_source, mcposrpsd_monitor_source;
 Rotation mcrotapsd_monitor_source, mcrotrpsd_monitor_source;
+Coords mcposapsd_monitor_source_before_optic, mcposrpsd_monitor_source_before_optic;
+Rotation mcrotapsd_monitor_source_before_optic, mcrotrpsd_monitor_source_before_optic;
 Coords mcposaparabolic_optic_before_guide_v, mcposrparabolic_optic_before_guide_v;
 Rotation mcrotaparabolic_optic_before_guide_v, mcrotrparabolic_optic_before_guide_v;
 Coords mcposaparabolic_optic_before_guide_h, mcposrparabolic_optic_before_guide_h;
@@ -10324,14 +10410,14 @@ void mcinit(void) {
   mccorigin_flag_save = 0;
 #line 39 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccorigin_minutes = 0;
-#line 10327 "./parabolic_extraction.c"
+#line 10413 "./parabolic_extraction.c"
 
   SIG_MESSAGE("origin (Init:Place/Rotate)");
   rot_set_rotation(mcrotaorigin,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10334 "./parabolic_extraction.c"
+#line 10420 "./parabolic_extraction.c"
   rot_copy(mcrotrorigin, mcrotaorigin);
   mcposaorigin = coords_set(
 #line 59 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
@@ -10340,7 +10426,7 @@ void mcinit(void) {
     0,
 #line 59 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10343 "./parabolic_extraction.c"
+#line 10429 "./parabolic_extraction.c"
   mctc1 = coords_neg(mcposaorigin);
   mcposrorigin = rot_apply(mcrotaorigin, mctc1);
   mcDEBUG_COMPONENT("origin", mcposaorigin, mcrotaorigin)
@@ -10357,7 +10443,7 @@ void mcinit(void) {
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10360 "./parabolic_extraction.c"
+#line 10446 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotaorigin, mcrotasource);
   rot_transpose(mcrotaorigin, mctr1);
   rot_mul(mcrotasource, mctr1, mcrotrsource);
@@ -10368,7 +10454,7 @@ void mcinit(void) {
     0,
 #line 63 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10371 "./parabolic_extraction.c"
+#line 10457 "./parabolic_extraction.c"
   rot_transpose(mcrotaorigin, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposasource = coords_add(mcposaorigin, mctc2);
@@ -10402,14 +10488,14 @@ void mcinit(void) {
   mccsource_div_gauss = 0;
 #line 72 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_flux = mcipflux;
-#line 10405 "./parabolic_extraction.c"
+#line 10491 "./parabolic_extraction.c"
 
   SIG_MESSAGE("source_div (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10412 "./parabolic_extraction.c"
+#line 10498 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotasource, mcrotasource_div);
   rot_transpose(mcrotasource, mctr1);
   rot_mul(mcrotasource_div, mctr1, mcrotrsource_div);
@@ -10420,7 +10506,7 @@ void mcinit(void) {
     0,
 #line 74 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10423 "./parabolic_extraction.c"
+#line 10509 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposasource_div = coords_add(mcposasource, mctc2);
@@ -10431,6 +10517,52 @@ void mcinit(void) {
   mccomp_posr[3] = mcposrsource_div;
   mcNCounter[3]  = mcPCounter[3] = mcP2Counter[3] = 0;
   mcAbsorbProp[3]= 0;
+    /* Component slit. */
+  /* Setting parameters for component slit. */
+  SIG_MESSAGE("slit (Init:SetPar)");
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccslit_xmin = 0;
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccslit_xmax = 0;
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccslit_ymin = 0;
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccslit_ymax = 0;
+#line 77 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccslit_radius = mcipsource_width / 2;
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccslit_xwidth = 0;
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccslit_yheight = 0;
+#line 10537 "./parabolic_extraction.c"
+
+  SIG_MESSAGE("slit (Init:Place/Rotate)");
+  rot_set_rotation(mctr1,
+    (0.0)*DEG2RAD,
+    (0.0)*DEG2RAD,
+    (0.0)*DEG2RAD);
+#line 10544 "./parabolic_extraction.c"
+  rot_mul(mctr1, mcrotasource, mcrotaslit);
+  rot_transpose(mcrotasource_div, mctr1);
+  rot_mul(mcrotaslit, mctr1, mcrotrslit);
+  mctc1 = coords_set(
+#line 79 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    0,
+#line 79 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    0,
+#line 79 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    0);
+#line 10555 "./parabolic_extraction.c"
+  rot_transpose(mcrotasource, mctr1);
+  mctc2 = rot_apply(mctr1, mctc1);
+  mcposaslit = coords_add(mcposasource, mctc2);
+  mctc1 = coords_sub(mcposasource_div, mcposaslit);
+  mcposrslit = rot_apply(mcrotaslit, mctc1);
+  mcDEBUG_COMPONENT("slit", mcposaslit, mcrotaslit)
+  mccomp_posa[4] = mcposaslit;
+  mccomp_posr[4] = mcposrslit;
+  mcNCounter[4]  = mcPCounter[4] = mcP2Counter[4] = 0;
+  mcAbsorbProp[4]= 0;
     /* Component psd_monitor_source. */
   /* Setting parameters for component psd_monitor_source. */
   SIG_MESSAGE("psd_monitor_source (Init:SetPar)");
@@ -10449,21 +10581,21 @@ void mcinit(void) {
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_ymax = 0.05;
 #line 83 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccpsd_monitor_source_xwidth = mcipguide_width;
+  mccpsd_monitor_source_xwidth = mcipdet_width;
 #line 84 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccpsd_monitor_source_yheight = mcipguide_width;
+  mccpsd_monitor_source_yheight = mcipdet_width;
 #line 87 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_restore_neutron = 1;
-#line 10457 "./parabolic_extraction.c"
+#line 10589 "./parabolic_extraction.c"
 
   SIG_MESSAGE("psd_monitor_source (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10464 "./parabolic_extraction.c"
+#line 10596 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotasource, mcrotapsd_monitor_source);
-  rot_transpose(mcrotasource_div, mctr1);
+  rot_transpose(mcrotaslit, mctr1);
   rot_mul(mcrotapsd_monitor_source, mctr1, mcrotrpsd_monitor_source);
   mctc1 = coords_set(
 #line 88 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
@@ -10471,132 +10603,184 @@ void mcinit(void) {
 #line 88 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
 #line 88 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-    mcipfocal_length -0.6);
-#line 10475 "./parabolic_extraction.c"
+    0);
+#line 10607 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposapsd_monitor_source = coords_add(mcposasource, mctc2);
-  mctc1 = coords_sub(mcposasource_div, mcposapsd_monitor_source);
+  mctc1 = coords_sub(mcposaslit, mcposapsd_monitor_source);
   mcposrpsd_monitor_source = rot_apply(mcrotapsd_monitor_source, mctc1);
   mcDEBUG_COMPONENT("psd_monitor_source", mcposapsd_monitor_source, mcrotapsd_monitor_source)
-  mccomp_posa[4] = mcposapsd_monitor_source;
-  mccomp_posr[4] = mcposrpsd_monitor_source;
-  mcNCounter[4]  = mcPCounter[4] = mcP2Counter[4] = 0;
-  mcAbsorbProp[4]= 0;
+  mccomp_posa[5] = mcposapsd_monitor_source;
+  mccomp_posr[5] = mcposrpsd_monitor_source;
+  mcNCounter[5]  = mcPCounter[5] = mcP2Counter[5] = 0;
+  mcAbsorbProp[5]= 0;
+    /* Component psd_monitor_source_before_optic. */
+  /* Setting parameters for component psd_monitor_source_before_optic. */
+  SIG_MESSAGE("psd_monitor_source_before_optic (Init:SetPar)");
+#line 94 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_nx = mcippixels;
+#line 95 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_ny = mcippixels;
+#line 91 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  if("source_psd_beforeoptic.dat") strncpy(mccpsd_monitor_source_before_optic_filename, "source_psd_beforeoptic.dat" ? "source_psd_beforeoptic.dat" : "", 16384); else mccpsd_monitor_source_before_optic_filename[0]='\0';
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_xmin = -0.05;
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_xmax = 0.05;
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_ymin = -0.05;
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_ymax = 0.05;
+#line 92 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_xwidth = 0.10815692497298013 * 2;
+#line 93 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_yheight = 0.10815692497298013 * 2;
+#line 96 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccpsd_monitor_source_before_optic_restore_neutron = 1;
+#line 10641 "./parabolic_extraction.c"
+
+  SIG_MESSAGE("psd_monitor_source_before_optic (Init:Place/Rotate)");
+  rot_set_rotation(mctr1,
+    (0.0)*DEG2RAD,
+    (0.0)*DEG2RAD,
+    (0.0)*DEG2RAD);
+#line 10648 "./parabolic_extraction.c"
+  rot_mul(mctr1, mcrotasource, mcrotapsd_monitor_source_before_optic);
+  rot_transpose(mcrotapsd_monitor_source, mctr1);
+  rot_mul(mcrotapsd_monitor_source_before_optic, mctr1, mcrotrpsd_monitor_source_before_optic);
+  mctc1 = coords_set(
+#line 97 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    0,
+#line 97 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    0,
+#line 97 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    mcipfocal_length -0.6);
+#line 10659 "./parabolic_extraction.c"
+  rot_transpose(mcrotasource, mctr1);
+  mctc2 = rot_apply(mctr1, mctc1);
+  mcposapsd_monitor_source_before_optic = coords_add(mcposasource, mctc2);
+  mctc1 = coords_sub(mcposapsd_monitor_source, mcposapsd_monitor_source_before_optic);
+  mcposrpsd_monitor_source_before_optic = rot_apply(mcrotapsd_monitor_source_before_optic, mctc1);
+  mcDEBUG_COMPONENT("psd_monitor_source_before_optic", mcposapsd_monitor_source_before_optic, mcrotapsd_monitor_source_before_optic)
+  mccomp_posa[6] = mcposapsd_monitor_source_before_optic;
+  mccomp_posr[6] = mcposrpsd_monitor_source_before_optic;
+  mcNCounter[6]  = mcPCounter[6] = mcP2Counter[6] = 0;
+  mcAbsorbProp[6]= 0;
     /* Component parabolic_optic_before_guide_v. */
   /* Setting parameters for component parabolic_optic_before_guide_v. */
   SIG_MESSAGE("parabolic_optic_before_guide_v (Init:SetPar)");
-#line 93 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_sourceDist = - ( mcipfocal_length -0.6 );
-#line 94 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_LStart = - ( mcipfocal_length -0.6 );
-#line 95 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_LEnd = mcipincoming_length + 0.6;
-#line 96 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_lStart = 0;
-#line 97 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_lEnd = 0.6;
-#line 98 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_r_0 = mcipguide_width / 2;
-#line 100 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_nummirror = mcipmirrors;
 #line 102 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_v_mf = 4.1;
+  mccparabolic_optic_before_guide_v_sourceDist = - ( mcipfocal_length -0.6 );
 #line 103 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_v_LStart = - ( mcipfocal_length -0.6 );
+#line 104 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_v_LEnd = mcipincoming_length + 0.6;
+#line 105 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_v_lStart = 0;
+#line 106 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_v_lEnd = 0.6;
+#line 107 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_v_r_0 = 0.10815692497298013;
+#line 109 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_v_nummirror = mcipmirrors;
+#line 111 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_v_mf = 4.1;
+#line 112 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_mb = 0;
-#line 99 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 108 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_mirror_width = 0;
-#line 101 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 110 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_doubleReflections = 1;
-#line 10511 "./parabolic_extraction.c"
+#line 10695 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic_before_guide_v (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 107 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 107 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 107 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
-#line 10521 "./parabolic_extraction.c"
+#line 10705 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotasource, mcrotaparabolic_optic_before_guide_v);
-  rot_transpose(mcrotapsd_monitor_source, mctr1);
+  rot_transpose(mcrotapsd_monitor_source_before_optic, mctr1);
   rot_mul(mcrotaparabolic_optic_before_guide_v, mctr1, mcrotrparabolic_optic_before_guide_v);
   mctc1 = coords_set(
-#line 106 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 106 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 106 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length -0.6);
-#line 10532 "./parabolic_extraction.c"
+#line 10716 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposaparabolic_optic_before_guide_v = coords_add(mcposasource, mctc2);
-  mctc1 = coords_sub(mcposapsd_monitor_source, mcposaparabolic_optic_before_guide_v);
+  mctc1 = coords_sub(mcposapsd_monitor_source_before_optic, mcposaparabolic_optic_before_guide_v);
   mcposrparabolic_optic_before_guide_v = rot_apply(mcrotaparabolic_optic_before_guide_v, mctc1);
   mcDEBUG_COMPONENT("parabolic_optic_before_guide_v", mcposaparabolic_optic_before_guide_v, mcrotaparabolic_optic_before_guide_v)
-  mccomp_posa[5] = mcposaparabolic_optic_before_guide_v;
-  mccomp_posr[5] = mcposrparabolic_optic_before_guide_v;
-  mcNCounter[5]  = mcPCounter[5] = mcP2Counter[5] = 0;
-  mcAbsorbProp[5]= 0;
+  mccomp_posa[7] = mcposaparabolic_optic_before_guide_v;
+  mccomp_posr[7] = mcposrparabolic_optic_before_guide_v;
+  mcNCounter[7]  = mcPCounter[7] = mcP2Counter[7] = 0;
+  mcAbsorbProp[7]= 0;
     /* Component parabolic_optic_before_guide_h. */
   /* Setting parameters for component parabolic_optic_before_guide_h. */
   SIG_MESSAGE("parabolic_optic_before_guide_h (Init:SetPar)");
-#line 111 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_sourceDist = - mcipfocal_length;
-#line 112 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_LStart = - mcipfocal_length;
-#line 113 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_LEnd = mcipincoming_length;
-#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_lStart = 0;
-#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_lEnd = 0.6;
-#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_r_0 = mcipguide_width / 2;
-#line 118 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_nummirror = mcipmirrors;
 #line 120 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic_before_guide_h_mf = 4.1;
+  mccparabolic_optic_before_guide_h_sourceDist = - mcipfocal_length;
 #line 121 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_h_LStart = - mcipfocal_length;
+#line 122 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_h_LEnd = mcipincoming_length;
+#line 123 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_h_lStart = 0;
+#line 124 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_h_lEnd = 0.6;
+#line 125 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_h_r_0 = 0.1087016643197862;
+#line 127 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_h_nummirror = mcipmirrors;
+#line 129 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic_before_guide_h_mf = 4.1;
+#line 130 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_mb = 0;
-#line 117 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 126 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_mirror_width = 0;
-#line 119 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 128 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_doubleReflections = 1;
-#line 10568 "./parabolic_extraction.c"
+#line 10752 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic_before_guide_h (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 125 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 134 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 125 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 134 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 125 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 134 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
-#line 10578 "./parabolic_extraction.c"
+#line 10762 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotasource, mcrotaparabolic_optic_before_guide_h);
   rot_transpose(mcrotaparabolic_optic_before_guide_v, mctr1);
   rot_mul(mcrotaparabolic_optic_before_guide_h, mctr1, mcrotrparabolic_optic_before_guide_h);
   mctc1 = coords_set(
-#line 124 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 133 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 124 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 133 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 124 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 133 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length);
-#line 10589 "./parabolic_extraction.c"
+#line 10773 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposaparabolic_optic_before_guide_h = coords_add(mcposasource, mctc2);
   mctc1 = coords_sub(mcposaparabolic_optic_before_guide_v, mcposaparabolic_optic_before_guide_h);
   mcposrparabolic_optic_before_guide_h = rot_apply(mcrotaparabolic_optic_before_guide_h, mctc1);
   mcDEBUG_COMPONENT("parabolic_optic_before_guide_h", mcposaparabolic_optic_before_guide_h, mcrotaparabolic_optic_before_guide_h)
-  mccomp_posa[6] = mcposaparabolic_optic_before_guide_h;
-  mccomp_posr[6] = mcposrparabolic_optic_before_guide_h;
-  mcNCounter[6]  = mcPCounter[6] = mcP2Counter[6] = 0;
-  mcAbsorbProp[6]= 0;
+  mccomp_posa[8] = mcposaparabolic_optic_before_guide_h;
+  mccomp_posr[8] = mcposrparabolic_optic_before_guide_h;
+  mcNCounter[8]  = mcPCounter[8] = mcP2Counter[8] = 0;
+  mcAbsorbProp[8]= 0;
     /* Component after_optic_source. */
   /* Setting parameters for component after_optic_source. */
   SIG_MESSAGE("after_optic_source (Init:SetPar)");
@@ -10606,36 +10790,36 @@ void mcinit(void) {
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10609 "./parabolic_extraction.c"
+#line 10793 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotasource, mcrotaafter_optic_source);
   rot_transpose(mcrotaparabolic_optic_before_guide_h, mctr1);
   rot_mul(mcrotaafter_optic_source, mctr1, mcrotrafter_optic_source);
   mctc1 = coords_set(
-#line 130 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 139 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 130 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 139 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 130 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 139 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length + 1);
-#line 10620 "./parabolic_extraction.c"
+#line 10804 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposaafter_optic_source = coords_add(mcposasource, mctc2);
   mctc1 = coords_sub(mcposaparabolic_optic_before_guide_h, mcposaafter_optic_source);
   mcposrafter_optic_source = rot_apply(mcrotaafter_optic_source, mctc1);
   mcDEBUG_COMPONENT("after_optic_source", mcposaafter_optic_source, mcrotaafter_optic_source)
-  mccomp_posa[7] = mcposaafter_optic_source;
-  mccomp_posr[7] = mcposrafter_optic_source;
-  mcNCounter[7]  = mcPCounter[7] = mcP2Counter[7] = 0;
-  mcAbsorbProp[7]= 0;
+  mccomp_posa[9] = mcposaafter_optic_source;
+  mccomp_posr[9] = mcposrafter_optic_source;
+  mcNCounter[9]  = mcPCounter[9] = mcP2Counter[9] = 0;
+  mcAbsorbProp[9]= 0;
     /* Component psd_monitor_afteropticsource. */
   /* Setting parameters for component psd_monitor_afteropticsource. */
   SIG_MESSAGE("psd_monitor_afteropticsource (Init:SetPar)");
-#line 136 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 145 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_nx = mcippixels;
-#line 137 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 146 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_ny = mcippixels;
-#line 133 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 142 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("sourceafteroptic_psd.dat") strncpy(mccpsd_monitor_afteropticsource_filename, "sourceafteroptic_psd.dat" ? "sourceafteroptic_psd.dat" : "", 16384); else mccpsd_monitor_afteropticsource_filename[0]='\0';
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_xmin = -0.05;
@@ -10645,53 +10829,53 @@ void mcinit(void) {
   mccpsd_monitor_afteropticsource_ymin = -0.05;
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_ymax = 0.05;
-#line 134 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 143 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_xwidth = mcipdet_width;
-#line 135 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 144 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_yheight = mcipdet_width;
-#line 138 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 147 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_restore_neutron = 1;
-#line 10654 "./parabolic_extraction.c"
+#line 10838 "./parabolic_extraction.c"
 
   SIG_MESSAGE("psd_monitor_afteropticsource (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10661 "./parabolic_extraction.c"
+#line 10845 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotaafter_optic_source, mcrotapsd_monitor_afteropticsource);
   rot_transpose(mcrotaafter_optic_source, mctr1);
   rot_mul(mcrotapsd_monitor_afteropticsource, mctr1, mcrotrpsd_monitor_afteropticsource);
   mctc1 = coords_set(
-#line 139 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 148 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 139 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 148 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 139 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 148 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10672 "./parabolic_extraction.c"
+#line 10856 "./parabolic_extraction.c"
   rot_transpose(mcrotaafter_optic_source, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposapsd_monitor_afteropticsource = coords_add(mcposaafter_optic_source, mctc2);
   mctc1 = coords_sub(mcposaafter_optic_source, mcposapsd_monitor_afteropticsource);
   mcposrpsd_monitor_afteropticsource = rot_apply(mcrotapsd_monitor_afteropticsource, mctc1);
   mcDEBUG_COMPONENT("psd_monitor_afteropticsource", mcposapsd_monitor_afteropticsource, mcrotapsd_monitor_afteropticsource)
-  mccomp_posa[8] = mcposapsd_monitor_afteropticsource;
-  mccomp_posr[8] = mcposrpsd_monitor_afteropticsource;
-  mcNCounter[8]  = mcPCounter[8] = mcP2Counter[8] = 0;
-  mcAbsorbProp[8]= 0;
+  mccomp_posa[10] = mcposapsd_monitor_afteropticsource;
+  mccomp_posr[10] = mcposrpsd_monitor_afteropticsource;
+  mcNCounter[10]  = mcPCounter[10] = mcP2Counter[10] = 0;
+  mcAbsorbProp[10]= 0;
     /* Component guide_gravity_1. */
   /* Setting parameters for component guide_gravity_1. */
   SIG_MESSAGE("guide_gravity_1 (Init:SetPar)");
-#line 144 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 153 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_w1 = mcipguide_width;
-#line 145 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 154 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_h1 = mcipguide_width;
 #line 113 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_w2 = 0;
 #line 113 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_h2 = 0;
-#line 148 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 157 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_l = mcipguide_length;
 #line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_R0 = 0.995;
@@ -10699,7 +10883,7 @@ void mcinit(void) {
   mccguide_gravity_1_Qc = 0.0218;
 #line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_alpha = 4.38;
-#line 147 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 156 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_m = 2;
 #line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_W = 0.003;
@@ -10717,7 +10901,7 @@ void mcinit(void) {
   mccguide_gravity_1_mbottom = -1;
 #line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_nhslit = 1;
-#line 146 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 155 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_G = mcipg;
 #line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_aleft = -1;
@@ -10751,35 +10935,35 @@ void mcinit(void) {
   mccguide_gravity_1_phase = 0;
 #line 119 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("NULL") strncpy(mccguide_gravity_1_reflect, "NULL" ? "NULL" : "", 16384); else mccguide_gravity_1_reflect[0]='\0';
-#line 10754 "./parabolic_extraction.c"
+#line 10938 "./parabolic_extraction.c"
 
   SIG_MESSAGE("guide_gravity_1 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10761 "./parabolic_extraction.c"
+#line 10945 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotaafter_optic_source, mcrotaguide_gravity_1);
   rot_transpose(mcrotapsd_monitor_afteropticsource, mctr1);
   rot_mul(mcrotaguide_gravity_1, mctr1, mcrotrguide_gravity_1);
   mctc1 = coords_set(
-#line 149 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 158 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 149 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 158 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 149 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 158 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10772 "./parabolic_extraction.c"
+#line 10956 "./parabolic_extraction.c"
   rot_transpose(mcrotaafter_optic_source, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposaguide_gravity_1 = coords_add(mcposaafter_optic_source, mctc2);
   mctc1 = coords_sub(mcposapsd_monitor_afteropticsource, mcposaguide_gravity_1);
   mcposrguide_gravity_1 = rot_apply(mcrotaguide_gravity_1, mctc1);
   mcDEBUG_COMPONENT("guide_gravity_1", mcposaguide_gravity_1, mcrotaguide_gravity_1)
-  mccomp_posa[9] = mcposaguide_gravity_1;
-  mccomp_posr[9] = mcposrguide_gravity_1;
-  mcNCounter[9]  = mcPCounter[9] = mcP2Counter[9] = 0;
-  mcAbsorbProp[9]= 0;
+  mccomp_posa[11] = mcposaguide_gravity_1;
+  mccomp_posr[11] = mcposrguide_gravity_1;
+  mcNCounter[11]  = mcPCounter[11] = mcP2Counter[11] = 0;
+  mcAbsorbProp[11]= 0;
     /* Component monitor_1. */
   /* Setting parameters for component monitor_1. */
   SIG_MESSAGE("monitor_1 (Init:SetPar)");
@@ -10789,32 +10973,32 @@ void mcinit(void) {
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10792 "./parabolic_extraction.c"
+#line 10976 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotaafter_optic_source, mcrotamonitor_1);
   rot_transpose(mcrotaguide_gravity_1, mctr1);
   rot_mul(mcrotamonitor_1, mctr1, mcrotrmonitor_1);
   mctc1 = coords_set(
-#line 152 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 161 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 152 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 161 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 152 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 161 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipguide_length + 0.0001);
-#line 10803 "./parabolic_extraction.c"
+#line 10987 "./parabolic_extraction.c"
   rot_transpose(mcrotaafter_optic_source, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposamonitor_1 = coords_add(mcposaafter_optic_source, mctc2);
   mctc1 = coords_sub(mcposaguide_gravity_1, mcposamonitor_1);
   mcposrmonitor_1 = rot_apply(mcrotamonitor_1, mctc1);
   mcDEBUG_COMPONENT("monitor_1", mcposamonitor_1, mcrotamonitor_1)
-  mccomp_posa[10] = mcposamonitor_1;
-  mccomp_posr[10] = mcposrmonitor_1;
-  mcNCounter[10]  = mcPCounter[10] = mcP2Counter[10] = 0;
-  mcAbsorbProp[10]= 0;
+  mccomp_posa[12] = mcposamonitor_1;
+  mccomp_posr[12] = mcposrmonitor_1;
+  mcNCounter[12]  = mcPCounter[12] = mcP2Counter[12] = 0;
+  mcAbsorbProp[12]= 0;
     /* Component divpos_monitor. */
   /* Setting parameters for component divpos_monitor. */
   SIG_MESSAGE("divpos_monitor (Init:SetPar)");
-#line 157 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 166 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("g1_divpos.dat") strncpy(mccdivpos_monitor_filename, "g1_divpos.dat" ? "g1_divpos.dat" : "", 16384); else mccdivpos_monitor_filename[0]='\0';
 #line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_xmin = -0.05;
@@ -10824,13 +11008,13 @@ void mcinit(void) {
   mccdivpos_monitor_ymin = -0.05;
 #line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_ymax = 0.05;
-#line 158 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 167 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_xwidth = mcipdet_width;
-#line 159 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 168 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_yheight = mcipdet_width;
-#line 160 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 169 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_maxdiv_h = mcipdivergence_max * 2;
-#line 161 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 170 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_restore_neutron = 1;
 #line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_nx = 0;
@@ -10840,46 +11024,46 @@ void mcinit(void) {
   mccdivpos_monitor_nz = 1;
 #line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_nowritefile = 0;
-#line 10843 "./parabolic_extraction.c"
+#line 11027 "./parabolic_extraction.c"
 
   SIG_MESSAGE("divpos_monitor (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 163 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 172 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 163 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 172 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 163 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 172 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
-#line 10853 "./parabolic_extraction.c"
+#line 11037 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotadivpos_monitor);
   rot_transpose(mcrotamonitor_1, mctr1);
   rot_mul(mcrotadivpos_monitor, mctr1, mcrotrdivpos_monitor);
   mctc1 = coords_set(
-#line 162 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 171 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 162 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 171 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 162 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 171 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10864 "./parabolic_extraction.c"
+#line 11048 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposadivpos_monitor = coords_add(mcposamonitor_1, mctc2);
   mctc1 = coords_sub(mcposamonitor_1, mcposadivpos_monitor);
   mcposrdivpos_monitor = rot_apply(mcrotadivpos_monitor, mctc1);
   mcDEBUG_COMPONENT("divpos_monitor", mcposadivpos_monitor, mcrotadivpos_monitor)
-  mccomp_posa[11] = mcposadivpos_monitor;
-  mccomp_posr[11] = mcposrdivpos_monitor;
-  mcNCounter[11]  = mcPCounter[11] = mcP2Counter[11] = 0;
-  mcAbsorbProp[11]= 0;
+  mccomp_posa[13] = mcposadivpos_monitor;
+  mccomp_posr[13] = mcposrdivpos_monitor;
+  mcNCounter[13]  = mcPCounter[13] = mcP2Counter[13] = 0;
+  mcAbsorbProp[13]= 0;
     /* Component psd_monitor_g1. */
   /* Setting parameters for component psd_monitor_g1. */
   SIG_MESSAGE("psd_monitor_g1 (Init:SetPar)");
-#line 226 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 235 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_nx = mcippixels;
-#line 227 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 236 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_ny = mcippixels;
-#line 223 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 232 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("g1_psd.dat") strncpy(mccpsd_monitor_g1_filename, "g1_psd.dat" ? "g1_psd.dat" : "", 16384); else mccpsd_monitor_g1_filename[0]='\0';
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_xmin = -0.05;
@@ -10889,45 +11073,45 @@ void mcinit(void) {
   mccpsd_monitor_g1_ymin = -0.05;
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_ymax = 0.05;
-#line 224 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 233 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_xwidth = mcipdet_width;
-#line 225 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 234 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_yheight = mcipdet_width;
-#line 228 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 237 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_restore_neutron = 1;
-#line 10898 "./parabolic_extraction.c"
+#line 11082 "./parabolic_extraction.c"
 
   SIG_MESSAGE("psd_monitor_g1 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD,
     (0.0)*DEG2RAD);
-#line 10905 "./parabolic_extraction.c"
+#line 11089 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotapsd_monitor_g1);
   rot_transpose(mcrotadivpos_monitor, mctr1);
   rot_mul(mcrotapsd_monitor_g1, mctr1, mcrotrpsd_monitor_g1);
   mctc1 = coords_set(
-#line 229 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 238 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 229 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 238 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 229 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 238 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10916 "./parabolic_extraction.c"
+#line 11100 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposapsd_monitor_g1 = coords_add(mcposamonitor_1, mctc2);
   mctc1 = coords_sub(mcposadivpos_monitor, mcposapsd_monitor_g1);
   mcposrpsd_monitor_g1 = rot_apply(mcrotapsd_monitor_g1, mctc1);
   mcDEBUG_COMPONENT("psd_monitor_g1", mcposapsd_monitor_g1, mcrotapsd_monitor_g1)
-  mccomp_posa[12] = mcposapsd_monitor_g1;
-  mccomp_posr[12] = mcposrpsd_monitor_g1;
-  mcNCounter[12]  = mcPCounter[12] = mcP2Counter[12] = 0;
-  mcAbsorbProp[12]= 0;
+  mccomp_posa[14] = mcposapsd_monitor_g1;
+  mccomp_posr[14] = mcposrpsd_monitor_g1;
+  mcNCounter[14]  = mcPCounter[14] = mcP2Counter[14] = 0;
+  mcAbsorbProp[14]= 0;
     /* Component divhlambda_monitor_g1. */
   /* Setting parameters for component divhlambda_monitor_g1. */
   SIG_MESSAGE("divhlambda_monitor_g1 (Init:SetPar)");
-#line 234 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 243 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("g1_divv_lambda.dat") strncpy(mccdivhlambda_monitor_g1_filename, "g1_divv_lambda.dat" ? "g1_divv_lambda.dat" : "", 16384); else mccdivhlambda_monitor_g1_filename[0]='\0';
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_xmin = -0.05;
@@ -10937,17 +11121,17 @@ void mcinit(void) {
   mccdivhlambda_monitor_g1_ymin = -0.05;
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_ymax = 0.05;
-#line 235 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 244 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_xwidth = mcipdet_width;
-#line 236 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 245 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_yheight = mcipdet_width;
-#line 237 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 246 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_maxdiv_h = mcipdivergence_max * 2;
-#line 238 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 247 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_Lmin = mcipL_min;
-#line 239 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 248 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_Lmax = mcipL_max;
-#line 240 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 249 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_restore_neutron = 1;
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_nx = 0;
@@ -10957,194 +11141,194 @@ void mcinit(void) {
   mccdivhlambda_monitor_g1_nz = 1;
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_nowritefile = 0;
-#line 10960 "./parabolic_extraction.c"
+#line 11144 "./parabolic_extraction.c"
 
   SIG_MESSAGE("divhlambda_monitor_g1 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 242 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 251 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 242 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 251 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 242 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 251 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
-#line 10970 "./parabolic_extraction.c"
+#line 11154 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotadivhlambda_monitor_g1);
   rot_transpose(mcrotapsd_monitor_g1, mctr1);
   rot_mul(mcrotadivhlambda_monitor_g1, mctr1, mcrotrdivhlambda_monitor_g1);
   mctc1 = coords_set(
-#line 241 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 250 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 241 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 250 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 241 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 250 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 10981 "./parabolic_extraction.c"
+#line 11165 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposadivhlambda_monitor_g1 = coords_add(mcposamonitor_1, mctc2);
   mctc1 = coords_sub(mcposapsd_monitor_g1, mcposadivhlambda_monitor_g1);
   mcposrdivhlambda_monitor_g1 = rot_apply(mcrotadivhlambda_monitor_g1, mctc1);
   mcDEBUG_COMPONENT("divhlambda_monitor_g1", mcposadivhlambda_monitor_g1, mcrotadivhlambda_monitor_g1)
-  mccomp_posa[13] = mcposadivhlambda_monitor_g1;
-  mccomp_posr[13] = mcposrdivhlambda_monitor_g1;
-  mcNCounter[13]  = mcPCounter[13] = mcP2Counter[13] = 0;
-  mcAbsorbProp[13]= 0;
+  mccomp_posa[15] = mcposadivhlambda_monitor_g1;
+  mccomp_posr[15] = mcposrdivhlambda_monitor_g1;
+  mcNCounter[15]  = mcPCounter[15] = mcP2Counter[15] = 0;
+  mcAbsorbProp[15]= 0;
     /* Component parabolic_optic1. */
   /* Setting parameters for component parabolic_optic1. */
   SIG_MESSAGE("parabolic_optic1 (Init:SetPar)");
-#line 260 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_sourceDist = - mcipincoming_length;
-#line 261 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_LStart = - mcipincoming_length;
-#line 262 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_LEnd = mcipfocal_length + 0.6;
-#line 263 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_lStart = 0;
-#line 264 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_lEnd = 0.6;
-#line 265 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_r_0 = mcipguide_width / 2;
-#line 267 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_nummirror = mcipmirrors;
 #line 269 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic1_mf = 4.1;
+  mccparabolic_optic1_sourceDist = - mcipincoming_length;
 #line 270 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic1_LStart = - mcipincoming_length;
+#line 271 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic1_LEnd = mcipfocal_length + 0.6;
+#line 272 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic1_lStart = 0;
+#line 273 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic1_lEnd = 0.6;
+#line 274 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic1_r_0 = mcipguide_width / 2 + 0.005;
+#line 276 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic1_nummirror = mcipmirrors;
+#line 278 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic1_mf = 4.1;
+#line 279 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_mb = 0;
-#line 266 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 275 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_mirror_width = 0;
-#line 268 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 277 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_doubleReflections = 1;
-#line 11017 "./parabolic_extraction.c"
+#line 11201 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic1 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 274 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 283 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 274 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 283 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 274 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 283 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
-#line 11027 "./parabolic_extraction.c"
+#line 11211 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotaparabolic_optic1);
   rot_transpose(mcrotadivhlambda_monitor_g1, mctr1);
   rot_mul(mcrotaparabolic_optic1, mctr1, mcrotrparabolic_optic1);
   mctc1 = coords_set(
-#line 273 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 282 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 273 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 282 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 273 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 282 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 11038 "./parabolic_extraction.c"
+#line 11222 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposaparabolic_optic1 = coords_add(mcposamonitor_1, mctc2);
   mctc1 = coords_sub(mcposadivhlambda_monitor_g1, mcposaparabolic_optic1);
   mcposrparabolic_optic1 = rot_apply(mcrotaparabolic_optic1, mctc1);
   mcDEBUG_COMPONENT("parabolic_optic1", mcposaparabolic_optic1, mcrotaparabolic_optic1)
-  mccomp_posa[14] = mcposaparabolic_optic1;
-  mccomp_posr[14] = mcposrparabolic_optic1;
-  mcNCounter[14]  = mcPCounter[14] = mcP2Counter[14] = 0;
-  mcAbsorbProp[14]= 0;
+  mccomp_posa[16] = mcposaparabolic_optic1;
+  mccomp_posr[16] = mcposrparabolic_optic1;
+  mcNCounter[16]  = mcPCounter[16] = mcP2Counter[16] = 0;
+  mcAbsorbProp[16]= 0;
     /* Component parabolic_optic2. */
   /* Setting parameters for component parabolic_optic2. */
   SIG_MESSAGE("parabolic_optic2 (Init:SetPar)");
-#line 277 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_sourceDist = - mcipincoming_length -0.6;
-#line 278 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_LStart = - mcipincoming_length -0.6;
-#line 279 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_LEnd = mcipfocal_length;
-#line 280 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_lStart = 0;
-#line 281 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_lEnd = 0.6;
-#line 282 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_r_0 = mcipguide_width / 2 + 0.001 + 0.005;
-#line 284 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_nummirror = mcipmirrors;
 #line 286 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
-  mccparabolic_optic2_mf = 4.1;
+  mccparabolic_optic2_sourceDist = - mcipincoming_length -0.6;
 #line 287 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic2_LStart = - mcipincoming_length -0.6;
+#line 288 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic2_LEnd = mcipfocal_length;
+#line 289 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic2_lStart = 0;
+#line 290 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic2_lEnd = 0.6;
+#line 291 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic2_r_0 = mcipguide_width / 2 + 0.005;
+#line 293 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic2_nummirror = mcipmirrors;
+#line 295 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+  mccparabolic_optic2_mf = 4.1;
+#line 296 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_mb = 0;
-#line 283 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 292 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_mirror_width = 0;
-#line 285 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 294 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_doubleReflections = 1;
-#line 11074 "./parabolic_extraction.c"
+#line 11258 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic2 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 291 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 300 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 291 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 300 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 291 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 300 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
-#line 11084 "./parabolic_extraction.c"
+#line 11268 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotaparabolic_optic2);
   rot_transpose(mcrotaparabolic_optic1, mctr1);
   rot_mul(mcrotaparabolic_optic2, mctr1, mcrotrparabolic_optic2);
   mctc1 = coords_set(
-#line 290 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 299 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 290 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 299 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 290 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 299 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0.6);
-#line 11095 "./parabolic_extraction.c"
+#line 11279 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposaparabolic_optic2 = coords_add(mcposamonitor_1, mctc2);
   mctc1 = coords_sub(mcposaparabolic_optic1, mcposaparabolic_optic2);
   mcposrparabolic_optic2 = rot_apply(mcrotaparabolic_optic2, mctc1);
   mcDEBUG_COMPONENT("parabolic_optic2", mcposaparabolic_optic2, mcrotaparabolic_optic2)
-  mccomp_posa[15] = mcposaparabolic_optic2;
-  mccomp_posr[15] = mcposrparabolic_optic2;
-  mcNCounter[15]  = mcPCounter[15] = mcP2Counter[15] = 0;
-  mcAbsorbProp[15]= 0;
+  mccomp_posa[17] = mcposaparabolic_optic2;
+  mccomp_posr[17] = mcposrparabolic_optic2;
+  mcNCounter[17]  = mcPCounter[17] = mcP2Counter[17] = 0;
+  mcAbsorbProp[17]= 0;
     /* Component monitor_2. */
   /* Setting parameters for component monitor_2. */
   SIG_MESSAGE("monitor_2 (Init:SetPar)");
 
   SIG_MESSAGE("monitor_2 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 298 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 307 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 298 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 307 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 298 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 307 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
-#line 11118 "./parabolic_extraction.c"
+#line 11302 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotamonitor_2);
   rot_transpose(mcrotaparabolic_optic2, mctr1);
   rot_mul(mcrotamonitor_2, mctr1, mcrotrmonitor_2);
   mctc1 = coords_set(
-#line 297 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 306 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 297 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 306 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 297 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 306 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length + 0.6);
-#line 11129 "./parabolic_extraction.c"
+#line 11313 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposamonitor_2 = coords_add(mcposamonitor_1, mctc2);
   mctc1 = coords_sub(mcposaparabolic_optic2, mcposamonitor_2);
   mcposrmonitor_2 = rot_apply(mcrotamonitor_2, mctc1);
   mcDEBUG_COMPONENT("monitor_2", mcposamonitor_2, mcrotamonitor_2)
-  mccomp_posa[16] = mcposamonitor_2;
-  mccomp_posr[16] = mcposrmonitor_2;
-  mcNCounter[16]  = mcPCounter[16] = mcP2Counter[16] = 0;
-  mcAbsorbProp[16]= 0;
+  mccomp_posa[18] = mcposamonitor_2;
+  mccomp_posr[18] = mcposrmonitor_2;
+  mcNCounter[18]  = mcPCounter[18] = mcP2Counter[18] = 0;
+  mcAbsorbProp[18]= 0;
     /* Component psd_monitor_f_zoom. */
   /* Setting parameters for component psd_monitor_f_zoom. */
   SIG_MESSAGE("psd_monitor_f_zoom (Init:SetPar)");
-#line 360 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 369 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_nx = mcippixels;
-#line 361 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 370 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_ny = mcippixels;
-#line 357 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 366 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_psd_zoom.dat") strncpy(mccpsd_monitor_f_zoom_filename, "f_psd_zoom.dat" ? "f_psd_zoom.dat" : "", 16384); else mccpsd_monitor_f_zoom_filename[0]='\0';
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_xmin = -0.05;
@@ -11154,52 +11338,52 @@ void mcinit(void) {
   mccpsd_monitor_f_zoom_ymin = -0.05;
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_ymax = 0.05;
-#line 358 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 367 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_xwidth = mcipdet_width_focus;
-#line 359 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 368 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_yheight = mcipdet_width_focus;
-#line 362 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 371 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_restore_neutron = 1;
-#line 11163 "./parabolic_extraction.c"
+#line 11347 "./parabolic_extraction.c"
 
   SIG_MESSAGE("psd_monitor_f_zoom (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 364 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 373 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 364 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 373 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 364 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 373 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
-#line 11173 "./parabolic_extraction.c"
+#line 11357 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotapsd_monitor_f_zoom);
   rot_transpose(mcrotamonitor_2, mctr1);
   rot_mul(mcrotapsd_monitor_f_zoom, mctr1, mcrotrpsd_monitor_f_zoom);
   mctc1 = coords_set(
-#line 363 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 372 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 363 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 372 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 363 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 372 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 11184 "./parabolic_extraction.c"
+#line 11368 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposapsd_monitor_f_zoom = coords_add(mcposamonitor_2, mctc2);
   mctc1 = coords_sub(mcposamonitor_2, mcposapsd_monitor_f_zoom);
   mcposrpsd_monitor_f_zoom = rot_apply(mcrotapsd_monitor_f_zoom, mctc1);
   mcDEBUG_COMPONENT("psd_monitor_f_zoom", mcposapsd_monitor_f_zoom, mcrotapsd_monitor_f_zoom)
-  mccomp_posa[17] = mcposapsd_monitor_f_zoom;
-  mccomp_posr[17] = mcposrpsd_monitor_f_zoom;
-  mcNCounter[17]  = mcPCounter[17] = mcP2Counter[17] = 0;
-  mcAbsorbProp[17]= 0;
+  mccomp_posa[19] = mcposapsd_monitor_f_zoom;
+  mccomp_posr[19] = mcposrpsd_monitor_f_zoom;
+  mcNCounter[19]  = mcPCounter[19] = mcP2Counter[19] = 0;
+  mcAbsorbProp[19]= 0;
     /* Component psd_monitor_f. */
   /* Setting parameters for component psd_monitor_f. */
   SIG_MESSAGE("psd_monitor_f (Init:SetPar)");
-#line 370 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 379 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_nx = mcippixels;
-#line 371 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 380 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_ny = mcippixels;
-#line 367 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 376 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_psd.dat") strncpy(mccpsd_monitor_f_filename, "f_psd.dat" ? "f_psd.dat" : "", 16384); else mccpsd_monitor_f_filename[0]='\0';
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_xmin = -0.05;
@@ -11209,48 +11393,48 @@ void mcinit(void) {
   mccpsd_monitor_f_ymin = -0.05;
 #line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_ymax = 0.05;
-#line 368 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 377 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_xwidth = mcipdet_width;
-#line 369 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 378 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_yheight = mcipdet_width;
-#line 372 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 381 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_restore_neutron = 1;
-#line 11218 "./parabolic_extraction.c"
+#line 11402 "./parabolic_extraction.c"
 
   SIG_MESSAGE("psd_monitor_f (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 374 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 383 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 374 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 383 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 374 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 383 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
-#line 11228 "./parabolic_extraction.c"
+#line 11412 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotapsd_monitor_f);
   rot_transpose(mcrotapsd_monitor_f_zoom, mctr1);
   rot_mul(mcrotapsd_monitor_f, mctr1, mcrotrpsd_monitor_f);
   mctc1 = coords_set(
-#line 373 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 382 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 373 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 382 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 373 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 382 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 11239 "./parabolic_extraction.c"
+#line 11423 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposapsd_monitor_f = coords_add(mcposamonitor_2, mctc2);
   mctc1 = coords_sub(mcposapsd_monitor_f_zoom, mcposapsd_monitor_f);
   mcposrpsd_monitor_f = rot_apply(mcrotapsd_monitor_f, mctc1);
   mcDEBUG_COMPONENT("psd_monitor_f", mcposapsd_monitor_f, mcrotapsd_monitor_f)
-  mccomp_posa[18] = mcposapsd_monitor_f;
-  mccomp_posr[18] = mcposrpsd_monitor_f;
-  mcNCounter[18]  = mcPCounter[18] = mcP2Counter[18] = 0;
-  mcAbsorbProp[18]= 0;
+  mccomp_posa[20] = mcposapsd_monitor_f;
+  mccomp_posr[20] = mcposrpsd_monitor_f;
+  mcNCounter[20]  = mcPCounter[20] = mcP2Counter[20] = 0;
+  mcAbsorbProp[20]= 0;
     /* Component f_divpos. */
   /* Setting parameters for component f_divpos. */
   SIG_MESSAGE("f_divpos (Init:SetPar)");
-#line 379 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 388 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_divpos.dat") strncpy(mccf_divpos_filename, "f_divpos.dat" ? "f_divpos.dat" : "", 16384); else mccf_divpos_filename[0]='\0';
 #line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_xmin = -0.05;
@@ -11260,13 +11444,13 @@ void mcinit(void) {
   mccf_divpos_ymin = -0.05;
 #line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_ymax = 0.05;
-#line 380 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 389 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_xwidth = mcipdet_width_focus;
-#line 381 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 390 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_yheight = mcipdet_width_focus;
-#line 382 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 391 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_maxdiv_h = mcipdivergence_max * 2;
-#line 383 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 392 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_restore_neutron = 1;
 #line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_nx = 0;
@@ -11276,42 +11460,42 @@ void mcinit(void) {
   mccf_divpos_nz = 1;
 #line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_nowritefile = 0;
-#line 11279 "./parabolic_extraction.c"
+#line 11463 "./parabolic_extraction.c"
 
   SIG_MESSAGE("f_divpos (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 385 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 394 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 385 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 394 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 385 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 394 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
-#line 11289 "./parabolic_extraction.c"
+#line 11473 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotaf_divpos);
   rot_transpose(mcrotapsd_monitor_f, mctr1);
   rot_mul(mcrotaf_divpos, mctr1, mcrotrf_divpos);
   mctc1 = coords_set(
-#line 384 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 393 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 384 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 393 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 384 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 393 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 11300 "./parabolic_extraction.c"
+#line 11484 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposaf_divpos = coords_add(mcposamonitor_2, mctc2);
   mctc1 = coords_sub(mcposapsd_monitor_f, mcposaf_divpos);
   mcposrf_divpos = rot_apply(mcrotaf_divpos, mctc1);
   mcDEBUG_COMPONENT("f_divpos", mcposaf_divpos, mcrotaf_divpos)
-  mccomp_posa[19] = mcposaf_divpos;
-  mccomp_posr[19] = mcposrf_divpos;
-  mcNCounter[19]  = mcPCounter[19] = mcP2Counter[19] = 0;
-  mcAbsorbProp[19]= 0;
+  mccomp_posa[21] = mcposaf_divpos;
+  mccomp_posr[21] = mcposrf_divpos;
+  mcNCounter[21]  = mcPCounter[21] = mcP2Counter[21] = 0;
+  mcAbsorbProp[21]= 0;
     /* Component divhlambda_monitor_f. */
   /* Setting parameters for component divhlambda_monitor_f. */
   SIG_MESSAGE("divhlambda_monitor_f (Init:SetPar)");
-#line 390 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 399 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_divv_lambda.dat") strncpy(mccdivhlambda_monitor_f_filename, "f_divv_lambda.dat" ? "f_divv_lambda.dat" : "", 16384); else mccdivhlambda_monitor_f_filename[0]='\0';
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_xmin = -0.05;
@@ -11321,17 +11505,17 @@ void mcinit(void) {
   mccdivhlambda_monitor_f_ymin = -0.05;
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_ymax = 0.05;
-#line 391 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 400 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_xwidth = mcipdet_width_focus;
-#line 392 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 401 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_yheight = mcipdet_width_focus;
-#line 393 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 402 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_maxdiv_h = mcipdivergence_max * 2;
-#line 394 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 403 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_Lmin = mcipL_min;
-#line 395 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 404 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_Lmax = mcipL_max;
-#line 396 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 405 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_restore_neutron = 1;
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_nx = 0;
@@ -11341,38 +11525,38 @@ void mcinit(void) {
   mccdivhlambda_monitor_f_nz = 1;
 #line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_nowritefile = 0;
-#line 11344 "./parabolic_extraction.c"
+#line 11528 "./parabolic_extraction.c"
 
   SIG_MESSAGE("divhlambda_monitor_f (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 398 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 407 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 398 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 407 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 398 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 407 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
-#line 11354 "./parabolic_extraction.c"
+#line 11538 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotadivhlambda_monitor_f);
   rot_transpose(mcrotaf_divpos, mctr1);
   rot_mul(mcrotadivhlambda_monitor_f, mctr1, mcrotrdivhlambda_monitor_f);
   mctc1 = coords_set(
-#line 397 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 406 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 397 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 406 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 397 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+#line 406 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
-#line 11365 "./parabolic_extraction.c"
+#line 11549 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
   mctc2 = rot_apply(mctr1, mctc1);
   mcposadivhlambda_monitor_f = coords_add(mcposamonitor_2, mctc2);
   mctc1 = coords_sub(mcposaf_divpos, mcposadivhlambda_monitor_f);
   mcposrdivhlambda_monitor_f = rot_apply(mcrotadivhlambda_monitor_f, mctc1);
   mcDEBUG_COMPONENT("divhlambda_monitor_f", mcposadivhlambda_monitor_f, mcrotadivhlambda_monitor_f)
-  mccomp_posa[20] = mcposadivhlambda_monitor_f;
-  mccomp_posr[20] = mcposrdivhlambda_monitor_f;
-  mcNCounter[20]  = mcPCounter[20] = mcP2Counter[20] = 0;
-  mcAbsorbProp[20]= 0;
+  mccomp_posa[22] = mcposadivhlambda_monitor_f;
+  mccomp_posr[22] = mcposrdivhlambda_monitor_f;
+  mcNCounter[22]  = mcPCounter[22] = mcP2Counter[22] = 0;
+  mcAbsorbProp[22]= 0;
   /* Component initializations. */
   /* Initializations for component origin. */
   SIG_MESSAGE("origin (Init)");
@@ -11387,7 +11571,7 @@ void mcinit(void) {
 #define percent mccorigin_percent
 #define flag_save mccorigin_flag_save
 #define minutes mccorigin_minutes
-#line 57 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 57 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
 IntermediateCnts=0;
 StartTime=0;
@@ -11399,7 +11583,7 @@ fprintf(stdout, "[%s] Initialize\n", mcinstrument_name);
     percent=1e5*100.0/mcget_ncount();
   }
 }
-#line 11402 "./parabolic_extraction.c"
+#line 11586 "./parabolic_extraction.c"
 #undef minutes
 #undef flag_save
 #undef percent
@@ -11440,7 +11624,7 @@ fprintf(stdout, "[%s] Initialize\n", mcinstrument_name);
 #define dlambda mccsource_div_dlambda
 #define gauss mccsource_div_gauss
 #define flux mccsource_div_flux
-#line 72 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 72 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 {
 sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   sigmav = DEG2RAD*focus_ah/(sqrt(8.0*log(2.0)));
@@ -11486,7 +11670,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   else if (dE)
     p_init *= 2*dE;
 }
-#line 11489 "./parabolic_extraction.c"
+#line 11673 "./parabolic_extraction.c"
 #undef flux
 #undef gauss
 #undef dlambda
@@ -11511,11 +11695,55 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
 #undef mccompcurtype
 #undef mccompcurindex
 
+  /* Initializations for component slit. */
+  SIG_MESSAGE("slit (Init)");
+#define mccompcurname  slit
+#define mccompcurtype  Slit
+#define mccompcurindex 4
+#define xmin mccslit_xmin
+#define xmax mccslit_xmax
+#define ymin mccslit_ymin
+#define ymax mccslit_ymax
+#define radius mccslit_radius
+#define xwidth mccslit_xwidth
+#define yheight mccslit_yheight
+#line 50 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
+{
+if (xwidth > 0)  { 
+  if (!xmin && !xmax) {
+    xmax=xwidth/2;  xmin=-xmax;
+  } else {
+    fprintf(stderr,"Slit: %s: Error: please specify EITHER xmin & xmax or xwidth\n", NAME_CURRENT_COMP); exit(-1);
+  }
+ }
+ if (yheight > 0) { 
+   if (!ymin && !ymax) {
+     ymax=yheight/2; ymin=-ymax; 
+   } else {
+     fprintf(stderr,"Slit: %s: Error: please specify EITHER ymin & ymax or ywidth\n", NAME_CURRENT_COMP); exit(-1);
+   }
+ }
+ if (xmin == 0 && xmax == 0 && ymin == 0 && ymax == 0 && radius == 0)
+    { fprintf(stderr,"Slit: %s: Warning: Running with CLOSED slit - is this intentional?? \n", NAME_CURRENT_COMP); }
+
+}
+#line 11730 "./parabolic_extraction.c"
+#undef yheight
+#undef xwidth
+#undef radius
+#undef ymax
+#undef ymin
+#undef xmax
+#undef xmin
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
   /* Initializations for component psd_monitor_source. */
   SIG_MESSAGE("psd_monitor_source (Init)");
 #define mccompcurname  psd_monitor_source
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 4
+#define mccompcurindex 5
 #define PSD_N mccpsd_monitor_source_PSD_N
 #define PSD_p mccpsd_monitor_source_PSD_p
 #define PSD_p2 mccpsd_monitor_source_PSD_p2
@@ -11529,7 +11757,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
 #define xwidth mccpsd_monitor_source_xwidth
 #define yheight mccpsd_monitor_source_yheight
 #define restore_neutron mccpsd_monitor_source_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -11554,7 +11782,68 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
     }
   }
 }
-#line 11557 "./parabolic_extraction.c"
+#line 11785 "./parabolic_extraction.c"
+#undef restore_neutron
+#undef yheight
+#undef xwidth
+#undef ymax
+#undef ymin
+#undef xmax
+#undef xmin
+#undef filename
+#undef ny
+#undef nx
+#undef PSD_p2
+#undef PSD_p
+#undef PSD_N
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
+  /* Initializations for component psd_monitor_source_before_optic. */
+  SIG_MESSAGE("psd_monitor_source_before_optic (Init)");
+#define mccompcurname  psd_monitor_source_before_optic
+#define mccompcurtype  PSD_monitor
+#define mccompcurindex 6
+#define PSD_N mccpsd_monitor_source_before_optic_PSD_N
+#define PSD_p mccpsd_monitor_source_before_optic_PSD_p
+#define PSD_p2 mccpsd_monitor_source_before_optic_PSD_p2
+#define nx mccpsd_monitor_source_before_optic_nx
+#define ny mccpsd_monitor_source_before_optic_ny
+#define filename mccpsd_monitor_source_before_optic_filename
+#define xmin mccpsd_monitor_source_before_optic_xmin
+#define xmax mccpsd_monitor_source_before_optic_xmax
+#define ymin mccpsd_monitor_source_before_optic_ymin
+#define ymax mccpsd_monitor_source_before_optic_ymax
+#define xwidth mccpsd_monitor_source_before_optic_xwidth
+#define yheight mccpsd_monitor_source_before_optic_yheight
+#define restore_neutron mccpsd_monitor_source_before_optic_restore_neutron
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+{
+  if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
+  if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
+
+  if ((xmin >= xmax) || (ymin >= ymax)){
+    printf("PSD_monitor: %s: Null detection area !\n"
+           "ERROR        (xwidth,yheight,xmin,xmax,ymin,ymax). Exiting",
+    NAME_CURRENT_COMP);
+    exit(-1);
+  }
+
+  PSD_N = create_darr2d(nx, ny);
+  PSD_p = create_darr2d(nx, ny);
+  PSD_p2 = create_darr2d(nx, ny);
+
+  int i, j;
+  for (i=0; i<nx; i++){
+    for (j=0; j<ny; j++){
+      PSD_N[i][j] = 0;
+      PSD_p[i][j] = 0;
+      PSD_p2[i][j] = 0;
+    }
+  }
+}
+#line 11846 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -11576,7 +11865,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   SIG_MESSAGE("parabolic_optic_before_guide_v (Init)");
 #define mccompcurname  parabolic_optic_before_guide_v
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 5
+#define mccompcurindex 7
 #define reflect mccparabolic_optic_before_guide_v_reflect
 #define s mccparabolic_optic_before_guide_v_s
 #define pTable mccparabolic_optic_before_guide_v_pTable
@@ -11679,7 +11968,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
     addDisk(lEnd, 0.0, 2.0, &s); //neutrons will be propagated important if the are in silicon
 	//addEllipsoid(-L, L,p1, -l,+l, 40,&s);
 }
-#line 11682 "./parabolic_extraction.c"
+#line 11971 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -11707,7 +11996,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   SIG_MESSAGE("parabolic_optic_before_guide_h (Init)");
 #define mccompcurname  parabolic_optic_before_guide_h
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 6
+#define mccompcurindex 8
 #define reflect mccparabolic_optic_before_guide_h_reflect
 #define s mccparabolic_optic_before_guide_h_s
 #define pTable mccparabolic_optic_before_guide_h_pTable
@@ -11810,7 +12099,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
     addDisk(lEnd, 0.0, 2.0, &s); //neutrons will be propagated important if the are in silicon
 	//addEllipsoid(-L, L,p1, -l,+l, 40,&s);
 }
-#line 11813 "./parabolic_extraction.c"
+#line 12102 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -11841,7 +12130,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   SIG_MESSAGE("psd_monitor_afteropticsource (Init)");
 #define mccompcurname  psd_monitor_afteropticsource
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 8
+#define mccompcurindex 10
 #define PSD_N mccpsd_monitor_afteropticsource_PSD_N
 #define PSD_p mccpsd_monitor_afteropticsource_PSD_p
 #define PSD_p2 mccpsd_monitor_afteropticsource_PSD_p2
@@ -11855,7 +12144,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
 #define xwidth mccpsd_monitor_afteropticsource_xwidth
 #define yheight mccpsd_monitor_afteropticsource_yheight
 #define restore_neutron mccpsd_monitor_afteropticsource_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -11880,7 +12169,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
     }
   }
 }
-#line 11883 "./parabolic_extraction.c"
+#line 12172 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -11902,7 +12191,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   SIG_MESSAGE("guide_gravity_1 (Init)");
 #define mccompcurname  guide_gravity_1
 #define mccompcurtype  Guide_gravity
-#define mccompcurindex 9
+#define mccompcurindex 11
 #define GVars mccguide_gravity_1_GVars
 #define pTable mccguide_gravity_1_pTable
 #define w1 mccguide_gravity_1_w1
@@ -11939,7 +12228,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
 #define nu mccguide_gravity_1_nu
 #define phase mccguide_gravity_1_phase
 #define reflect mccguide_gravity_1_reflect
-#line 339 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 339 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
   double Gx=0, Gy=-GRAVITY, Gz=0;
   Coords mcLocG;
@@ -11991,7 +12280,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   } else printf("Guide_gravity: %s: unactivated (l=0 or nelements=0)\n", NAME_CURRENT_COMP);
 
 }
-#line 11994 "./parabolic_extraction.c"
+#line 12283 "./parabolic_extraction.c"
 #undef reflect
 #undef phase
 #undef nu
@@ -12039,7 +12328,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   SIG_MESSAGE("divpos_monitor (Init)");
 #define mccompcurname  divpos_monitor
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 11
+#define mccompcurindex 13
 #define nh mccdivpos_monitor_nh
 #define ndiv mccdivpos_monitor_ndiv
 #define Div_N mccdivpos_monitor_Div_N
@@ -12058,7 +12347,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
 #define ny mccdivpos_monitor_ny
 #define nz mccdivpos_monitor_nz
 #define nowritefile mccdivpos_monitor_nowritefile
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
 int i,j;
 
@@ -12081,7 +12370,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
      }
     NORM(nx,ny,nz);
 }
-#line 12084 "./parabolic_extraction.c"
+#line 12373 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -12108,7 +12397,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("psd_monitor_g1 (Init)");
 #define mccompcurname  psd_monitor_g1
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 12
+#define mccompcurindex 14
 #define PSD_N mccpsd_monitor_g1_PSD_N
 #define PSD_p mccpsd_monitor_g1_PSD_p
 #define PSD_p2 mccpsd_monitor_g1_PSD_p2
@@ -12122,7 +12411,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define xwidth mccpsd_monitor_g1_xwidth
 #define yheight mccpsd_monitor_g1_yheight
 #define restore_neutron mccpsd_monitor_g1_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12147,7 +12436,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
     }
   }
 }
-#line 12150 "./parabolic_extraction.c"
+#line 12439 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -12169,7 +12458,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("divhlambda_monitor_g1 (Init)");
 #define mccompcurname  divhlambda_monitor_g1
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 13
+#define mccompcurindex 15
 #define nL mccdivhlambda_monitor_g1_nL
 #define nh mccdivhlambda_monitor_g1_nh
 #define Div_N mccdivhlambda_monitor_g1_Div_N
@@ -12190,7 +12479,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define ny mccdivhlambda_monitor_g1_ny
 #define nz mccdivhlambda_monitor_g1_nz
 #define nowritefile mccdivhlambda_monitor_g1_nowritefile
-#line 67 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 67 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
   int i,j;
 
@@ -12212,7 +12501,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   NORM(nx,ny,nz);
 
 }
-#line 12215 "./parabolic_extraction.c"
+#line 12504 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -12241,7 +12530,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("parabolic_optic1 (Init)");
 #define mccompcurname  parabolic_optic1
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 14
+#define mccompcurindex 16
 #define reflect mccparabolic_optic1_reflect
 #define s mccparabolic_optic1_s
 #define pTable mccparabolic_optic1_pTable
@@ -12344,7 +12633,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
     addDisk(lEnd, 0.0, 2.0, &s); //neutrons will be propagated important if the are in silicon
 	//addEllipsoid(-L, L,p1, -l,+l, 40,&s);
 }
-#line 12347 "./parabolic_extraction.c"
+#line 12636 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -12372,7 +12661,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("parabolic_optic2 (Init)");
 #define mccompcurname  parabolic_optic2
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 15
+#define mccompcurindex 17
 #define reflect mccparabolic_optic2_reflect
 #define s mccparabolic_optic2_s
 #define pTable mccparabolic_optic2_pTable
@@ -12475,7 +12764,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
     addDisk(lEnd, 0.0, 2.0, &s); //neutrons will be propagated important if the are in silicon
 	//addEllipsoid(-L, L,p1, -l,+l, 40,&s);
 }
-#line 12478 "./parabolic_extraction.c"
+#line 12767 "./parabolic_extraction.c"
 #undef doubleReflections
 #undef mirror_width
 #undef mb
@@ -12506,7 +12795,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("psd_monitor_f_zoom (Init)");
 #define mccompcurname  psd_monitor_f_zoom
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 17
+#define mccompcurindex 19
 #define PSD_N mccpsd_monitor_f_zoom_PSD_N
 #define PSD_p mccpsd_monitor_f_zoom_PSD_p
 #define PSD_p2 mccpsd_monitor_f_zoom_PSD_p2
@@ -12520,7 +12809,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define xwidth mccpsd_monitor_f_zoom_xwidth
 #define yheight mccpsd_monitor_f_zoom_yheight
 #define restore_neutron mccpsd_monitor_f_zoom_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12545,7 +12834,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
     }
   }
 }
-#line 12548 "./parabolic_extraction.c"
+#line 12837 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -12567,7 +12856,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("psd_monitor_f (Init)");
 #define mccompcurname  psd_monitor_f
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 18
+#define mccompcurindex 20
 #define PSD_N mccpsd_monitor_f_PSD_N
 #define PSD_p mccpsd_monitor_f_PSD_p
 #define PSD_p2 mccpsd_monitor_f_PSD_p2
@@ -12581,7 +12870,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define xwidth mccpsd_monitor_f_xwidth
 #define yheight mccpsd_monitor_f_yheight
 #define restore_neutron mccpsd_monitor_f_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12606,7 +12895,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
     }
   }
 }
-#line 12609 "./parabolic_extraction.c"
+#line 12898 "./parabolic_extraction.c"
 #undef restore_neutron
 #undef yheight
 #undef xwidth
@@ -12628,7 +12917,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("f_divpos (Init)");
 #define mccompcurname  f_divpos
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 19
+#define mccompcurindex 21
 #define nh mccf_divpos_nh
 #define ndiv mccf_divpos_ndiv
 #define Div_N mccf_divpos_Div_N
@@ -12647,7 +12936,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define ny mccf_divpos_ny
 #define nz mccf_divpos_nz
 #define nowritefile mccf_divpos_nowritefile
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
 int i,j;
 
@@ -12670,7 +12959,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
      }
     NORM(nx,ny,nz);
 }
-#line 12673 "./parabolic_extraction.c"
+#line 12962 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -12697,7 +12986,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   SIG_MESSAGE("divhlambda_monitor_f (Init)");
 #define mccompcurname  divhlambda_monitor_f
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 20
+#define mccompcurindex 22
 #define nL mccdivhlambda_monitor_f_nL
 #define nh mccdivhlambda_monitor_f_nh
 #define Div_N mccdivhlambda_monitor_f_Div_N
@@ -12718,7 +13007,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define ny mccdivhlambda_monitor_f_ny
 #define nz mccdivhlambda_monitor_f_nz
 #define nowritefile mccdivhlambda_monitor_f_nowritefile
-#line 67 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 67 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
   int i,j;
 
@@ -12740,7 +13029,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   NORM(nx,ny,nz);
 
 }
-#line 12743 "./parabolic_extraction.c"
+#line 13032 "./parabolic_extraction.c"
 #undef nowritefile
 #undef nz
 #undef ny
@@ -12874,7 +13163,7 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 70 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 70 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   double ncount;
   ncount = mcget_run_num();
@@ -12918,7 +13207,7 @@ MCNUM minutes = mccorigin_minutes;
     if (flag_save) mcsave(NULL);
   }
 }
-#line 12921 "./parabolic_extraction.c"
+#line 13210 "./parabolic_extraction.c"
 }   /* End of origin=Progress_bar() SETTING parameter declarations. */
 #undef CurrentTime
 #undef EndTime
@@ -13151,7 +13440,7 @@ MCNUM lambda0 = mccsource_div_lambda0;
 MCNUM dlambda = mccsource_div_dlambda;
 MCNUM gauss = mccsource_div_gauss;
 MCNUM flux = mccsource_div_flux;
-#line 118 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 118 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 {
   double E,lambda,v;
 
@@ -13199,7 +13488,7 @@ MCNUM flux = mccsource_div_flux;
   vy = tan_v * vz;
   vx = tan_h * vz;
 }
-#line 13202 "./parabolic_extraction.c"
+#line 13491 "./parabolic_extraction.c"
 }   /* End of source_div=Source_div() SETTING parameter declarations. */
 #undef focus_yh
 #undef focus_xw
@@ -13254,7 +13543,131 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component psd_monitor_source [4] */
+  /* TRACE Component slit [4] */
+  mccoordschange(mcposrslit, mcrotrslit,
+    &mcnlx,
+    &mcnly,
+    &mcnlz,
+    &mcnlvx,
+    &mcnlvy,
+    &mcnlvz,
+    &mcnlsx,
+    &mcnlsy,
+    &mcnlsz);
+  /* define label inside component slit (without coords transformations) */
+  mcJumpTrace_slit:
+  SIG_MESSAGE("slit (Trace)");
+  mcDEBUG_COMP("slit")
+  mcDEBUG_STATE(
+    mcnlx,
+    mcnly,
+    mcnlz,
+    mcnlvx,
+    mcnlvy,
+    mcnlvz,
+    mcnlt,
+    mcnlsx,
+    mcnlsy,
+    mcnlsz,
+    mcnlp)
+#define x mcnlx
+#define y mcnly
+#define z mcnlz
+#define vx mcnlvx
+#define vy mcnlvy
+#define vz mcnlvz
+#define t mcnlt
+#define sx mcnlsx
+#define sy mcnlsy
+#define sz mcnlsz
+#define p mcnlp
+
+#define mcabsorbComp mcabsorbCompslit
+  STORE_NEUTRON(4,
+    mcnlx,
+    mcnly,
+    mcnlz,
+    mcnlvx,
+    mcnlvy,
+    mcnlvz,
+    mcnlt,
+    mcnlsx,
+    mcnlsy,
+    mcnlsz,
+    mcnlp);
+  mcScattered=0;
+  mcRestore=0;
+  mcNCounter[4]++;
+  mcPCounter[4] += p;
+  mcP2Counter[4] += p*p;
+#define mccompcurname  slit
+#define mccompcurtype  Slit
+#define mccompcurindex 4
+{   /* Declarations of slit=Slit() SETTING parameters. */
+MCNUM xmin = mccslit_xmin;
+MCNUM xmax = mccslit_xmax;
+MCNUM ymin = mccslit_ymin;
+MCNUM ymax = mccslit_ymax;
+MCNUM radius = mccslit_radius;
+MCNUM xwidth = mccslit_xwidth;
+MCNUM yheight = mccslit_yheight;
+#line 71 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
+{
+    PROP_Z0;
+    if (((radius == 0) && (x<xmin || x>xmax || y<ymin || y>ymax))
+	|| ((radius != 0) && (x*x + y*y > radius*radius))) {
+      RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
+      ABSORB;
+    }
+    else
+        SCATTER;
+}
+#line 13625 "./parabolic_extraction.c"
+}   /* End of slit=Slit() SETTING parameter declarations. */
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+  /* Label for restoring  neutron */
+  mcabsorbCompslit:
+  if (RESTORE) /* restore if needed */
+  { RESTORE_NEUTRON(4,
+      mcnlx,
+      mcnly,
+      mcnlz,
+      mcnlvx,
+      mcnlvy,
+      mcnlvz,
+      mcnlt,
+      mcnlsx,
+      mcnlsy,
+      mcnlsz,
+      mcnlp); }
+#undef mcabsorbComp
+#undef p
+#undef sz
+#undef sy
+#undef sx
+#undef t
+#undef vz
+#undef vy
+#undef vx
+#undef z
+#undef y
+#undef x
+  mcDEBUG_STATE(
+mcnlx,
+mcnly,
+mcnlz,
+mcnlvx,
+mcnlvy,
+mcnlvz,
+mcnlt,
+mcnlsx,
+mcnlsy,
+mcnlsz,
+mcnlp)
+
+  /* TRACE Component psd_monitor_source [5] */
   mccoordschange(mcposrpsd_monitor_source, mcrotrpsd_monitor_source,
     &mcnlx,
     &mcnly,
@@ -13294,7 +13707,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbComppsd_monitor_source
-  STORE_NEUTRON(4,
+  STORE_NEUTRON(5,
     mcnlx,
     mcnly,
     mcnlz,
@@ -13308,12 +13721,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[4]++;
-  mcPCounter[4] += p;
-  mcP2Counter[4] += p*p;
+  mcNCounter[5]++;
+  mcPCounter[5] += p;
+  mcP2Counter[5] += p*p;
 #define mccompcurname  psd_monitor_source
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 4
+#define mccompcurindex 5
 #define PSD_N mccpsd_monitor_source_PSD_N
 #define PSD_p mccpsd_monitor_source_PSD_p
 #define PSD_p2 mccpsd_monitor_source_PSD_p2
@@ -13328,7 +13741,7 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -13343,7 +13756,7 @@ MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
     RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
   }
 }
-#line 13346 "./parabolic_extraction.c"
+#line 13759 "./parabolic_extraction.c"
 }   /* End of psd_monitor_source=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -13354,7 +13767,7 @@ MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
   /* Label for restoring  neutron */
   mcabsorbComppsd_monitor_source:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(4,
+  { RESTORE_NEUTRON(5,
       mcnlx,
       mcnly,
       mcnlz,
@@ -13391,7 +13804,144 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component parabolic_optic_before_guide_v [5] */
+  /* TRACE Component psd_monitor_source_before_optic [6] */
+  mccoordschange(mcposrpsd_monitor_source_before_optic, mcrotrpsd_monitor_source_before_optic,
+    &mcnlx,
+    &mcnly,
+    &mcnlz,
+    &mcnlvx,
+    &mcnlvy,
+    &mcnlvz,
+    &mcnlsx,
+    &mcnlsy,
+    &mcnlsz);
+  /* define label inside component psd_monitor_source_before_optic (without coords transformations) */
+  mcJumpTrace_psd_monitor_source_before_optic:
+  SIG_MESSAGE("psd_monitor_source_before_optic (Trace)");
+  mcDEBUG_COMP("psd_monitor_source_before_optic")
+  mcDEBUG_STATE(
+    mcnlx,
+    mcnly,
+    mcnlz,
+    mcnlvx,
+    mcnlvy,
+    mcnlvz,
+    mcnlt,
+    mcnlsx,
+    mcnlsy,
+    mcnlsz,
+    mcnlp)
+#define x mcnlx
+#define y mcnly
+#define z mcnlz
+#define vx mcnlvx
+#define vy mcnlvy
+#define vz mcnlvz
+#define t mcnlt
+#define sx mcnlsx
+#define sy mcnlsy
+#define sz mcnlsz
+#define p mcnlp
+
+#define mcabsorbComp mcabsorbComppsd_monitor_source_before_optic
+  STORE_NEUTRON(6,
+    mcnlx,
+    mcnly,
+    mcnlz,
+    mcnlvx,
+    mcnlvy,
+    mcnlvz,
+    mcnlt,
+    mcnlsx,
+    mcnlsy,
+    mcnlsz,
+    mcnlp);
+  mcScattered=0;
+  mcRestore=0;
+  mcNCounter[6]++;
+  mcPCounter[6] += p;
+  mcP2Counter[6] += p*p;
+#define mccompcurname  psd_monitor_source_before_optic
+#define mccompcurtype  PSD_monitor
+#define mccompcurindex 6
+#define PSD_N mccpsd_monitor_source_before_optic_PSD_N
+#define PSD_p mccpsd_monitor_source_before_optic_PSD_p
+#define PSD_p2 mccpsd_monitor_source_before_optic_PSD_p2
+{   /* Declarations of psd_monitor_source_before_optic=PSD_monitor() SETTING parameters. */
+int nx = mccpsd_monitor_source_before_optic_nx;
+int ny = mccpsd_monitor_source_before_optic_ny;
+char* filename = mccpsd_monitor_source_before_optic_filename;
+MCNUM xmin = mccpsd_monitor_source_before_optic_xmin;
+MCNUM xmax = mccpsd_monitor_source_before_optic_xmax;
+MCNUM ymin = mccpsd_monitor_source_before_optic_ymin;
+MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
+MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
+MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
+MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+{
+  PROP_Z0;
+  if (x>xmin && x<xmax && y>ymin && y<ymax){
+    int i = floor((x - xmin)*nx/(xmax - xmin));
+    int j = floor((y - ymin)*ny/(ymax - ymin));
+    PSD_N[i][j]++;
+    PSD_p[i][j] += p;
+    PSD_p2[i][j] += p*p;
+    SCATTER;
+  }
+  if (restore_neutron) {
+    RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
+  }
+}
+#line 13896 "./parabolic_extraction.c"
+}   /* End of psd_monitor_source_before_optic=PSD_monitor() SETTING parameter declarations. */
+#undef PSD_p2
+#undef PSD_p
+#undef PSD_N
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+  /* Label for restoring  neutron */
+  mcabsorbComppsd_monitor_source_before_optic:
+  if (RESTORE) /* restore if needed */
+  { RESTORE_NEUTRON(6,
+      mcnlx,
+      mcnly,
+      mcnlz,
+      mcnlvx,
+      mcnlvy,
+      mcnlvz,
+      mcnlt,
+      mcnlsx,
+      mcnlsy,
+      mcnlsz,
+      mcnlp); }
+#undef mcabsorbComp
+#undef p
+#undef sz
+#undef sy
+#undef sx
+#undef t
+#undef vz
+#undef vy
+#undef vx
+#undef z
+#undef y
+#undef x
+  mcDEBUG_STATE(
+mcnlx,
+mcnly,
+mcnlz,
+mcnlvx,
+mcnlvy,
+mcnlvz,
+mcnlt,
+mcnlsx,
+mcnlsy,
+mcnlsz,
+mcnlp)
+
+  /* TRACE Component parabolic_optic_before_guide_v [7] */
   mccoordschange(mcposrparabolic_optic_before_guide_v, mcrotrparabolic_optic_before_guide_v,
     &mcnlx,
     &mcnly,
@@ -13431,7 +13981,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompparabolic_optic_before_guide_v
-  STORE_NEUTRON(5,
+  STORE_NEUTRON(7,
     mcnlx,
     mcnly,
     mcnlz,
@@ -13445,12 +13995,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[5]++;
-  mcPCounter[5] += p;
-  mcP2Counter[5] += p*p;
+  mcNCounter[7]++;
+  mcPCounter[7] += p;
+  mcP2Counter[7] += p*p;
 #define mccompcurname  parabolic_optic_before_guide_v
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 5
+#define mccompcurindex 7
 #define reflect mccparabolic_optic_before_guide_v_reflect
 #define s mccparabolic_optic_before_guide_v_s
 #define pTable mccparabolic_optic_before_guide_v_pTable
@@ -13522,7 +14072,7 @@ if (( mcipplaceholder > 0 ))
 
     SCATTER;
 }
-#line 13524 "./parabolic_extraction.c"
+#line 14074 "./parabolic_extraction.c"
 }   /* End of parabolic_optic_before_guide_v=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -13538,7 +14088,7 @@ if (( mcipplaceholder > 0 ))
   /* Label for restoring  neutron */
   mcabsorbCompparabolic_optic_before_guide_v:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(5,
+  { RESTORE_NEUTRON(7,
       mcnlx,
       mcnly,
       mcnlz,
@@ -13575,7 +14125,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component parabolic_optic_before_guide_h [6] */
+  /* TRACE Component parabolic_optic_before_guide_h [8] */
   mccoordschange(mcposrparabolic_optic_before_guide_h, mcrotrparabolic_optic_before_guide_h,
     &mcnlx,
     &mcnly,
@@ -13615,7 +14165,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompparabolic_optic_before_guide_h
-  STORE_NEUTRON(6,
+  STORE_NEUTRON(8,
     mcnlx,
     mcnly,
     mcnlz,
@@ -13629,12 +14179,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[6]++;
-  mcPCounter[6] += p;
-  mcP2Counter[6] += p*p;
+  mcNCounter[8]++;
+  mcPCounter[8] += p;
+  mcP2Counter[8] += p*p;
 #define mccompcurname  parabolic_optic_before_guide_h
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 6
+#define mccompcurindex 8
 #define reflect mccparabolic_optic_before_guide_h_reflect
 #define s mccparabolic_optic_before_guide_h_s
 #define pTable mccparabolic_optic_before_guide_h_pTable
@@ -13706,7 +14256,7 @@ if (( mcipplaceholder > 0 ))
 
     SCATTER;
 }
-#line 13707 "./parabolic_extraction.c"
+#line 14257 "./parabolic_extraction.c"
 }   /* End of parabolic_optic_before_guide_h=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -13722,7 +14272,7 @@ if (( mcipplaceholder > 0 ))
   /* Label for restoring  neutron */
   mcabsorbCompparabolic_optic_before_guide_h:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(6,
+  { RESTORE_NEUTRON(8,
       mcnlx,
       mcnly,
       mcnlz,
@@ -13759,7 +14309,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component after_optic_source [7] */
+  /* TRACE Component after_optic_source [9] */
   mccoordschange(mcposrafter_optic_source, mcrotrafter_optic_source,
     &mcnlx,
     &mcnly,
@@ -13799,7 +14349,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompafter_optic_source
-  STORE_NEUTRON(7,
+  STORE_NEUTRON(9,
     mcnlx,
     mcnly,
     mcnlz,
@@ -13813,19 +14363,19 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[7]++;
-  mcPCounter[7] += p;
-  mcP2Counter[7] += p*p;
+  mcNCounter[9]++;
+  mcPCounter[9] += p;
+  mcP2Counter[9] += p*p;
 #define mccompcurname  after_optic_source
 #define mccompcurtype  Arm
-#define mccompcurindex 7
+#define mccompcurindex 9
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
   /* Label for restoring  neutron */
   mcabsorbCompafter_optic_source:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(7,
+  { RESTORE_NEUTRON(9,
       mcnlx,
       mcnly,
       mcnlz,
@@ -13862,7 +14412,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component psd_monitor_afteropticsource [8] */
+  /* TRACE Component psd_monitor_afteropticsource [10] */
   mccoordschange(mcposrpsd_monitor_afteropticsource, mcrotrpsd_monitor_afteropticsource,
     &mcnlx,
     &mcnly,
@@ -13902,7 +14452,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbComppsd_monitor_afteropticsource
-  STORE_NEUTRON(8,
+  STORE_NEUTRON(10,
     mcnlx,
     mcnly,
     mcnlz,
@@ -13916,12 +14466,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[8]++;
-  mcPCounter[8] += p;
-  mcP2Counter[8] += p*p;
+  mcNCounter[10]++;
+  mcPCounter[10] += p;
+  mcP2Counter[10] += p*p;
 #define mccompcurname  psd_monitor_afteropticsource
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 8
+#define mccompcurindex 10
 #define PSD_N mccpsd_monitor_afteropticsource_PSD_N
 #define PSD_p mccpsd_monitor_afteropticsource_PSD_p
 #define PSD_p2 mccpsd_monitor_afteropticsource_PSD_p2
@@ -13936,7 +14486,7 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -13951,7 +14501,7 @@ MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
     RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
   }
 }
-#line 13952 "./parabolic_extraction.c"
+#line 14502 "./parabolic_extraction.c"
 }   /* End of psd_monitor_afteropticsource=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -13962,7 +14512,7 @@ MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
   /* Label for restoring  neutron */
   mcabsorbComppsd_monitor_afteropticsource:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(8,
+  { RESTORE_NEUTRON(10,
       mcnlx,
       mcnly,
       mcnlz,
@@ -13999,7 +14549,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component guide_gravity_1 [9] */
+  /* TRACE Component guide_gravity_1 [11] */
   mccoordschange(mcposrguide_gravity_1, mcrotrguide_gravity_1,
     &mcnlx,
     &mcnly,
@@ -14039,7 +14589,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompguide_gravity_1
-  STORE_NEUTRON(9,
+  STORE_NEUTRON(11,
     mcnlx,
     mcnly,
     mcnlz,
@@ -14053,12 +14603,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[9]++;
-  mcPCounter[9] += p;
-  mcP2Counter[9] += p*p;
+  mcNCounter[11]++;
+  mcPCounter[11] += p;
+  mcP2Counter[11] += p*p;
 #define mccompcurname  guide_gravity_1
 #define mccompcurtype  Guide_gravity
-#define mccompcurindex 9
+#define mccompcurindex 11
 #define GVars mccguide_gravity_1_GVars
 #define pTable mccguide_gravity_1_pTable
 {   /* Declarations of guide_gravity_1=Guide_gravity() SETTING parameters. */
@@ -14096,7 +14646,7 @@ MCNUM nelements = mccguide_gravity_1_nelements;
 MCNUM nu = mccguide_gravity_1_nu;
 MCNUM phase = mccguide_gravity_1_phase;
 char* reflect = mccguide_gravity_1_reflect;
-#line 392 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 392 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
   if (l > 0 && nelements > 0) {
     double B, C, dt;
@@ -14265,7 +14815,7 @@ char* reflect = mccguide_gravity_1_reflect;
 
   } /* if l */
 }
-#line 14266 "./parabolic_extraction.c"
+#line 14816 "./parabolic_extraction.c"
 }   /* End of guide_gravity_1=Guide_gravity() SETTING parameter declarations. */
 #undef pTable
 #undef GVars
@@ -14275,7 +14825,7 @@ char* reflect = mccguide_gravity_1_reflect;
   /* Label for restoring  neutron */
   mcabsorbCompguide_gravity_1:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(9,
+  { RESTORE_NEUTRON(11,
       mcnlx,
       mcnly,
       mcnlz,
@@ -14312,7 +14862,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component monitor_1 [10] */
+  /* TRACE Component monitor_1 [12] */
   mccoordschange(mcposrmonitor_1, mcrotrmonitor_1,
     &mcnlx,
     &mcnly,
@@ -14352,7 +14902,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompmonitor_1
-  STORE_NEUTRON(10,
+  STORE_NEUTRON(12,
     mcnlx,
     mcnly,
     mcnlz,
@@ -14366,19 +14916,19 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[10]++;
-  mcPCounter[10] += p;
-  mcP2Counter[10] += p*p;
+  mcNCounter[12]++;
+  mcPCounter[12] += p;
+  mcP2Counter[12] += p*p;
 #define mccompcurname  monitor_1
 #define mccompcurtype  Arm
-#define mccompcurindex 10
+#define mccompcurindex 12
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
   /* Label for restoring  neutron */
   mcabsorbCompmonitor_1:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(10,
+  { RESTORE_NEUTRON(12,
       mcnlx,
       mcnly,
       mcnlz,
@@ -14415,7 +14965,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component divpos_monitor [11] */
+  /* TRACE Component divpos_monitor [13] */
   mccoordschange(mcposrdivpos_monitor, mcrotrdivpos_monitor,
     &mcnlx,
     &mcnly,
@@ -14455,7 +15005,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompdivpos_monitor
-  STORE_NEUTRON(11,
+  STORE_NEUTRON(13,
     mcnlx,
     mcnly,
     mcnlz,
@@ -14469,12 +15019,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[11]++;
-  mcPCounter[11] += p;
-  mcP2Counter[11] += p*p;
+  mcNCounter[13]++;
+  mcPCounter[13] += p;
+  mcP2Counter[13] += p*p;
 #define mccompcurname  divpos_monitor
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 11
+#define mccompcurindex 13
 #define nh mccdivpos_monitor_nh
 #define ndiv mccdivpos_monitor_ndiv
 #define Div_N mccdivpos_monitor_Div_N
@@ -14494,7 +15044,7 @@ MCNUM nx = mccdivpos_monitor_nx;
 MCNUM ny = mccdivpos_monitor_ny;
 MCNUM nz = mccdivpos_monitor_nz;
 int nowritefile = mccdivpos_monitor_nowritefile;
-#line 92 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 92 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     int i,j;
     double div;
@@ -14521,7 +15071,7 @@ int nowritefile = mccdivpos_monitor_nowritefile;
       RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
     }
 }
-#line 14522 "./parabolic_extraction.c"
+#line 15072 "./parabolic_extraction.c"
 }   /* End of divpos_monitor=DivPos_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -14534,7 +15084,7 @@ int nowritefile = mccdivpos_monitor_nowritefile;
   /* Label for restoring  neutron */
   mcabsorbCompdivpos_monitor:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(11,
+  { RESTORE_NEUTRON(13,
       mcnlx,
       mcnly,
       mcnlz,
@@ -14571,7 +15121,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component psd_monitor_g1 [12] */
+  /* TRACE Component psd_monitor_g1 [14] */
   mccoordschange(mcposrpsd_monitor_g1, mcrotrpsd_monitor_g1,
     &mcnlx,
     &mcnly,
@@ -14611,7 +15161,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbComppsd_monitor_g1
-  STORE_NEUTRON(12,
+  STORE_NEUTRON(14,
     mcnlx,
     mcnly,
     mcnlz,
@@ -14625,12 +15175,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[12]++;
-  mcPCounter[12] += p;
-  mcP2Counter[12] += p*p;
+  mcNCounter[14]++;
+  mcPCounter[14] += p;
+  mcP2Counter[14] += p*p;
 #define mccompcurname  psd_monitor_g1
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 12
+#define mccompcurindex 14
 #define PSD_N mccpsd_monitor_g1_PSD_N
 #define PSD_p mccpsd_monitor_g1_PSD_p
 #define PSD_p2 mccpsd_monitor_g1_PSD_p2
@@ -14645,7 +15195,7 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -14660,7 +15210,7 @@ MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
     RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
   }
 }
-#line 14661 "./parabolic_extraction.c"
+#line 15211 "./parabolic_extraction.c"
 }   /* End of psd_monitor_g1=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -14671,7 +15221,7 @@ MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
   /* Label for restoring  neutron */
   mcabsorbComppsd_monitor_g1:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(12,
+  { RESTORE_NEUTRON(14,
       mcnlx,
       mcnly,
       mcnlz,
@@ -14708,7 +15258,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component divhlambda_monitor_g1 [13] */
+  /* TRACE Component divhlambda_monitor_g1 [15] */
   mccoordschange(mcposrdivhlambda_monitor_g1, mcrotrdivhlambda_monitor_g1,
     &mcnlx,
     &mcnly,
@@ -14748,7 +15298,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompdivhlambda_monitor_g1
-  STORE_NEUTRON(13,
+  STORE_NEUTRON(15,
     mcnlx,
     mcnly,
     mcnlz,
@@ -14762,12 +15312,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[13]++;
-  mcPCounter[13] += p;
-  mcP2Counter[13] += p*p;
+  mcNCounter[15]++;
+  mcPCounter[15] += p;
+  mcP2Counter[15] += p*p;
 #define mccompcurname  divhlambda_monitor_g1
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 13
+#define mccompcurindex 15
 #define nL mccdivhlambda_monitor_g1_nL
 #define nh mccdivhlambda_monitor_g1_nh
 #define Div_N mccdivhlambda_monitor_g1_Div_N
@@ -14789,7 +15339,7 @@ MCNUM nx = mccdivhlambda_monitor_g1_nx;
 MCNUM ny = mccdivhlambda_monitor_g1_ny;
 MCNUM nz = mccdivhlambda_monitor_g1_nz;
 int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
-#line 89 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 89 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     int i,j;
     double div;
@@ -14819,7 +15369,7 @@ int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
       RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
     }
 }
-#line 14820 "./parabolic_extraction.c"
+#line 15370 "./parabolic_extraction.c"
 }   /* End of divhlambda_monitor_g1=DivLambda_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -14832,7 +15382,7 @@ int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
   /* Label for restoring  neutron */
   mcabsorbCompdivhlambda_monitor_g1:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(13,
+  { RESTORE_NEUTRON(15,
       mcnlx,
       mcnly,
       mcnlz,
@@ -14869,7 +15419,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component parabolic_optic1 [14] */
+  /* TRACE Component parabolic_optic1 [16] */
   mccoordschange(mcposrparabolic_optic1, mcrotrparabolic_optic1,
     &mcnlx,
     &mcnly,
@@ -14909,7 +15459,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompparabolic_optic1
-  STORE_NEUTRON(14,
+  STORE_NEUTRON(16,
     mcnlx,
     mcnly,
     mcnlz,
@@ -14923,12 +15473,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[14]++;
-  mcPCounter[14] += p;
-  mcP2Counter[14] += p*p;
+  mcNCounter[16]++;
+  mcPCounter[16] += p;
+  mcP2Counter[16] += p*p;
 #define mccompcurname  parabolic_optic1
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 14
+#define mccompcurindex 16
 #define reflect mccparabolic_optic1_reflect
 #define s mccparabolic_optic1_s
 #define pTable mccparabolic_optic1_pTable
@@ -15000,7 +15550,7 @@ if (( mcipplaceholder > 0 ))
 
     SCATTER;
 }
-#line 15000 "./parabolic_extraction.c"
+#line 15550 "./parabolic_extraction.c"
 }   /* End of parabolic_optic1=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -15016,7 +15566,7 @@ if (( mcipplaceholder > 0 ))
   /* Label for restoring  neutron */
   mcabsorbCompparabolic_optic1:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(14,
+  { RESTORE_NEUTRON(16,
       mcnlx,
       mcnly,
       mcnlz,
@@ -15053,7 +15603,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component parabolic_optic2 [15] */
+  /* TRACE Component parabolic_optic2 [17] */
   mccoordschange(mcposrparabolic_optic2, mcrotrparabolic_optic2,
     &mcnlx,
     &mcnly,
@@ -15093,7 +15643,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompparabolic_optic2
-  STORE_NEUTRON(15,
+  STORE_NEUTRON(17,
     mcnlx,
     mcnly,
     mcnlz,
@@ -15107,12 +15657,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[15]++;
-  mcPCounter[15] += p;
-  mcP2Counter[15] += p*p;
+  mcNCounter[17]++;
+  mcPCounter[17] += p;
+  mcP2Counter[17] += p*p;
 #define mccompcurname  parabolic_optic2
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 15
+#define mccompcurindex 17
 #define reflect mccparabolic_optic2_reflect
 #define s mccparabolic_optic2_s
 #define pTable mccparabolic_optic2_pTable
@@ -15184,7 +15734,7 @@ if (( mcipplaceholder > 0 ))
 
     SCATTER;
 }
-#line 15183 "./parabolic_extraction.c"
+#line 15733 "./parabolic_extraction.c"
 }   /* End of parabolic_optic2=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -15200,7 +15750,7 @@ if (( mcipplaceholder > 0 ))
   /* Label for restoring  neutron */
   mcabsorbCompparabolic_optic2:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(15,
+  { RESTORE_NEUTRON(17,
       mcnlx,
       mcnly,
       mcnlz,
@@ -15237,7 +15787,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component monitor_2 [16] */
+  /* TRACE Component monitor_2 [18] */
   mccoordschange(mcposrmonitor_2, mcrotrmonitor_2,
     &mcnlx,
     &mcnly,
@@ -15277,7 +15827,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompmonitor_2
-  STORE_NEUTRON(16,
+  STORE_NEUTRON(18,
     mcnlx,
     mcnly,
     mcnlz,
@@ -15291,19 +15841,19 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[16]++;
-  mcPCounter[16] += p;
-  mcP2Counter[16] += p*p;
+  mcNCounter[18]++;
+  mcPCounter[18] += p;
+  mcP2Counter[18] += p*p;
 #define mccompcurname  monitor_2
 #define mccompcurtype  Arm
-#define mccompcurindex 16
+#define mccompcurindex 18
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
   /* Label for restoring  neutron */
   mcabsorbCompmonitor_2:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(16,
+  { RESTORE_NEUTRON(18,
       mcnlx,
       mcnly,
       mcnlz,
@@ -15340,7 +15890,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component psd_monitor_f_zoom [17] */
+  /* TRACE Component psd_monitor_f_zoom [19] */
   mccoordschange(mcposrpsd_monitor_f_zoom, mcrotrpsd_monitor_f_zoom,
     &mcnlx,
     &mcnly,
@@ -15380,7 +15930,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbComppsd_monitor_f_zoom
-  STORE_NEUTRON(17,
+  STORE_NEUTRON(19,
     mcnlx,
     mcnly,
     mcnlz,
@@ -15394,12 +15944,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[17]++;
-  mcPCounter[17] += p;
-  mcP2Counter[17] += p*p;
+  mcNCounter[19]++;
+  mcPCounter[19] += p;
+  mcP2Counter[19] += p*p;
 #define mccompcurname  psd_monitor_f_zoom
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 17
+#define mccompcurindex 19
 #define PSD_N mccpsd_monitor_f_zoom_PSD_N
 #define PSD_p mccpsd_monitor_f_zoom_PSD_p
 #define PSD_p2 mccpsd_monitor_f_zoom_PSD_p2
@@ -15414,7 +15964,7 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -15429,7 +15979,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
     RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
   }
 }
-#line 15428 "./parabolic_extraction.c"
+#line 15978 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f_zoom=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -15440,7 +15990,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
   /* Label for restoring  neutron */
   mcabsorbComppsd_monitor_f_zoom:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(17,
+  { RESTORE_NEUTRON(19,
       mcnlx,
       mcnly,
       mcnlz,
@@ -15477,7 +16027,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component psd_monitor_f [18] */
+  /* TRACE Component psd_monitor_f [20] */
   mccoordschange(mcposrpsd_monitor_f, mcrotrpsd_monitor_f,
     &mcnlx,
     &mcnly,
@@ -15517,7 +16067,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbComppsd_monitor_f
-  STORE_NEUTRON(18,
+  STORE_NEUTRON(20,
     mcnlx,
     mcnly,
     mcnlz,
@@ -15531,12 +16081,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[18]++;
-  mcPCounter[18] += p;
-  mcP2Counter[18] += p*p;
+  mcNCounter[20]++;
+  mcPCounter[20] += p;
+  mcP2Counter[20] += p*p;
 #define mccompcurname  psd_monitor_f
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 18
+#define mccompcurindex 20
 #define PSD_N mccpsd_monitor_f_PSD_N
 #define PSD_p mccpsd_monitor_f_PSD_p
 #define PSD_p2 mccpsd_monitor_f_PSD_p2
@@ -15551,7 +16101,7 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -15566,7 +16116,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
     RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
   }
 }
-#line 15565 "./parabolic_extraction.c"
+#line 16115 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -15577,7 +16127,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
   /* Label for restoring  neutron */
   mcabsorbComppsd_monitor_f:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(18,
+  { RESTORE_NEUTRON(20,
       mcnlx,
       mcnly,
       mcnlz,
@@ -15614,7 +16164,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component f_divpos [19] */
+  /* TRACE Component f_divpos [21] */
   mccoordschange(mcposrf_divpos, mcrotrf_divpos,
     &mcnlx,
     &mcnly,
@@ -15654,7 +16204,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompf_divpos
-  STORE_NEUTRON(19,
+  STORE_NEUTRON(21,
     mcnlx,
     mcnly,
     mcnlz,
@@ -15668,12 +16218,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[19]++;
-  mcPCounter[19] += p;
-  mcP2Counter[19] += p*p;
+  mcNCounter[21]++;
+  mcPCounter[21] += p;
+  mcP2Counter[21] += p*p;
 #define mccompcurname  f_divpos
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 19
+#define mccompcurindex 21
 #define nh mccf_divpos_nh
 #define ndiv mccf_divpos_ndiv
 #define Div_N mccf_divpos_Div_N
@@ -15693,7 +16243,7 @@ MCNUM nx = mccf_divpos_nx;
 MCNUM ny = mccf_divpos_ny;
 MCNUM nz = mccf_divpos_nz;
 int nowritefile = mccf_divpos_nowritefile;
-#line 92 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 92 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     int i,j;
     double div;
@@ -15720,7 +16270,7 @@ int nowritefile = mccf_divpos_nowritefile;
       RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
     }
 }
-#line 15719 "./parabolic_extraction.c"
+#line 16269 "./parabolic_extraction.c"
 }   /* End of f_divpos=DivPos_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -15733,7 +16283,7 @@ int nowritefile = mccf_divpos_nowritefile;
   /* Label for restoring  neutron */
   mcabsorbCompf_divpos:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(19,
+  { RESTORE_NEUTRON(21,
       mcnlx,
       mcnly,
       mcnlz,
@@ -15770,7 +16320,7 @@ mcnlsy,
 mcnlsz,
 mcnlp)
 
-  /* TRACE Component divhlambda_monitor_f [20] */
+  /* TRACE Component divhlambda_monitor_f [22] */
   mccoordschange(mcposrdivhlambda_monitor_f, mcrotrdivhlambda_monitor_f,
     &mcnlx,
     &mcnly,
@@ -15810,7 +16360,7 @@ mcnlp)
 #define p mcnlp
 
 #define mcabsorbComp mcabsorbCompdivhlambda_monitor_f
-  STORE_NEUTRON(20,
+  STORE_NEUTRON(22,
     mcnlx,
     mcnly,
     mcnlz,
@@ -15824,12 +16374,12 @@ mcnlp)
     mcnlp);
   mcScattered=0;
   mcRestore=0;
-  mcNCounter[20]++;
-  mcPCounter[20] += p;
-  mcP2Counter[20] += p*p;
+  mcNCounter[22]++;
+  mcPCounter[22] += p;
+  mcP2Counter[22] += p*p;
 #define mccompcurname  divhlambda_monitor_f
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 20
+#define mccompcurindex 22
 #define nL mccdivhlambda_monitor_f_nL
 #define nh mccdivhlambda_monitor_f_nh
 #define Div_N mccdivhlambda_monitor_f_Div_N
@@ -15851,7 +16401,7 @@ MCNUM nx = mccdivhlambda_monitor_f_nx;
 MCNUM ny = mccdivhlambda_monitor_f_ny;
 MCNUM nz = mccdivhlambda_monitor_f_nz;
 int nowritefile = mccdivhlambda_monitor_f_nowritefile;
-#line 89 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 89 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     int i,j;
     double div;
@@ -15881,7 +16431,7 @@ int nowritefile = mccdivhlambda_monitor_f_nowritefile;
       RESTORE_NEUTRON(INDEX_CURRENT_COMP, x, y, z, vx, vy, vz, t, sx, sy, sz, p);
     }
 }
-#line 15880 "./parabolic_extraction.c"
+#line 16430 "./parabolic_extraction.c"
 }   /* End of divhlambda_monitor_f=DivLambda_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -15894,7 +16444,7 @@ int nowritefile = mccdivhlambda_monitor_f_nowritefile;
   /* Label for restoring  neutron */
   mcabsorbCompdivhlambda_monitor_f:
   if (RESTORE) /* restore if needed */
-  { RESTORE_NEUTRON(20,
+  { RESTORE_NEUTRON(22,
       mcnlx,
       mcnly,
       mcnlz,
@@ -15978,7 +16528,7 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 115 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 115 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   MPI_MASTER(fprintf(stdout, "\nSave [%s]\n", mcinstrument_name););
   if (profile && strlen(profile) && strcmp(profile,"NULL") && strcmp(profile,"0")) {
@@ -15995,7 +16545,7 @@ MCNUM minutes = mccorigin_minutes;
 
   }
 }
-#line 15994 "./parabolic_extraction.c"
+#line 16544 "./parabolic_extraction.c"
 }   /* End of origin=Progress_bar() SETTING parameter declarations. */
 #undef CurrentTime
 #undef EndTime
@@ -16009,7 +16559,7 @@ MCNUM minutes = mccorigin_minutes;
   SIG_MESSAGE("psd_monitor_source (Save)");
 #define mccompcurname  psd_monitor_source
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 4
+#define mccompcurindex 5
 #define PSD_N mccpsd_monitor_source_PSD_N
 #define PSD_p mccpsd_monitor_source_PSD_p
 #define PSD_p2 mccpsd_monitor_source_PSD_p2
@@ -16024,7 +16574,7 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16035,8 +16585,47 @@ MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
     &PSD_N[0][0],&PSD_p[0][0],&PSD_p2[0][0],
     filename);
 }
-#line 16034 "./parabolic_extraction.c"
+#line 16584 "./parabolic_extraction.c"
 }   /* End of psd_monitor_source=PSD_monitor() SETTING parameter declarations. */
+#undef PSD_p2
+#undef PSD_p
+#undef PSD_N
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
+  /* User SAVE code for component 'psd_monitor_source_before_optic'. */
+  SIG_MESSAGE("psd_monitor_source_before_optic (Save)");
+#define mccompcurname  psd_monitor_source_before_optic
+#define mccompcurtype  PSD_monitor
+#define mccompcurindex 6
+#define PSD_N mccpsd_monitor_source_before_optic_PSD_N
+#define PSD_p mccpsd_monitor_source_before_optic_PSD_p
+#define PSD_p2 mccpsd_monitor_source_before_optic_PSD_p2
+{   /* Declarations of psd_monitor_source_before_optic=PSD_monitor() SETTING parameters. */
+int nx = mccpsd_monitor_source_before_optic_nx;
+int ny = mccpsd_monitor_source_before_optic_ny;
+char* filename = mccpsd_monitor_source_before_optic_filename;
+MCNUM xmin = mccpsd_monitor_source_before_optic_xmin;
+MCNUM xmax = mccpsd_monitor_source_before_optic_xmax;
+MCNUM ymin = mccpsd_monitor_source_before_optic_ymin;
+MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
+MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
+MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
+MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+{
+  DETECTOR_OUT_2D(
+    "PSD monitor",
+    "X position [cm]",
+    "Y position [cm]",
+    xmin*100.0, xmax*100.0, ymin*100.0, ymax*100.0,
+    nx, ny,
+    &PSD_N[0][0],&PSD_p[0][0],&PSD_p2[0][0],
+    filename);
+}
+#line 16623 "./parabolic_extraction.c"
+}   /* End of psd_monitor_source_before_optic=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
 #undef PSD_N
@@ -16048,7 +16637,7 @@ MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
   SIG_MESSAGE("psd_monitor_afteropticsource (Save)");
 #define mccompcurname  psd_monitor_afteropticsource
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 8
+#define mccompcurindex 10
 #define PSD_N mccpsd_monitor_afteropticsource_PSD_N
 #define PSD_p mccpsd_monitor_afteropticsource_PSD_p
 #define PSD_p2 mccpsd_monitor_afteropticsource_PSD_p2
@@ -16063,7 +16652,7 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16074,7 +16663,7 @@ MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
     &PSD_N[0][0],&PSD_p[0][0],&PSD_p2[0][0],
     filename);
 }
-#line 16073 "./parabolic_extraction.c"
+#line 16662 "./parabolic_extraction.c"
 }   /* End of psd_monitor_afteropticsource=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16087,7 +16676,7 @@ MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
   SIG_MESSAGE("divpos_monitor (Save)");
 #define mccompcurname  divpos_monitor
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 11
+#define mccompcurindex 13
 #define nh mccdivpos_monitor_nh
 #define ndiv mccdivpos_monitor_ndiv
 #define Div_N mccdivpos_monitor_Div_N
@@ -16107,7 +16696,7 @@ MCNUM nx = mccdivpos_monitor_nx;
 MCNUM ny = mccdivpos_monitor_ny;
 MCNUM nz = mccdivpos_monitor_nz;
 int nowritefile = mccdivpos_monitor_nowritefile;
-#line 120 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 120 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -16120,7 +16709,7 @@ int nowritefile = mccdivpos_monitor_nowritefile;
         filename);
     }
 }
-#line 16119 "./parabolic_extraction.c"
+#line 16708 "./parabolic_extraction.c"
 }   /* End of divpos_monitor=DivPos_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -16135,7 +16724,7 @@ int nowritefile = mccdivpos_monitor_nowritefile;
   SIG_MESSAGE("psd_monitor_g1 (Save)");
 #define mccompcurname  psd_monitor_g1
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 12
+#define mccompcurindex 14
 #define PSD_N mccpsd_monitor_g1_PSD_N
 #define PSD_p mccpsd_monitor_g1_PSD_p
 #define PSD_p2 mccpsd_monitor_g1_PSD_p2
@@ -16150,7 +16739,7 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16161,7 +16750,7 @@ MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
     &PSD_N[0][0],&PSD_p[0][0],&PSD_p2[0][0],
     filename);
 }
-#line 16160 "./parabolic_extraction.c"
+#line 16749 "./parabolic_extraction.c"
 }   /* End of psd_monitor_g1=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16174,7 +16763,7 @@ MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
   SIG_MESSAGE("divhlambda_monitor_g1 (Save)");
 #define mccompcurname  divhlambda_monitor_g1
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 13
+#define mccompcurindex 15
 #define nL mccdivhlambda_monitor_g1_nL
 #define nh mccdivhlambda_monitor_g1_nh
 #define Div_N mccdivhlambda_monitor_g1_Div_N
@@ -16196,7 +16785,7 @@ MCNUM nx = mccdivhlambda_monitor_g1_nx;
 MCNUM ny = mccdivhlambda_monitor_g1_ny;
 MCNUM nz = mccdivhlambda_monitor_g1_nz;
 int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
-#line 119 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 119 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -16209,7 +16798,7 @@ int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
         filename);
     }
 }
-#line 16208 "./parabolic_extraction.c"
+#line 16797 "./parabolic_extraction.c"
 }   /* End of divhlambda_monitor_g1=DivLambda_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -16224,7 +16813,7 @@ int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
   SIG_MESSAGE("psd_monitor_f_zoom (Save)");
 #define mccompcurname  psd_monitor_f_zoom
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 17
+#define mccompcurindex 19
 #define PSD_N mccpsd_monitor_f_zoom_PSD_N
 #define PSD_p mccpsd_monitor_f_zoom_PSD_p
 #define PSD_p2 mccpsd_monitor_f_zoom_PSD_p2
@@ -16239,7 +16828,7 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16250,7 +16839,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
     &PSD_N[0][0],&PSD_p[0][0],&PSD_p2[0][0],
     filename);
 }
-#line 16249 "./parabolic_extraction.c"
+#line 16838 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f_zoom=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16263,7 +16852,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
   SIG_MESSAGE("psd_monitor_f (Save)");
 #define mccompcurname  psd_monitor_f
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 18
+#define mccompcurindex 20
 #define PSD_N mccpsd_monitor_f_PSD_N
 #define PSD_p mccpsd_monitor_f_PSD_p
 #define PSD_p2 mccpsd_monitor_f_PSD_p2
@@ -16278,7 +16867,7 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16289,7 +16878,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
     &PSD_N[0][0],&PSD_p[0][0],&PSD_p2[0][0],
     filename);
 }
-#line 16288 "./parabolic_extraction.c"
+#line 16877 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16302,7 +16891,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
   SIG_MESSAGE("f_divpos (Save)");
 #define mccompcurname  f_divpos
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 19
+#define mccompcurindex 21
 #define nh mccf_divpos_nh
 #define ndiv mccf_divpos_ndiv
 #define Div_N mccf_divpos_Div_N
@@ -16322,7 +16911,7 @@ MCNUM nx = mccf_divpos_nx;
 MCNUM ny = mccf_divpos_ny;
 MCNUM nz = mccf_divpos_nz;
 int nowritefile = mccf_divpos_nowritefile;
-#line 120 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 120 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -16335,7 +16924,7 @@ int nowritefile = mccf_divpos_nowritefile;
         filename);
     }
 }
-#line 16334 "./parabolic_extraction.c"
+#line 16923 "./parabolic_extraction.c"
 }   /* End of f_divpos=DivPos_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -16350,7 +16939,7 @@ int nowritefile = mccf_divpos_nowritefile;
   SIG_MESSAGE("divhlambda_monitor_f (Save)");
 #define mccompcurname  divhlambda_monitor_f
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 20
+#define mccompcurindex 22
 #define nL mccdivhlambda_monitor_f_nL
 #define nh mccdivhlambda_monitor_f_nh
 #define Div_N mccdivhlambda_monitor_f_Div_N
@@ -16372,7 +16961,7 @@ MCNUM nx = mccdivhlambda_monitor_f_nx;
 MCNUM ny = mccdivhlambda_monitor_f_ny;
 MCNUM nz = mccdivhlambda_monitor_f_nz;
 int nowritefile = mccdivhlambda_monitor_f_nowritefile;
-#line 119 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 119 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -16385,7 +16974,7 @@ int nowritefile = mccdivhlambda_monitor_f_nowritefile;
         filename);
     }
 }
-#line 16384 "./parabolic_extraction.c"
+#line 16973 "./parabolic_extraction.c"
 }   /* End of divhlambda_monitor_f=DivLambda_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -16417,7 +17006,7 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 133 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 133 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   time_t NowTime;
   time(&NowTime);
@@ -16430,7 +17019,7 @@ MCNUM minutes = mccorigin_minutes;
     fprintf(stdout, "%g [min] ", difftime(NowTime,StartTime)/60.0);
   fprintf(stdout, "\n");
 }
-#line 16429 "./parabolic_extraction.c"
+#line 17018 "./parabolic_extraction.c"
 }   /* End of origin=Progress_bar() SETTING parameter declarations. */
 #undef CurrentTime
 #undef EndTime
@@ -16449,11 +17038,14 @@ MCNUM minutes = mccorigin_minutes;
     if (!mcNCounter[3]) fprintf(stderr, "Warning: No neutron could reach Component[3] source_div\n");
     if (mcAbsorbProp[3]) fprintf(stderr, "Warning: %g events were removed in Component[3] source_div=Source_div()\n"
 "         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[3]);
+    if (!mcNCounter[4]) fprintf(stderr, "Warning: No neutron could reach Component[4] slit\n");
+    if (mcAbsorbProp[4]) fprintf(stderr, "Warning: %g events were removed in Component[4] slit=Slit()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[4]);
   /* User FINALLY code for component 'psd_monitor_source'. */
   SIG_MESSAGE("psd_monitor_source (Finally)");
 #define mccompcurname  psd_monitor_source
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 4
+#define mccompcurindex 5
 #define PSD_N mccpsd_monitor_source_PSD_N
 #define PSD_p mccpsd_monitor_source_PSD_p
 #define PSD_p2 mccpsd_monitor_source_PSD_p2
@@ -16468,13 +17060,13 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
   destroy_darr2d(PSD_p2);
 }
-#line 16470 "./parabolic_extraction.c"
+#line 17061 "./parabolic_extraction.c"
 }   /* End of psd_monitor_source=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16483,14 +17075,51 @@ MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[4]) fprintf(stderr, "Warning: No neutron could reach Component[4] psd_monitor_source\n");
-    if (mcAbsorbProp[4]) fprintf(stderr, "Warning: %g events were removed in Component[4] psd_monitor_source=PSD_monitor()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[4]);
+    if (!mcNCounter[5]) fprintf(stderr, "Warning: No neutron could reach Component[5] psd_monitor_source\n");
+    if (mcAbsorbProp[5]) fprintf(stderr, "Warning: %g events were removed in Component[5] psd_monitor_source=PSD_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[5]);
+  /* User FINALLY code for component 'psd_monitor_source_before_optic'. */
+  SIG_MESSAGE("psd_monitor_source_before_optic (Finally)");
+#define mccompcurname  psd_monitor_source_before_optic
+#define mccompcurtype  PSD_monitor
+#define mccompcurindex 6
+#define PSD_N mccpsd_monitor_source_before_optic_PSD_N
+#define PSD_p mccpsd_monitor_source_before_optic_PSD_p
+#define PSD_p2 mccpsd_monitor_source_before_optic_PSD_p2
+{   /* Declarations of psd_monitor_source_before_optic=PSD_monitor() SETTING parameters. */
+int nx = mccpsd_monitor_source_before_optic_nx;
+int ny = mccpsd_monitor_source_before_optic_ny;
+char* filename = mccpsd_monitor_source_before_optic_filename;
+MCNUM xmin = mccpsd_monitor_source_before_optic_xmin;
+MCNUM xmax = mccpsd_monitor_source_before_optic_xmax;
+MCNUM ymin = mccpsd_monitor_source_before_optic_ymin;
+MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
+MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
+MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
+MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+{
+  destroy_darr2d(PSD_N);
+  destroy_darr2d(PSD_p);
+  destroy_darr2d(PSD_p2);
+}
+#line 17097 "./parabolic_extraction.c"
+}   /* End of psd_monitor_source_before_optic=PSD_monitor() SETTING parameter declarations. */
+#undef PSD_p2
+#undef PSD_p
+#undef PSD_N
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
+    if (!mcNCounter[6]) fprintf(stderr, "Warning: No neutron could reach Component[6] psd_monitor_source_before_optic\n");
+    if (mcAbsorbProp[6]) fprintf(stderr, "Warning: %g events were removed in Component[6] psd_monitor_source_before_optic=PSD_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[6]);
   /* User FINALLY code for component 'parabolic_optic_before_guide_v'. */
   SIG_MESSAGE("parabolic_optic_before_guide_v (Finally)");
 #define mccompcurname  parabolic_optic_before_guide_v
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 5
+#define mccompcurindex 7
 #define reflect mccparabolic_optic_before_guide_v_reflect
 #define s mccparabolic_optic_before_guide_v_s
 #define pTable mccparabolic_optic_before_guide_v_pTable
@@ -16516,7 +17145,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_v_doubleReflections;
     //Mainly Writes Inline Detector Data
     finishSimulation(&s);
 }
-#line 16511 "./parabolic_extraction.c"
+#line 17138 "./parabolic_extraction.c"
 }   /* End of parabolic_optic_before_guide_v=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -16530,14 +17159,14 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_v_doubleReflections;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[5]) fprintf(stderr, "Warning: No neutron could reach Component[5] parabolic_optic_before_guide_v\n");
-    if (mcAbsorbProp[5]) fprintf(stderr, "Warning: %g events were removed in Component[5] parabolic_optic_before_guide_v=FlatEllipse_finite_mirror()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[5]);
+    if (!mcNCounter[7]) fprintf(stderr, "Warning: No neutron could reach Component[7] parabolic_optic_before_guide_v\n");
+    if (mcAbsorbProp[7]) fprintf(stderr, "Warning: %g events were removed in Component[7] parabolic_optic_before_guide_v=FlatEllipse_finite_mirror()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[7]);
   /* User FINALLY code for component 'parabolic_optic_before_guide_h'. */
   SIG_MESSAGE("parabolic_optic_before_guide_h (Finally)");
 #define mccompcurname  parabolic_optic_before_guide_h
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 6
+#define mccompcurindex 8
 #define reflect mccparabolic_optic_before_guide_h_reflect
 #define s mccparabolic_optic_before_guide_h_s
 #define pTable mccparabolic_optic_before_guide_h_pTable
@@ -16563,7 +17192,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_h_doubleReflections;
     //Mainly Writes Inline Detector Data
     finishSimulation(&s);
 }
-#line 16557 "./parabolic_extraction.c"
+#line 17184 "./parabolic_extraction.c"
 }   /* End of parabolic_optic_before_guide_h=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -16577,17 +17206,17 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_h_doubleReflections;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[6]) fprintf(stderr, "Warning: No neutron could reach Component[6] parabolic_optic_before_guide_h\n");
-    if (mcAbsorbProp[6]) fprintf(stderr, "Warning: %g events were removed in Component[6] parabolic_optic_before_guide_h=FlatEllipse_finite_mirror()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[6]);
-    if (!mcNCounter[7]) fprintf(stderr, "Warning: No neutron could reach Component[7] after_optic_source\n");
-    if (mcAbsorbProp[7]) fprintf(stderr, "Warning: %g events were removed in Component[7] after_optic_source=Arm()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[7]);
+    if (!mcNCounter[8]) fprintf(stderr, "Warning: No neutron could reach Component[8] parabolic_optic_before_guide_h\n");
+    if (mcAbsorbProp[8]) fprintf(stderr, "Warning: %g events were removed in Component[8] parabolic_optic_before_guide_h=FlatEllipse_finite_mirror()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[8]);
+    if (!mcNCounter[9]) fprintf(stderr, "Warning: No neutron could reach Component[9] after_optic_source\n");
+    if (mcAbsorbProp[9]) fprintf(stderr, "Warning: %g events were removed in Component[9] after_optic_source=Arm()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[9]);
   /* User FINALLY code for component 'psd_monitor_afteropticsource'. */
   SIG_MESSAGE("psd_monitor_afteropticsource (Finally)");
 #define mccompcurname  psd_monitor_afteropticsource
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 8
+#define mccompcurindex 10
 #define PSD_N mccpsd_monitor_afteropticsource_PSD_N
 #define PSD_p mccpsd_monitor_afteropticsource_PSD_p
 #define PSD_p2 mccpsd_monitor_afteropticsource_PSD_p2
@@ -16602,13 +17231,13 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
   destroy_darr2d(PSD_p2);
 }
-#line 16600 "./parabolic_extraction.c"
+#line 17227 "./parabolic_extraction.c"
 }   /* End of psd_monitor_afteropticsource=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16617,14 +17246,14 @@ MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[8]) fprintf(stderr, "Warning: No neutron could reach Component[8] psd_monitor_afteropticsource\n");
-    if (mcAbsorbProp[8]) fprintf(stderr, "Warning: %g events were removed in Component[8] psd_monitor_afteropticsource=PSD_monitor()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[8]);
+    if (!mcNCounter[10]) fprintf(stderr, "Warning: No neutron could reach Component[10] psd_monitor_afteropticsource\n");
+    if (mcAbsorbProp[10]) fprintf(stderr, "Warning: %g events were removed in Component[10] psd_monitor_afteropticsource=PSD_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[10]);
   /* User FINALLY code for component 'guide_gravity_1'. */
   SIG_MESSAGE("guide_gravity_1 (Finally)");
 #define mccompcurname  guide_gravity_1
 #define mccompcurtype  Guide_gravity
-#define mccompcurindex 9
+#define mccompcurindex 11
 #define GVars mccguide_gravity_1_GVars
 #define pTable mccguide_gravity_1_pTable
 {   /* Declarations of guide_gravity_1=Guide_gravity() SETTING parameters. */
@@ -16662,14 +17291,14 @@ MCNUM nelements = mccguide_gravity_1_nelements;
 MCNUM nu = mccguide_gravity_1_nu;
 MCNUM phase = mccguide_gravity_1_phase;
 char* reflect = mccguide_gravity_1_reflect;
-#line 562 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 562 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
 if (GVars.warnings > 100) {
   fprintf(stderr,"%s: warning: neutron has entered guide, but can not exit !\n", GVars.compcurname);
   fprintf(stderr,"%s: warning: This message has been repeated %g times\n", GVars.compcurname, GVars.warnings);
 }
 }
-#line 16660 "./parabolic_extraction.c"
+#line 17287 "./parabolic_extraction.c"
 }   /* End of guide_gravity_1=Guide_gravity() SETTING parameter declarations. */
 #undef pTable
 #undef GVars
@@ -16677,20 +17306,20 @@ if (GVars.warnings > 100) {
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[9]) fprintf(stderr, "Warning: No neutron could reach Component[9] guide_gravity_1\n");
-    if (mcAbsorbProp[9]) fprintf(stderr, "Warning: %g events were removed in Component[9] guide_gravity_1=Guide_gravity()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[9]);
-    if (!mcNCounter[10]) fprintf(stderr, "Warning: No neutron could reach Component[10] monitor_1\n");
-    if (mcAbsorbProp[10]) fprintf(stderr, "Warning: %g events were removed in Component[10] monitor_1=Arm()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[10]);
-    if (!mcNCounter[11]) fprintf(stderr, "Warning: No neutron could reach Component[11] divpos_monitor\n");
-    if (mcAbsorbProp[11]) fprintf(stderr, "Warning: %g events were removed in Component[11] divpos_monitor=DivPos_monitor()\n"
+    if (!mcNCounter[11]) fprintf(stderr, "Warning: No neutron could reach Component[11] guide_gravity_1\n");
+    if (mcAbsorbProp[11]) fprintf(stderr, "Warning: %g events were removed in Component[11] guide_gravity_1=Guide_gravity()\n"
 "         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[11]);
+    if (!mcNCounter[12]) fprintf(stderr, "Warning: No neutron could reach Component[12] monitor_1\n");
+    if (mcAbsorbProp[12]) fprintf(stderr, "Warning: %g events were removed in Component[12] monitor_1=Arm()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[12]);
+    if (!mcNCounter[13]) fprintf(stderr, "Warning: No neutron could reach Component[13] divpos_monitor\n");
+    if (mcAbsorbProp[13]) fprintf(stderr, "Warning: %g events were removed in Component[13] divpos_monitor=DivPos_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[13]);
   /* User FINALLY code for component 'psd_monitor_g1'. */
   SIG_MESSAGE("psd_monitor_g1 (Finally)");
 #define mccompcurname  psd_monitor_g1
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 12
+#define mccompcurindex 14
 #define PSD_N mccpsd_monitor_g1_PSD_N
 #define PSD_p mccpsd_monitor_g1_PSD_p
 #define PSD_p2 mccpsd_monitor_g1_PSD_p2
@@ -16705,13 +17334,13 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
   destroy_darr2d(PSD_p2);
 }
-#line 16699 "./parabolic_extraction.c"
+#line 17326 "./parabolic_extraction.c"
 }   /* End of psd_monitor_g1=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16720,17 +17349,17 @@ MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[12]) fprintf(stderr, "Warning: No neutron could reach Component[12] psd_monitor_g1\n");
-    if (mcAbsorbProp[12]) fprintf(stderr, "Warning: %g events were removed in Component[12] psd_monitor_g1=PSD_monitor()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[12]);
-    if (!mcNCounter[13]) fprintf(stderr, "Warning: No neutron could reach Component[13] divhlambda_monitor_g1\n");
-    if (mcAbsorbProp[13]) fprintf(stderr, "Warning: %g events were removed in Component[13] divhlambda_monitor_g1=DivLambda_monitor()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[13]);
+    if (!mcNCounter[14]) fprintf(stderr, "Warning: No neutron could reach Component[14] psd_monitor_g1\n");
+    if (mcAbsorbProp[14]) fprintf(stderr, "Warning: %g events were removed in Component[14] psd_monitor_g1=PSD_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[14]);
+    if (!mcNCounter[15]) fprintf(stderr, "Warning: No neutron could reach Component[15] divhlambda_monitor_g1\n");
+    if (mcAbsorbProp[15]) fprintf(stderr, "Warning: %g events were removed in Component[15] divhlambda_monitor_g1=DivLambda_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[15]);
   /* User FINALLY code for component 'parabolic_optic1'. */
   SIG_MESSAGE("parabolic_optic1 (Finally)");
 #define mccompcurname  parabolic_optic1
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 14
+#define mccompcurindex 16
 #define reflect mccparabolic_optic1_reflect
 #define s mccparabolic_optic1_s
 #define pTable mccparabolic_optic1_pTable
@@ -16756,7 +17385,7 @@ MCNUM doubleReflections = mccparabolic_optic1_doubleReflections;
     //Mainly Writes Inline Detector Data
     finishSimulation(&s);
 }
-#line 16742 "./parabolic_extraction.c"
+#line 17369 "./parabolic_extraction.c"
 }   /* End of parabolic_optic1=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -16770,14 +17399,14 @@ MCNUM doubleReflections = mccparabolic_optic1_doubleReflections;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[14]) fprintf(stderr, "Warning: No neutron could reach Component[14] parabolic_optic1\n");
-    if (mcAbsorbProp[14]) fprintf(stderr, "Warning: %g events were removed in Component[14] parabolic_optic1=FlatEllipse_finite_mirror()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[14]);
+    if (!mcNCounter[16]) fprintf(stderr, "Warning: No neutron could reach Component[16] parabolic_optic1\n");
+    if (mcAbsorbProp[16]) fprintf(stderr, "Warning: %g events were removed in Component[16] parabolic_optic1=FlatEllipse_finite_mirror()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[16]);
   /* User FINALLY code for component 'parabolic_optic2'. */
   SIG_MESSAGE("parabolic_optic2 (Finally)");
 #define mccompcurname  parabolic_optic2
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 15
+#define mccompcurindex 17
 #define reflect mccparabolic_optic2_reflect
 #define s mccparabolic_optic2_s
 #define pTable mccparabolic_optic2_pTable
@@ -16803,7 +17432,7 @@ MCNUM doubleReflections = mccparabolic_optic2_doubleReflections;
     //Mainly Writes Inline Detector Data
     finishSimulation(&s);
 }
-#line 16788 "./parabolic_extraction.c"
+#line 17415 "./parabolic_extraction.c"
 }   /* End of parabolic_optic2=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -16817,17 +17446,17 @@ MCNUM doubleReflections = mccparabolic_optic2_doubleReflections;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[15]) fprintf(stderr, "Warning: No neutron could reach Component[15] parabolic_optic2\n");
-    if (mcAbsorbProp[15]) fprintf(stderr, "Warning: %g events were removed in Component[15] parabolic_optic2=FlatEllipse_finite_mirror()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[15]);
-    if (!mcNCounter[16]) fprintf(stderr, "Warning: No neutron could reach Component[16] monitor_2\n");
-    if (mcAbsorbProp[16]) fprintf(stderr, "Warning: %g events were removed in Component[16] monitor_2=Arm()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[16]);
+    if (!mcNCounter[17]) fprintf(stderr, "Warning: No neutron could reach Component[17] parabolic_optic2\n");
+    if (mcAbsorbProp[17]) fprintf(stderr, "Warning: %g events were removed in Component[17] parabolic_optic2=FlatEllipse_finite_mirror()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[17]);
+    if (!mcNCounter[18]) fprintf(stderr, "Warning: No neutron could reach Component[18] monitor_2\n");
+    if (mcAbsorbProp[18]) fprintf(stderr, "Warning: %g events were removed in Component[18] monitor_2=Arm()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[18]);
   /* User FINALLY code for component 'psd_monitor_f_zoom'. */
   SIG_MESSAGE("psd_monitor_f_zoom (Finally)");
 #define mccompcurname  psd_monitor_f_zoom
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 17
+#define mccompcurindex 19
 #define PSD_N mccpsd_monitor_f_zoom_PSD_N
 #define PSD_p mccpsd_monitor_f_zoom_PSD_p
 #define PSD_p2 mccpsd_monitor_f_zoom_PSD_p2
@@ -16842,13 +17471,13 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
   destroy_darr2d(PSD_p2);
 }
-#line 16831 "./parabolic_extraction.c"
+#line 17458 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f_zoom=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16857,14 +17486,14 @@ MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[17]) fprintf(stderr, "Warning: No neutron could reach Component[17] psd_monitor_f_zoom\n");
-    if (mcAbsorbProp[17]) fprintf(stderr, "Warning: %g events were removed in Component[17] psd_monitor_f_zoom=PSD_monitor()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[17]);
+    if (!mcNCounter[19]) fprintf(stderr, "Warning: No neutron could reach Component[19] psd_monitor_f_zoom\n");
+    if (mcAbsorbProp[19]) fprintf(stderr, "Warning: %g events were removed in Component[19] psd_monitor_f_zoom=PSD_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[19]);
   /* User FINALLY code for component 'psd_monitor_f'. */
   SIG_MESSAGE("psd_monitor_f (Finally)");
 #define mccompcurname  psd_monitor_f
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 18
+#define mccompcurindex 20
 #define PSD_N mccpsd_monitor_f_PSD_N
 #define PSD_p mccpsd_monitor_f_PSD_p
 #define PSD_p2 mccpsd_monitor_f_PSD_p2
@@ -16879,13 +17508,13 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
   destroy_darr2d(PSD_p2);
 }
-#line 16867 "./parabolic_extraction.c"
+#line 17494 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -16894,15 +17523,15 @@ MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
 #undef mccompcurtype
 #undef mccompcurindex
 
-    if (!mcNCounter[18]) fprintf(stderr, "Warning: No neutron could reach Component[18] psd_monitor_f\n");
-    if (mcAbsorbProp[18]) fprintf(stderr, "Warning: %g events were removed in Component[18] psd_monitor_f=PSD_monitor()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[18]);
-    if (!mcNCounter[19]) fprintf(stderr, "Warning: No neutron could reach Component[19] f_divpos\n");
-    if (mcAbsorbProp[19]) fprintf(stderr, "Warning: %g events were removed in Component[19] f_divpos=DivPos_monitor()\n"
-"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[19]);
-    if (!mcNCounter[20]) fprintf(stderr, "Warning: No neutron could reach Component[20] divhlambda_monitor_f\n");
-    if (mcAbsorbProp[20]) fprintf(stderr, "Warning: %g events were removed in Component[20] divhlambda_monitor_f=DivLambda_monitor()\n"
+    if (!mcNCounter[20]) fprintf(stderr, "Warning: No neutron could reach Component[20] psd_monitor_f\n");
+    if (mcAbsorbProp[20]) fprintf(stderr, "Warning: %g events were removed in Component[20] psd_monitor_f=PSD_monitor()\n"
 "         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[20]);
+    if (!mcNCounter[21]) fprintf(stderr, "Warning: No neutron could reach Component[21] f_divpos\n");
+    if (mcAbsorbProp[21]) fprintf(stderr, "Warning: %g events were removed in Component[21] f_divpos=DivPos_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[21]);
+    if (!mcNCounter[22]) fprintf(stderr, "Warning: No neutron could reach Component[22] divhlambda_monitor_f\n");
+    if (mcAbsorbProp[22]) fprintf(stderr, "Warning: %g events were removed in Component[22] divhlambda_monitor_f=DivLambda_monitor()\n"
+"         (negative time, miss next components, rounding errors, Nan, Inf).\n", mcAbsorbProp[22]);
   mcsiminfo_close(); 
 } /* end finally */
 #define magnify mcdis_magnify
@@ -16933,11 +17562,11 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 147 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 147 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   
 }
-#line 16916 "./parabolic_extraction.c"
+#line 17543 "./parabolic_extraction.c"
 }   /* End of origin=Progress_bar() SETTING parameter declarations. */
 #undef CurrentTime
 #undef EndTime
@@ -16953,7 +17582,7 @@ MCNUM minutes = mccorigin_minutes;
 #define mccompcurname  source
 #define mccompcurtype  Arm
 #define mccompcurindex 2
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -16961,7 +17590,7 @@ MCNUM minutes = mccorigin_minutes;
   line(0,0,0,0,0.2,0);
   line(0,0,0,0,0,0.2);
 }
-#line 16940 "./parabolic_extraction.c"
+#line 17567 "./parabolic_extraction.c"
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
@@ -16993,7 +17622,7 @@ MCNUM lambda0 = mccsource_div_lambda0;
 MCNUM dlambda = mccsource_div_dlambda;
 MCNUM gauss = mccsource_div_gauss;
 MCNUM flux = mccsource_div_flux;
-#line 167 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 167 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 {
   
   multiline(5, -xwidth/2.0, -yheight/2.0, 0.0,
@@ -17008,7 +17637,7 @@ MCNUM flux = mccsource_div_flux;
     dashed_line(0,0,0, -focus_xw/2, focus_yh/2,dist, 4);
   }
 }
-#line 16987 "./parabolic_extraction.c"
+#line 17614 "./parabolic_extraction.c"
 }   /* End of source_div=Source_div() SETTING parameter declarations. */
 #undef focus_yh
 #undef focus_xw
@@ -17024,12 +17653,55 @@ MCNUM flux = mccsource_div_flux;
 #undef mccompcurtype
 #undef mccompcurindex
 
+  /* MCDISPLAY code for component 'slit'. */
+  SIG_MESSAGE("slit (McDisplay)");
+  printf("MCDISPLAY: component %s\n", "slit");
+#define mccompcurname  slit
+#define mccompcurtype  Slit
+#define mccompcurindex 4
+{   /* Declarations of slit=Slit() SETTING parameters. */
+MCNUM xmin = mccslit_xmin;
+MCNUM xmax = mccslit_xmax;
+MCNUM ymin = mccslit_ymin;
+MCNUM ymax = mccslit_ymax;
+MCNUM radius = mccslit_radius;
+MCNUM xwidth = mccslit_xwidth;
+MCNUM yheight = mccslit_yheight;
+#line 83 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
+{
+  
+  if (radius == 0) {
+    double xw, yh;
+    xw = (xmax - xmin)/2.0;
+    yh = (ymax - ymin)/2.0;
+    multiline(3, xmin-xw, (double)ymax, 0.0,
+              (double)xmin, (double)ymax, 0.0,
+              (double)xmin, ymax+yh, 0.0);
+    multiline(3, xmax+xw, (double)ymax, 0.0,
+              (double)xmax, (double)ymax, 0.0,
+              (double)xmax, ymax+yh, 0.0);
+    multiline(3, xmin-xw, (double)ymin, 0.0,
+              (double)xmin, (double)ymin, 0.0,
+              (double)xmin, ymin-yh, 0.0);
+    multiline(3, xmax+xw, (double)ymin, 0.0,
+              (double)xmax, (double)ymin, 0.0,
+              (double)xmax, ymin-yh, 0.0);
+  } else {
+    circle("xy",0,0,0,radius);
+  }
+}
+#line 17667 "./parabolic_extraction.c"
+}   /* End of slit=Slit() SETTING parameter declarations. */
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
   /* MCDISPLAY code for component 'psd_monitor_source'. */
   SIG_MESSAGE("psd_monitor_source (McDisplay)");
   printf("MCDISPLAY: component %s\n", "psd_monitor_source");
 #define mccompcurname  psd_monitor_source
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 4
+#define mccompcurindex 5
 #define PSD_N mccpsd_monitor_source_PSD_N
 #define PSD_p mccpsd_monitor_source_PSD_p
 #define PSD_p2 mccpsd_monitor_source_PSD_p2
@@ -17044,7 +17716,7 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -17053,8 +17725,46 @@ MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
     (double)xmin, (double)ymax, 0.0,
     (double)xmin, (double)ymin, 0.0);
 }
-#line 17032 "./parabolic_extraction.c"
+#line 17702 "./parabolic_extraction.c"
 }   /* End of psd_monitor_source=PSD_monitor() SETTING parameter declarations. */
+#undef PSD_p2
+#undef PSD_p
+#undef PSD_N
+#undef mccompcurname
+#undef mccompcurtype
+#undef mccompcurindex
+
+  /* MCDISPLAY code for component 'psd_monitor_source_before_optic'. */
+  SIG_MESSAGE("psd_monitor_source_before_optic (McDisplay)");
+  printf("MCDISPLAY: component %s\n", "psd_monitor_source_before_optic");
+#define mccompcurname  psd_monitor_source_before_optic
+#define mccompcurtype  PSD_monitor
+#define mccompcurindex 6
+#define PSD_N mccpsd_monitor_source_before_optic_PSD_N
+#define PSD_p mccpsd_monitor_source_before_optic_PSD_p
+#define PSD_p2 mccpsd_monitor_source_before_optic_PSD_p2
+{   /* Declarations of psd_monitor_source_before_optic=PSD_monitor() SETTING parameters. */
+int nx = mccpsd_monitor_source_before_optic_nx;
+int ny = mccpsd_monitor_source_before_optic_ny;
+char* filename = mccpsd_monitor_source_before_optic_filename;
+MCNUM xmin = mccpsd_monitor_source_before_optic_xmin;
+MCNUM xmax = mccpsd_monitor_source_before_optic_xmax;
+MCNUM ymin = mccpsd_monitor_source_before_optic_ymin;
+MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
+MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
+MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
+MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+{
+  multiline(5,
+    (double)xmin, (double)ymin, 0.0,
+    (double)xmax, (double)ymin, 0.0,
+    (double)xmax, (double)ymax, 0.0,
+    (double)xmin, (double)ymax, 0.0,
+    (double)xmin, (double)ymin, 0.0);
+}
+#line 17740 "./parabolic_extraction.c"
+}   /* End of psd_monitor_source_before_optic=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
 #undef PSD_N
@@ -17067,7 +17777,7 @@ MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
   printf("MCDISPLAY: component %s\n", "parabolic_optic_before_guide_v");
 #define mccompcurname  parabolic_optic_before_guide_v
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 5
+#define mccompcurindex 7
 #define reflect mccparabolic_optic_before_guide_v_reflect
 #define s mccparabolic_optic_before_guide_v_s
 #define pTable mccparabolic_optic_before_guide_v_pTable
@@ -17119,7 +17829,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_v_doubleReflections;
     }
 
 }
-#line 17098 "./parabolic_extraction.c"
+#line 17806 "./parabolic_extraction.c"
 }   /* End of parabolic_optic_before_guide_v=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -17138,7 +17848,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_v_doubleReflections;
   printf("MCDISPLAY: component %s\n", "parabolic_optic_before_guide_h");
 #define mccompcurname  parabolic_optic_before_guide_h
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 6
+#define mccompcurindex 8
 #define reflect mccparabolic_optic_before_guide_h_reflect
 #define s mccparabolic_optic_before_guide_h_s
 #define pTable mccparabolic_optic_before_guide_h_pTable
@@ -17190,7 +17900,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_h_doubleReflections;
     }
 
 }
-#line 17169 "./parabolic_extraction.c"
+#line 17877 "./parabolic_extraction.c"
 }   /* End of parabolic_optic_before_guide_h=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -17209,8 +17919,8 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_h_doubleReflections;
   printf("MCDISPLAY: component %s\n", "after_optic_source");
 #define mccompcurname  after_optic_source
 #define mccompcurtype  Arm
-#define mccompcurindex 7
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#define mccompcurindex 9
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -17218,7 +17928,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_h_doubleReflections;
   line(0,0,0,0,0.2,0);
   line(0,0,0,0,0,0.2);
 }
-#line 17197 "./parabolic_extraction.c"
+#line 17905 "./parabolic_extraction.c"
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
@@ -17228,7 +17938,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_h_doubleReflections;
   printf("MCDISPLAY: component %s\n", "psd_monitor_afteropticsource");
 #define mccompcurname  psd_monitor_afteropticsource
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 8
+#define mccompcurindex 10
 #define PSD_N mccpsd_monitor_afteropticsource_PSD_N
 #define PSD_p mccpsd_monitor_afteropticsource_PSD_p
 #define PSD_p2 mccpsd_monitor_afteropticsource_PSD_p2
@@ -17243,7 +17953,7 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -17252,7 +17962,7 @@ MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
     (double)xmin, (double)ymax, 0.0,
     (double)xmin, (double)ymin, 0.0);
 }
-#line 17231 "./parabolic_extraction.c"
+#line 17939 "./parabolic_extraction.c"
 }   /* End of psd_monitor_afteropticsource=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -17266,7 +17976,7 @@ MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
   printf("MCDISPLAY: component %s\n", "guide_gravity_1");
 #define mccompcurname  guide_gravity_1
 #define mccompcurtype  Guide_gravity
-#define mccompcurindex 9
+#define mccompcurindex 11
 #define GVars mccguide_gravity_1_GVars
 #define pTable mccguide_gravity_1_pTable
 {   /* Declarations of guide_gravity_1=Guide_gravity() SETTING parameters. */
@@ -17304,7 +18014,7 @@ MCNUM nelements = mccguide_gravity_1_nelements;
 MCNUM nu = mccguide_gravity_1_nu;
 MCNUM phase = mccguide_gravity_1_phase;
 char* reflect = mccguide_gravity_1_reflect;
-#line 571 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 571 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
 
   if (l > 0 && nelements > 0) {
@@ -17313,7 +18023,7 @@ char* reflect = mccguide_gravity_1_reflect;
     double y1,y2,y3,y4;
     double nel = (nelements > 11 ? 11 : nelements);
 
-
+    
     for (n=0; n<nel; n++)
     {
       double z0, z1;
@@ -17360,14 +18070,14 @@ char* reflect = mccguide_gravity_1_reflect;
   }
   else {
     /* A bit ugly; hard-coded dimensions. */
-
+    
     line(0,0,0,0.2,0,0);
     line(0,0,0,0,0.2,0);
     line(0,0,0,0,0,0.2);
   }
 
 }
-#line 17346 "./parabolic_extraction.c"
+#line 18054 "./parabolic_extraction.c"
 }   /* End of guide_gravity_1=Guide_gravity() SETTING parameter declarations. */
 #undef pTable
 #undef GVars
@@ -17380,8 +18090,8 @@ char* reflect = mccguide_gravity_1_reflect;
   printf("MCDISPLAY: component %s\n", "monitor_1");
 #define mccompcurname  monitor_1
 #define mccompcurtype  Arm
-#define mccompcurindex 10
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#define mccompcurindex 12
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -17389,7 +18099,7 @@ char* reflect = mccguide_gravity_1_reflect;
   line(0,0,0,0,0.2,0);
   line(0,0,0,0,0,0.2);
 }
-#line 17368 "./parabolic_extraction.c"
+#line 18076 "./parabolic_extraction.c"
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
@@ -17399,7 +18109,7 @@ char* reflect = mccguide_gravity_1_reflect;
   printf("MCDISPLAY: component %s\n", "divpos_monitor");
 #define mccompcurname  divpos_monitor
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 11
+#define mccompcurindex 13
 #define nh mccdivpos_monitor_nh
 #define ndiv mccdivpos_monitor_ndiv
 #define Div_N mccdivpos_monitor_Div_N
@@ -17419,7 +18129,7 @@ MCNUM nx = mccdivpos_monitor_nx;
 MCNUM ny = mccdivpos_monitor_ny;
 MCNUM nz = mccdivpos_monitor_nz;
 int nowritefile = mccdivpos_monitor_nowritefile;
-#line 134 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 134 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     
     multiline(5, (double)xmin, (double)ymin, 0.0,
@@ -17428,7 +18138,7 @@ int nowritefile = mccdivpos_monitor_nowritefile;
                  (double)xmin, (double)ymax, 0.0,
                  (double)xmin, (double)ymin, 0.0);
 }
-#line 17407 "./parabolic_extraction.c"
+#line 18115 "./parabolic_extraction.c"
 }   /* End of divpos_monitor=DivPos_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -17444,7 +18154,7 @@ int nowritefile = mccdivpos_monitor_nowritefile;
   printf("MCDISPLAY: component %s\n", "psd_monitor_g1");
 #define mccompcurname  psd_monitor_g1
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 12
+#define mccompcurindex 14
 #define PSD_N mccpsd_monitor_g1_PSD_N
 #define PSD_p mccpsd_monitor_g1_PSD_p
 #define PSD_p2 mccpsd_monitor_g1_PSD_p2
@@ -17459,7 +18169,7 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -17468,7 +18178,7 @@ MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
     (double)xmin, (double)ymax, 0.0,
     (double)xmin, (double)ymin, 0.0);
 }
-#line 17447 "./parabolic_extraction.c"
+#line 18155 "./parabolic_extraction.c"
 }   /* End of psd_monitor_g1=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -17482,7 +18192,7 @@ MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
   printf("MCDISPLAY: component %s\n", "divhlambda_monitor_g1");
 #define mccompcurname  divhlambda_monitor_g1
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 13
+#define mccompcurindex 15
 #define nL mccdivhlambda_monitor_g1_nL
 #define nh mccdivhlambda_monitor_g1_nh
 #define Div_N mccdivhlambda_monitor_g1_Div_N
@@ -17504,16 +18214,16 @@ MCNUM nx = mccdivhlambda_monitor_g1_nx;
 MCNUM ny = mccdivhlambda_monitor_g1_ny;
 MCNUM nz = mccdivhlambda_monitor_g1_nz;
 int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
-#line 133 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 133 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
-
+    
     multiline(5, (double)xmin, (double)ymin, 0.0,
                  (double)xmax, (double)ymin, 0.0,
                  (double)xmax, (double)ymax, 0.0,
                  (double)xmin, (double)ymax, 0.0,
                  (double)xmin, (double)ymin, 0.0);
 }
-#line 17492 "./parabolic_extraction.c"
+#line 18200 "./parabolic_extraction.c"
 }   /* End of divhlambda_monitor_g1=DivLambda_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -17529,7 +18239,7 @@ int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
   printf("MCDISPLAY: component %s\n", "parabolic_optic1");
 #define mccompcurname  parabolic_optic1
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 14
+#define mccompcurindex 16
 #define reflect mccparabolic_optic1_reflect
 #define s mccparabolic_optic1_s
 #define pTable mccparabolic_optic1_pTable
@@ -17581,7 +18291,7 @@ MCNUM doubleReflections = mccparabolic_optic1_doubleReflections;
     }
 
 }
-#line 17560 "./parabolic_extraction.c"
+#line 18268 "./parabolic_extraction.c"
 }   /* End of parabolic_optic1=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -17600,7 +18310,7 @@ MCNUM doubleReflections = mccparabolic_optic1_doubleReflections;
   printf("MCDISPLAY: component %s\n", "parabolic_optic2");
 #define mccompcurname  parabolic_optic2
 #define mccompcurtype  FlatEllipse_finite_mirror
-#define mccompcurindex 15
+#define mccompcurindex 17
 #define reflect mccparabolic_optic2_reflect
 #define s mccparabolic_optic2_s
 #define pTable mccparabolic_optic2_pTable
@@ -17652,7 +18362,7 @@ MCNUM doubleReflections = mccparabolic_optic2_doubleReflections;
     }
 
 }
-#line 17631 "./parabolic_extraction.c"
+#line 18339 "./parabolic_extraction.c"
 }   /* End of parabolic_optic2=FlatEllipse_finite_mirror() SETTING parameter declarations. */
 #undef transmit
 #undef alpha
@@ -17671,8 +18381,8 @@ MCNUM doubleReflections = mccparabolic_optic2_doubleReflections;
   printf("MCDISPLAY: component %s\n", "monitor_2");
 #define mccompcurname  monitor_2
 #define mccompcurtype  Arm
-#define mccompcurindex 16
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#define mccompcurindex 18
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -17680,7 +18390,7 @@ MCNUM doubleReflections = mccparabolic_optic2_doubleReflections;
   line(0,0,0,0,0.2,0);
   line(0,0,0,0,0,0.2);
 }
-#line 17659 "./parabolic_extraction.c"
+#line 18367 "./parabolic_extraction.c"
 #undef mccompcurname
 #undef mccompcurtype
 #undef mccompcurindex
@@ -17690,7 +18400,7 @@ MCNUM doubleReflections = mccparabolic_optic2_doubleReflections;
   printf("MCDISPLAY: component %s\n", "psd_monitor_f_zoom");
 #define mccompcurname  psd_monitor_f_zoom
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 17
+#define mccompcurindex 19
 #define PSD_N mccpsd_monitor_f_zoom_PSD_N
 #define PSD_p mccpsd_monitor_f_zoom_PSD_p
 #define PSD_p2 mccpsd_monitor_f_zoom_PSD_p2
@@ -17705,7 +18415,7 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -17714,7 +18424,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
     (double)xmin, (double)ymax, 0.0,
     (double)xmin, (double)ymin, 0.0);
 }
-#line 17693 "./parabolic_extraction.c"
+#line 18401 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f_zoom=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -17728,7 +18438,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
   printf("MCDISPLAY: component %s\n", "psd_monitor_f");
 #define mccompcurname  psd_monitor_f
 #define mccompcurtype  PSD_monitor
-#define mccompcurindex 18
+#define mccompcurindex 20
 #define PSD_N mccpsd_monitor_f_PSD_N
 #define PSD_p mccpsd_monitor_f_PSD_p
 #define PSD_p2 mccpsd_monitor_f_PSD_p2
@@ -17743,7 +18453,7 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -17752,7 +18462,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
     (double)xmin, (double)ymax, 0.0,
     (double)xmin, (double)ymin, 0.0);
 }
-#line 17731 "./parabolic_extraction.c"
+#line 18439 "./parabolic_extraction.c"
 }   /* End of psd_monitor_f=PSD_monitor() SETTING parameter declarations. */
 #undef PSD_p2
 #undef PSD_p
@@ -17766,7 +18476,7 @@ MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
   printf("MCDISPLAY: component %s\n", "f_divpos");
 #define mccompcurname  f_divpos
 #define mccompcurtype  DivPos_monitor
-#define mccompcurindex 19
+#define mccompcurindex 21
 #define nh mccf_divpos_nh
 #define ndiv mccf_divpos_ndiv
 #define Div_N mccf_divpos_Div_N
@@ -17786,7 +18496,7 @@ MCNUM nx = mccf_divpos_nx;
 MCNUM ny = mccf_divpos_ny;
 MCNUM nz = mccf_divpos_nz;
 int nowritefile = mccf_divpos_nowritefile;
-#line 134 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 134 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     
     multiline(5, (double)xmin, (double)ymin, 0.0,
@@ -17795,7 +18505,7 @@ int nowritefile = mccf_divpos_nowritefile;
                  (double)xmin, (double)ymax, 0.0,
                  (double)xmin, (double)ymin, 0.0);
 }
-#line 17774 "./parabolic_extraction.c"
+#line 18482 "./parabolic_extraction.c"
 }   /* End of f_divpos=DivPos_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
@@ -17811,7 +18521,7 @@ int nowritefile = mccf_divpos_nowritefile;
   printf("MCDISPLAY: component %s\n", "divhlambda_monitor_f");
 #define mccompcurname  divhlambda_monitor_f
 #define mccompcurtype  DivLambda_monitor
-#define mccompcurindex 20
+#define mccompcurindex 22
 #define nL mccdivhlambda_monitor_f_nL
 #define nh mccdivhlambda_monitor_f_nh
 #define Div_N mccdivhlambda_monitor_f_Div_N
@@ -17833,16 +18543,16 @@ MCNUM nx = mccdivhlambda_monitor_f_nx;
 MCNUM ny = mccdivhlambda_monitor_f_ny;
 MCNUM nz = mccdivhlambda_monitor_f_nz;
 int nowritefile = mccdivhlambda_monitor_f_nowritefile;
-#line 133 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 133 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
-
+    
     multiline(5, (double)xmin, (double)ymin, 0.0,
                  (double)xmax, (double)ymin, 0.0,
                  (double)xmax, (double)ymax, 0.0,
                  (double)xmin, (double)ymax, 0.0,
                  (double)xmin, (double)ymin, 0.0);
 }
-#line 17821 "./parabolic_extraction.c"
+#line 18529 "./parabolic_extraction.c"
 }   /* End of divhlambda_monitor_f=DivLambda_monitor() SETTING parameter declarations. */
 #undef Div_p2
 #undef Div_p
