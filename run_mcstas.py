@@ -17,6 +17,7 @@ class McstasSimulation:
             filename (str): name of the .instr file
         """
         self.num_neutrons = num_neutrons
+        self.gravity = False #gravity is false by definition and can be set true
         self.folder = folder
         self.filename = filename
         self.params_dict = None
@@ -69,7 +70,8 @@ class McstasSimulation:
                 params_dict = self.params_dict
             else:
                 params_dict = self.return_params_dict()
-        mcstring = 'mcrun '+ self.folder + self.filename
+        g_string = ' -gravity' if self.gravity else ''
+        mcstring = 'mcrun '+ self.folder + self.filename + g_string
         for key in params_dict:
             mcstring += ' '+(key+'='+str(params_dict[key]))
         return mcstring
