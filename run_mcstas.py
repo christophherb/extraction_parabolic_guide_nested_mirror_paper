@@ -70,7 +70,7 @@ class McstasSimulation:
                 params_dict = self.params_dict
             else:
                 params_dict = self.return_params_dict()
-        g_string = ' -gravity' if self.gravity else ''
+        g_string = ' --gravity' if self.gravity else ''
         mcstring = 'mcrun '+ self.folder + self.filename + g_string
         for key in params_dict:
             mcstring += ' '+(key+'='+str(params_dict[key]))
