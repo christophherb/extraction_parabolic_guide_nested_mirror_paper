@@ -288,7 +288,7 @@ def return_thresholds(array, thresholds=None):
                 break
     return threshold_xy
 
-def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None):
+def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None, circle=None):
     """plots the calculated thresholds in a rectangular map
 
     Args:
@@ -296,6 +296,7 @@ def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None):
         fig (plt.fig, optional): Figure in which to plot if none is given a new figure is created. Defaults to None.
         ax (plt.ax, optional): ax in which to plot if none is give a new one is created. Defaults to None.
         thresholds (list, optional): list of thresholds defaults to (0.1, 0.2, ..., 0.9). Defaults to None.
+        circle (center, radius): if a center and radius are given  
 
     Returns:
         (fig, ax): tuple of figure and ax
@@ -316,17 +317,18 @@ def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None):
 
     if fig==None or ax==None:
         fig, ax = plt.subplots()
-        im = ax.imshow(array[::-1], interpolation='none')
+        im = ax.imshow(array[::-1], interpolation='none', extent=extent)
 
     for ind, (x, y) in enumerate(threshold_xy):
-        rect = patches.Rectangle(px2datapoints(midpoint[0]-x, midpoint[1]-y), 2*x*height/array.shape[0], 2*y*width/array.shape[1], alpha=1, fc='none', edgecolor='red')
+        lowerleft_x, lowerleft_y = px2datapoints(midpoint[0]-x, midpoint[1]-y)
+        rect = patches.Rectangle((lowerleft_x, lowerleft_y), 2*x*height/array.shape[0], 2*y*width/array.shape[1], alpha=1, fc='none', edgecolor='red')
         ax.add_patch(rect)
-        ax.text(midpoint[0]-x, midpoint[1]-y, round(thresholds[ind], 1), color='red')
-    fig.colorbar(im)
+        ax.text(lowerleft_x+0.2, lowerleft_y+0.2, round(thresholds[ind], 2), color='red')
+    #fig.colorbar(im)
     return fig, ax
 #
-test_array = np.ones((1000, 1000))
-#test_array[40:61, 40:61] += 1
+test_array = np.zeros((100, 100))
+test_array[40:60, 40:60] += 1
 fig, ax = plot_thresholds(test_array)
 
 plt.show()
