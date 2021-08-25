@@ -266,7 +266,7 @@ def return_thresholds(array, thresholds=None):
     Returns:
         list: list of tuple (x, y) for array-centered rectangle with heigth 2*x and width 2*y
     """
-    if thresholds == None:
+    if thresholds is None:
         thresholds = np.linspace(0.1, 0.9, 9)
     threshold_xy = []
     shape = array.shape
@@ -300,6 +300,8 @@ def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None):
     Returns:
         (fig, ax): tuple of figure and ax
     """
+    if thresholds is None:
+        thresholds = np.linspace(0.1, 0.9, 9)
     threshold_xy = return_thresholds(array, thresholds)
     midpoint = int(array.shape[0]/2), int(array.shape[1]/2)
     if extent==None:
@@ -308,21 +310,24 @@ def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None):
     width = extent[3]-extent[2]
 
     def px2datapoints(px, py):
-        x = (px/array.shape[0])*(extent[1]-extent[0])+ extent[0]
-        y = (py/array.shape[1])*(extent[3]-extent[2])+ extent[2]
+        x = (px/array.shape[0])*(height)+ extent[0]
+        y = (py/array.shape[1])*(width)+ extent[2]
         return x, y
 
     if fig==None or ax==None:
         fig, ax = plt.subplots()
-        ax.imshow(array[::-1], interpolation='none')
+        im = ax.imshow(array[::-1], interpolation='none')
 
-    for x, y in threshold_xy:
-        rect = patches.Rectangle(px2datapoints(midpoint[0]-x, midpoint[0]-y), 2*x*height/array.shape[0], 2*y*width/array.shape[1], alpha=1, fc='none', edgecolor='red')
+    for ind, (x, y) in enumerate(threshold_xy):
+        rect = patches.Rectangle(px2datapoints(midpoint[0]-x, midpoint[1]-y), 2*x*height/array.shape[0], 2*y*width/array.shape[1], alpha=1, fc='none', edgecolor='red')
         ax.add_patch(rect)
+        ax.text(midpoint[0]-x, midpoint[1]-y, round(thresholds[ind], 1), color='red')
+    fig.colorbar(im)
     return fig, ax
 #
-#test_array = np.zeros((100, 100))
+test_array = np.ones((1000, 1000))
 #test_array[40:61, 40:61] += 1
-#plot_thresholds(test_array, thresholds=[1])
-#plt.show()
-#print('done')
+fig, ax = plot_thresholds(test_array)
+
+plt.show()
+print('done')
