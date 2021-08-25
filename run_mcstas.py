@@ -326,10 +326,61 @@ def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None, circ
         ax.text(lowerleft_x+0.2, lowerleft_y+0.2, round(thresholds[ind], 2), color='red')
     #fig.colorbar(im)
     return fig, ax
-#
-test_array = np.zeros((100, 100))
-test_array[40:60, 40:60] += 1
-fig, ax = plot_thresholds(test_array)
 
+
+def return_thresholds_circle(array: np.array, extent: tuple=None, thresholds: list=None) -> np.array:
+    """finds and returns the radii of circles crossing certain thresholds
+
+    Args:
+        array (np.array): array of data to find thresholds for
+        extent (tuple): extent of the array. Defaults to (0,xpix,0,ypix)
+        thresholds (list): list of thresholds. Defaults to np.linspace(0.1, 0.9, 9)
+
+    Returns:
+        np.array: list(ind, threshold, r[px]) list for all thresholds
+    """
+    if thresholds is None:
+        thresholds = np.linspace(0.1, 0.9, 9)
+    xmid_px = array.shape[0]//2
+    ymid_px = array.shape[1]//2
+    threshold_radii = []
+    total = np.sum(array)
+    radius = 0
+    for ind, threshold in enumerate(thresholds):
+        for r in range(radius, xmid_px):
+            try:
+                X, Y = np.meshgrid(range(array.shape[0]), range(array.shape[1]))
+                mask = ((X-xmid_px)**2 + (Y-ymid_px)**2 < r**2)
+                if np.sum(array[mask])/total > threshold:
+                    threshold_radii.append((ind, threshold, r))
+                    radius = r
+                    break
+            except IndexError:
+                break
+        else:
+            print('no suc', threshold)
+    return threshold_radii
+
+def plot_thresholds_circle(array: np.array, extent: tuple=None, thresholds: list=None, figax=None):
+    if extent is None:
+        extent = (0, array.shape[0], 0, array.shape[1])
+    midpointx = extent[1]//2
+    midpointy = extent[3]//2
+    if figax is None:
+        fig, ax = plt.subplots(1)
+        im = ax.imshow(array[::-1], extent=extent, interpolation='none')
+    thresholds=return_thresholds_circle(array, extent=extent, thresholds=thresholds)
+    for ind, (i, threshold, r_px) in enumerate(thresholds):
+        r_ext = r_px*(extent[1]-extent[0])/array.shape[0]
+        circ = patches.Circle((midpointx, midpointy), r_ext, fc='none', edgecolor='red')
+        ax.add_patch(circ)
+    return fig, ax
+test_array = np.zeros((100, 100))
+X, Y = np.meshgrid(range(100), range(100))
+circ = ((X-49.5)**2 + (Y-49.5)**2 <= 10**2)
+test_array[circ] += 1
+
+fig, ax = plot_thresholds_circle(test_array)
+print(return_thresholds_circle(test_array))
 plt.show()
 print('done')
