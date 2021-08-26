@@ -146,33 +146,70 @@ def plot_thresholds_circle(array: np.array, xmid_px=None, ymid_px=None, extent: 
         ax.add_patch(circ)
         ax.text(xmid_px/(array.shape[0]-1)+r_px/(array.shape[0]-1), ymid_px/(array.shape[1]-1),'$I_p$ = {:.2}'.format(threshold), color='red', transform=ax.transAxes)
     return fig, ax
-test_array = np.ones((100, 100))
-with open('data/data_finite_g_length160finite_beamspot.txt', 'rb') as myFile:
-    data_dict = pickle.load(myFile)
-with open('data/meta_data_finite_g_length160finite_beamspot.txt', 'rb') as myFile:
-    meta_dict = pickle.load(myFile)
-#X, Y = np.meshgrid(range(100), range(100))
-#circ = ((X-2)**2 + (Y-34)**2 <= 30**2)
-#test_array[circ] += 1
 
-extent = (-21.8/2, 21.8/2, -21.8/2, 21.8/2)
-print(data_dict.keys())
-#test_array = data_dict['f_psd.dat'][:100]
-#X, Y = np.meshgrid(range(100), range(100))
-#circ = ((X-40)**2 + (Y-12)**2 <= 30**2)
-#test_array[circ] *= 20
+
+def radius_vs_content(array: np.array, mid_x: float=None, mid_y: float=None, radii=None):
+    """takes an array and returns the radius of the cirle vs the incorporated content
+
+    Args:
+        array (np.array): array with data
+        mid_x (float, optional): x-value of the midpoint. Defaults to None.
+        mid_y (float, optional): y-value of the midpoint. Defaults to None.
+
+    Returns:
+        (np.array): [(rad, int)]
+    """
+    height = array.shape[0]
+    width = array.shape[1]
+    total = np.sum(array)
+    rad_int = []
+    if mid_x is None:
+        mid_x = (height)/2
+    if mid_y is None:
+        mid_y = (width)/2
+    if radii is None:
+        radii = range(0, max([height, width]))
+    X, Y = np.meshgrid(range(height), range(width))
+    for radius in radii:
+        #fig, ax = plt.subplots(1)
+        
+        circle = ((X-mid_x)**2 + (Y-mid_y)**2 < radius**2)
+
+        #ax.imshow(array, interpolation ='none')
+
+        #print(np.sum(array[circle]))
+        fraction = np.sum(array[circle])/total
+        rad_int.append((radius, fraction))
+    return rad_int
+test_array = np.ones((100, 100))
+print(radius_vs_content(test_array, radii = [1,5, 10, 15], mid_x=60, mid_y=49.5))
+
+#with open('data/data_finite_g_length160finite_beamspot.txt', 'rb') as myFile:
+#    data_dict = pickle.load(myFile)
+#with open('data/meta_data_finite_g_length160finite_beamspot.txt', 'rb') as myFile:
+#    meta_dict = pickle.load(myFile)
+##X, Y = np.meshgrid(range(100), range(100))
+##circ = ((X-2)**2 + (Y-34)**2 <= 30**2)
+##test_array[circ] += 1
 #
-#circ = ((X-1)**2 + (Y-12)**2 <= 5**2)
-#test_array[circ] *= 20000
-fig, ax = plt.subplots(1)
-im = ax.imshow(test_array[::], interpolation='none')
-midy, midx = return_com_array(test_array)
-#midy, midx = midy/99*21.8-21.8/2, midx/99*21.8-21.8/2
-print(midy, midx)
-plot_thresholds_circle(test_array, xmid_px=midx, ymid_px=midy, extent=extent, thresholds=[0.30, 0.5, 0.70])
-print('center of mass', return_com_array(test_array))
-#fig, ax = plot_thresholds_circle(test_array)
-#print(return_thresholds_circle(test_array))
+#extent = (-21.8/2, 21.8/2, -21.8/2, 21.8/2)
+#print(data_dict.keys())
+##test_array = data_dict['f_psd.dat'][:100]
+##X, Y = np.meshgrid(range(100), range(100))
+##circ = ((X-40)**2 + (Y-12)**2 <= 30**2)
+##test_array[circ] *= 20
+##
+##circ = ((X-1)**2 + (Y-12)**2 <= 5**2)
+##test_array[circ] *= 20000
+#fig, ax = plt.subplots(1)
+#im = ax.imshow(test_array[::], interpolation='none')
+#midy, midx = return_com_array(test_array)
+##midy, midx = midy/99*21.8-21.8/2, midx/99*21.8-21.8/2
+#print(midy, midx)
+#plot_thresholds_circle(test_array, xmid_px=midx, ymid_px=midy, extent=extent, thresholds=[0.30, 0.5, 0.70])
+#print('center of mass', return_com_array(test_array))
+##fig, ax = plot_thresholds_circle(test_array)
+##print(return_thresholds_circle(test_array))
+##plt.show()
+##print('done')
 #plt.show()
-#print('done')
-plt.show()
