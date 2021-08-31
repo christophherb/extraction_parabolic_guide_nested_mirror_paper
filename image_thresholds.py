@@ -172,7 +172,7 @@ def radius_vs_content(array: np.array, mid_x: float=None, mid_y: float=None, rad
     X, Y = np.meshgrid(range(height), range(width))
     for radius in radii:
         #fig, ax = plt.subplots(1)
-        
+
         circle = ((X-mid_x)**2 + (Y-mid_y)**2 < radius**2)
 
         #ax.imshow(array, interpolation ='none')
