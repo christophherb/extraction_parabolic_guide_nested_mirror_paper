@@ -33,16 +33,16 @@
 DEFINE COMPONENT FlatEllipse_finite_mirror
 DEFINITION PARAMETERS(string reflect="supermirror_m3.rfl")
 SETTING PARAMETERS (
-    sourceDist = 0, //only relevant for the spacing of the mirrors, where should the source sit
-    LStart=0.6, //only relevant for the calculation of the reflections, where should the first focal point of the ellipses be
+    sourceDist = 0, //only relevant for the spacing of the mirrors, where should the source sit usually this has to equal LStart
+    LStart=0.6, //only relevant for the calculation of the reflections, z coordinate of the first focal point of the ellipses
     LEnd = 0.6, //z coordinate of the second focal point of the ellipses
     lStart = 0., //z coordinate of the beginning of the mirrors
     lEnd = 0., //z coordinate of the end of the mirrors
     r_0 = 0.02076, //distance of the defining point at z=0 on the outermost mirror
     nummirror= 9, // number of mirrors in the assembly
-    mf = 4, //mvalue of the inner side of the coating
-    mb = 0, //mvalue of the outer side of the coating
-    mirror_width=0.003, //width of the mirror (m)
+    mf = 4, //mvalue of the inner side of the coating, m>10 results in perfect reflections
+    mb = 0, //mvalue of the outer side of the coating, m>10 results in perfect reflections
+    mirror_width=0.003, //width of the mirror (m), take care that the mirrors do not intersect
     doubleReflections = 0 //can neutrons be reflected from the backside of a mirror
 )
 OUTPUT PARAMETERS(s, pTable, R0, Qc, W, alpha, transmit)
@@ -78,7 +78,7 @@ DECLARE
 INITIALIZE
 %{
     if (sourceDist == 0){
-        sourceDist = sqrt(LStart*LStart);
+        sourceDist = LStart;
     }
     pointer_lStart = &lStart;
     //Load Reflectivity Data File

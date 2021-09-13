@@ -1,0 +1,263 @@
+McStas simulation description file for template_simple.
+Date:    Thu Sep  9 10:56:11 2021
+Program: McStas 2.6.1 - May. 04, 2020
+
+begin instrument: template_simple
+  File: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction_20210909_105603/mccode
+  Source: parabolic_extraction.instr
+  Parameters:  det_width(double) det_width_focus(double) source_width(double) guide_width(double) L_source(double) guide_length(double) dL(double) L_min(double) L_max(double) source_divergence(double) divergence_max(double) focal_length(double) mirrors(double) incoming_length(double) g(double) max_div(double) pixels(double) flux(double) placeholder(double)
+  Trace_enabled: yes
+  Default_main: yes
+  Embedded_runtime: yes
+end instrument
+
+begin simulation: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction_20210909_105603
+  Format: McCode with text headers
+  URL: http://www.mccode.org
+  Creator: McStas 2.6.1 - May. 04, 2020
+  Instrument: parabolic_extraction.instr
+  Ncount: 10000000
+  Trace: no
+  Gravitation: no
+  Seed: 1631188827
+  Directory: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction_20210909_105603
+  Param: det_width=0.218
+  Param: det_width_focus=0.03
+  Param: source_width=0.03
+  Param: guide_width=0.218
+  Param: L_source=5
+  Param: guide_length=160
+  Param: dL=3
+  Param: L_min=2
+  Param: L_max=8
+  Param: source_divergence=2.5
+  Param: divergence_max=1
+  Param: focal_length=6
+  Param: mirrors=60
+  Param: incoming_length=5000
+  Param: g=0
+  Param: max_div=10
+  Param: pixels=100
+  Param: flux=1
+  Param: placeholder=1
+end simulation
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: psd_monitor_source
+  position: 0 0 0
+  title: PSD monitor
+  Ncount: 10000000
+  filename: source_psd.dat
+  statistics: X0=6.70988e-05; dX=0.752848; Y0=0.000239036; dY=0.752601;
+  signal: Min=0; Max=0.000549406; Mean=8.07592e-06;
+  values: 0.0807592 2.88133e-05 7.85594e+06
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: psd_monitor_source_before_optic
+  position: 0 0 5.4
+  title: PSD monitor
+  Ncount: 10000000
+  filename: source_psd_beforeoptic.dat
+  statistics: X0=-0.000665827; dX=6.22764; Y0=-0.000740716; dY=6.22967;
+  signal: Min=5.10917e-06; Max=7.91562e-06; Mean=6.77306e-06;
+  values: 0.0677306 2.6387e-05 6.58857e+06
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.8157 10.8157 -10.8157 10.8157
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: psd_monitor_afteropticsource
+  position: 0 0 7
+  title: PSD monitor
+  Ncount: 10000000
+  filename: sourceafteroptic_psd.dat
+  statistics: X0=-0.00403264; dX=6.30325; Y0=0.00169974; dY=6.29089;
+  signal: Min=4.04005e-06; Max=6.67173e-06; Mean=5.39793e-06;
+  values: 0.0539793 2.35565e-05 5.2509e+06
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: divpos_monitor
+  position: 0 0 167
+  title: Position-divergence monitor
+  Ncount: 10000000
+  filename: g1_divpos.dat
+  statistics: X0=1.58829e-05; dX=0.0627648; Y0=-0.000181961; dY=0.194772;
+  signal: Min=0; Max=8.12101e-05; Mean=4.84641e-06;
+  values: 0.0484641 2.19198e-05 5.21666e+06
+  xvar: pos
+  yvar: divergence
+  xlabel: pos [m]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -0.109 0.109 -2 2
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: psd_monitor_g1
+  position: 0 0 167
+  title: PSD monitor
+  Ncount: 10000000
+  filename: g1_psd.dat
+  statistics: X0=-0.00152853; dX=6.26898; Y0=0.00158829; dY=6.27648;
+  signal: Min=3.9827e-06; Max=5.7102e-06; Mean=4.84641e-06;
+  values: 0.0484641 2.19198e-05 5.21666e+06
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: divhlambda_monitor_g1
+  position: 0 0 167
+  title: Wavelength-divergence monitor
+  Ncount: 10000000
+  filename: g1_divv_lambda.dat
+  statistics: X0=5.15715; dX=1.69761; Y0=-0.000181961; dY=0.194772;
+  signal: Min=0; Max=8.41945e-05; Mean=4.84641e-06;
+  values: 0.0484641 2.19198e-05 5.21666e+06
+  xvar: Wavelength
+  yvar: divergence
+  xlabel: Wavelength [AA]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: 2 8 -2 2
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: psd_monitor_f_zoom
+  position: 0 0 173.6
+  title: PSD monitor
+  Ncount: 10000000
+  filename: f_psd_zoom.dat
+  statistics: X0=0.000259929; dX=0.660082; Y0=0.000166436; dY=0.719988;
+  signal: Min=3.67614e-08; Max=6.20483e-06; Mean=1.79724e-06;
+  values: 0.0179724 1.35311e-05 1.77216e+06
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -1.5 1.5 -1.5 1.5
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: psd_monitor_f
+  position: 0 0 173.6
+  title: PSD monitor
+  Ncount: 10000000
+  filename: f_psd.dat
+  statistics: X0=0.000713911; dX=3.26012; Y0=0.000214945; dY=3.55217;
+  signal: Min=1.13138e-07; Max=0.000258888; Mean=4.611e-06;
+  values: 0.04611 2.14201e-05 4.88771e+06
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: f_divpos
+  position: 0 0 173.6
+  title: Position-divergence monitor
+  Ncount: 10000000
+  filename: f_divpos.dat
+  statistics: X0=1.66436e-06; dX=0.00719988; Y0=0.000119592; dY=0.576416;
+  signal: Min=0; Max=7.84649e-06; Mean=1.79724e-06;
+  values: 0.0179724 1.35311e-05 1.77216e+06
+  xvar: pos
+  yvar: divergence
+  xlabel: pos [m]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -0.015 0.015 -2 2
+  variables: I I_err N
+end data
+
+begin data
+  Date: Thu Sep  9 11:02:32 2021 (1631178152)
+  type: array_2d(100, 100)
+  Source: template_simple (parabolic_extraction.instr)
+  component: divhlambda_monitor_f
+  position: 0 0 173.6
+  title: Wavelength-divergence monitor
+  Ncount: 10000000
+  filename: f_divv_lambda.dat
+  statistics: X0=5.06262; dX=1.71163; Y0=0.000119592; dY=0.576416;
+  signal: Min=0; Max=6.32869e-06; Mean=1.79724e-06;
+  values: 0.0179724 1.35311e-05 1.77216e+06
+  xvar: Wavelength
+  yvar: divergence
+  xlabel: Wavelength [AA]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: 2 8 -2 2
+  variables: I I_err N
+end data
