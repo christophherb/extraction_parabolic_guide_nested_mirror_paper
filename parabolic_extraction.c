@@ -1,8 +1,8 @@
 /* Automatically generated file. Do not edit. 
  * Format:     ANSI C source code
  * Creator:    McStas <http://www.mcstas.org>
- * Instrument: parabolic_extraction.instr (template_simple)
- * Date:       Thu Sep  9 10:56:03 2021
+ * Instrument: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr (template_simple)
+ * Date:       Wed Sep 15 15:25:02 2021
  * File:       ./parabolic_extraction.c
  * Compile:    cc -o template_simple.out ./parabolic_extraction.c 
  * CFLAGS=
@@ -5343,7 +5343,7 @@ int mctraceenabled = 0;
 #define MCSTAS "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../"
 int mcdefaultmain = 1;
 char mcinstrument_name[] = "template_simple";
-char mcinstrument_source[] = "parabolic_extraction.instr";
+char mcinstrument_source[] = "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr";
 char *mcinstrument_exe=NULL; /* will be set to argv[0] in main */
 int main(int argc, char *argv[]){return mccode_main(argc, argv);}
 void mcinit(void);
@@ -10402,13 +10402,13 @@ void mcinit(void) {
     /* Component origin. */
   /* Setting parameters for component origin. */
   SIG_MESSAGE("origin (Init:SetPar)");
-#line 39 "parabolic_extraction.instr"
+#line 39 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("NULL") strncpy(mccorigin_profile, "NULL" ? "NULL" : "", 16384); else mccorigin_profile[0]='\0';
-#line 39 "parabolic_extraction.instr"
+#line 39 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccorigin_percent = 10;
-#line 39 "parabolic_extraction.instr"
+#line 39 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccorigin_flag_save = 0;
-#line 39 "parabolic_extraction.instr"
+#line 39 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccorigin_minutes = 0;
 #line 10413 "./parabolic_extraction.c"
 
@@ -10420,11 +10420,11 @@ void mcinit(void) {
 #line 10420 "./parabolic_extraction.c"
   rot_copy(mcrotrorigin, mcrotaorigin);
   mcposaorigin = coords_set(
-#line 58 "parabolic_extraction.instr"
+#line 58 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 58 "parabolic_extraction.instr"
+#line 58 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 58 "parabolic_extraction.instr"
+#line 58 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 10429 "./parabolic_extraction.c"
   mctc1 = coords_neg(mcposaorigin);
@@ -10448,11 +10448,11 @@ void mcinit(void) {
   rot_transpose(mcrotaorigin, mctr1);
   rot_mul(mcrotasource, mctr1, mcrotrsource);
   mctc1 = coords_set(
-#line 62 "parabolic_extraction.instr"
+#line 62 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 62 "parabolic_extraction.instr"
+#line 62 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 62 "parabolic_extraction.instr"
+#line 62 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 10457 "./parabolic_extraction.c"
   rot_transpose(mcrotaorigin, mctr1);
@@ -10468,25 +10468,25 @@ void mcinit(void) {
     /* Component source_div. */
   /* Setting parameters for component source_div. */
   SIG_MESSAGE("source_div (Init:SetPar)");
-#line 66 "parabolic_extraction.instr"
+#line 66 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_xwidth = mcipsource_width;
-#line 65 "parabolic_extraction.instr"
+#line 65 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_yheight = mcipsource_width;
-#line 68 "parabolic_extraction.instr"
+#line 68 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_focus_aw = mcipsource_divergence;
-#line 69 "parabolic_extraction.instr"
+#line 69 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_focus_ah = mcipsource_divergence;
-#line 64 "parabolic_extraction.instr"
+#line 64 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_E0 = 0.0;
-#line 64 "parabolic_extraction.instr"
+#line 64 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_dE = 0.0;
-#line 70 "parabolic_extraction.instr"
+#line 70 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_lambda0 = mcipL_source;
-#line 72 "parabolic_extraction.instr"
+#line 72 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_dlambda = mcipdL;
-#line 64 "parabolic_extraction.instr"
+#line 64 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_gauss = 0;
-#line 71 "parabolic_extraction.instr"
+#line 71 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccsource_div_flux = mcipflux;
 #line 10491 "./parabolic_extraction.c"
 
@@ -10500,11 +10500,11 @@ void mcinit(void) {
   rot_transpose(mcrotasource, mctr1);
   rot_mul(mcrotasource_div, mctr1, mcrotrsource_div);
   mctc1 = coords_set(
-#line 73 "parabolic_extraction.instr"
+#line 73 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 73 "parabolic_extraction.instr"
+#line 73 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 73 "parabolic_extraction.instr"
+#line 73 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 10509 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
@@ -10520,19 +10520,19 @@ void mcinit(void) {
     /* Component slit. */
   /* Setting parameters for component slit. */
   SIG_MESSAGE("slit (Init:SetPar)");
-#line 46 "parabolic_extraction.instr"
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccslit_xmin = 0;
-#line 46 "parabolic_extraction.instr"
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccslit_xmax = 0;
-#line 46 "parabolic_extraction.instr"
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccslit_ymin = 0;
-#line 46 "parabolic_extraction.instr"
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccslit_ymax = 0;
-#line 76 "parabolic_extraction.instr"
+#line 76 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccslit_radius = mcipsource_width / 2;
-#line 46 "parabolic_extraction.instr"
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccslit_xwidth = 0;
-#line 46 "parabolic_extraction.instr"
+#line 46 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccslit_yheight = 0;
 #line 10537 "./parabolic_extraction.c"
 
@@ -10546,11 +10546,11 @@ void mcinit(void) {
   rot_transpose(mcrotasource_div, mctr1);
   rot_mul(mcrotaslit, mctr1, mcrotrslit);
   mctc1 = coords_set(
-#line 78 "parabolic_extraction.instr"
+#line 78 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 78 "parabolic_extraction.instr"
+#line 78 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 78 "parabolic_extraction.instr"
+#line 78 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 10555 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
@@ -10566,25 +10566,25 @@ void mcinit(void) {
     /* Component psd_monitor_source. */
   /* Setting parameters for component psd_monitor_source. */
   SIG_MESSAGE("psd_monitor_source (Init:SetPar)");
-#line 84 "parabolic_extraction.instr"
+#line 84 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_nx = mcippixels;
-#line 85 "parabolic_extraction.instr"
+#line 85 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_ny = mcippixels;
-#line 81 "parabolic_extraction.instr"
+#line 81 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("source_psd.dat") strncpy(mccpsd_monitor_source_filename, "source_psd.dat" ? "source_psd.dat" : "", 16384); else mccpsd_monitor_source_filename[0]='\0';
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_xmin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_xmax = 0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_ymin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_ymax = 0.05;
-#line 82 "parabolic_extraction.instr"
+#line 82 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_xwidth = mcipdet_width;
-#line 83 "parabolic_extraction.instr"
+#line 83 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_yheight = mcipdet_width;
-#line 86 "parabolic_extraction.instr"
+#line 86 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_restore_neutron = 1;
 #line 10589 "./parabolic_extraction.c"
 
@@ -10598,11 +10598,11 @@ void mcinit(void) {
   rot_transpose(mcrotaslit, mctr1);
   rot_mul(mcrotapsd_monitor_source, mctr1, mcrotrpsd_monitor_source);
   mctc1 = coords_set(
-#line 87 "parabolic_extraction.instr"
+#line 87 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 87 "parabolic_extraction.instr"
+#line 87 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 87 "parabolic_extraction.instr"
+#line 87 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 10607 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
@@ -10618,25 +10618,25 @@ void mcinit(void) {
     /* Component psd_monitor_source_before_optic. */
   /* Setting parameters for component psd_monitor_source_before_optic. */
   SIG_MESSAGE("psd_monitor_source_before_optic (Init:SetPar)");
-#line 93 "parabolic_extraction.instr"
+#line 93 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_nx = mcippixels;
-#line 94 "parabolic_extraction.instr"
+#line 94 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_ny = mcippixels;
-#line 90 "parabolic_extraction.instr"
+#line 90 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("source_psd_beforeoptic.dat") strncpy(mccpsd_monitor_source_before_optic_filename, "source_psd_beforeoptic.dat" ? "source_psd_beforeoptic.dat" : "", 16384); else mccpsd_monitor_source_before_optic_filename[0]='\0';
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_xmin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_xmax = 0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_ymin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_ymax = 0.05;
-#line 91 "parabolic_extraction.instr"
+#line 91 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_xwidth = 0.10815692497298013 * 2;
-#line 92 "parabolic_extraction.instr"
+#line 92 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_yheight = 0.10815692497298013 * 2;
-#line 95 "parabolic_extraction.instr"
+#line 95 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_source_before_optic_restore_neutron = 1;
 #line 10641 "./parabolic_extraction.c"
 
@@ -10650,11 +10650,11 @@ void mcinit(void) {
   rot_transpose(mcrotapsd_monitor_source, mctr1);
   rot_mul(mcrotapsd_monitor_source_before_optic, mctr1, mcrotrpsd_monitor_source_before_optic);
   mctc1 = coords_set(
-#line 96 "parabolic_extraction.instr"
+#line 96 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 96 "parabolic_extraction.instr"
+#line 96 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 96 "parabolic_extraction.instr"
+#line 96 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length -0.6);
 #line 10659 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
@@ -10670,48 +10670,48 @@ void mcinit(void) {
     /* Component parabolic_optic_before_guide_v. */
   /* Setting parameters for component parabolic_optic_before_guide_v. */
   SIG_MESSAGE("parabolic_optic_before_guide_v (Init:SetPar)");
-#line 101 "parabolic_extraction.instr"
+#line 101 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_sourceDist = - ( mcipfocal_length -0.6 );
-#line 102 "parabolic_extraction.instr"
+#line 102 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_LStart = - ( mcipfocal_length -0.6 );
-#line 103 "parabolic_extraction.instr"
+#line 103 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_LEnd = mcipincoming_length + 0.6;
-#line 104 "parabolic_extraction.instr"
+#line 104 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_lStart = 0;
-#line 105 "parabolic_extraction.instr"
+#line 105 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_lEnd = 0.6;
-#line 106 "parabolic_extraction.instr"
+#line 106 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_r_0 = 0.10815692497298013;
-#line 108 "parabolic_extraction.instr"
+#line 108 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_nummirror = mcipmirrors;
-#line 110 "parabolic_extraction.instr"
+#line 110 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_mf = 4.1;
-#line 111 "parabolic_extraction.instr"
+#line 111 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_mb = 0;
-#line 107 "parabolic_extraction.instr"
+#line 107 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_mirror_width = 0;
-#line 109 "parabolic_extraction.instr"
+#line 109 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_v_doubleReflections = 1;
 #line 10695 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic_before_guide_v (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 115 "parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 115 "parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 115 "parabolic_extraction.instr"
-    (90)*DEG2RAD);
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    (0)*DEG2RAD);
 #line 10705 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotasource, mcrotaparabolic_optic_before_guide_v);
   rot_transpose(mcrotapsd_monitor_source_before_optic, mctr1);
   rot_mul(mcrotaparabolic_optic_before_guide_v, mctr1, mcrotrparabolic_optic_before_guide_v);
   mctc1 = coords_set(
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length -0.6);
 #line 10716 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
@@ -10727,48 +10727,48 @@ void mcinit(void) {
     /* Component parabolic_optic_before_guide_h. */
   /* Setting parameters for component parabolic_optic_before_guide_h. */
   SIG_MESSAGE("parabolic_optic_before_guide_h (Init:SetPar)");
-#line 119 "parabolic_extraction.instr"
+#line 119 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_sourceDist = - mcipfocal_length;
-#line 120 "parabolic_extraction.instr"
+#line 120 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_LStart = - mcipfocal_length;
-#line 121 "parabolic_extraction.instr"
+#line 121 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_LEnd = mcipincoming_length;
-#line 122 "parabolic_extraction.instr"
+#line 122 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_lStart = 0;
-#line 123 "parabolic_extraction.instr"
+#line 123 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_lEnd = 0.6;
-#line 124 "parabolic_extraction.instr"
+#line 124 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_r_0 = 0.1087016643197862;
-#line 126 "parabolic_extraction.instr"
+#line 126 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_nummirror = mcipmirrors;
-#line 128 "parabolic_extraction.instr"
+#line 128 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_mf = 4.1;
-#line 129 "parabolic_extraction.instr"
+#line 129 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_mb = 0;
-#line 125 "parabolic_extraction.instr"
+#line 125 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_mirror_width = 0;
-#line 127 "parabolic_extraction.instr"
+#line 127 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic_before_guide_h_doubleReflections = 1;
 #line 10752 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic_before_guide_h (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 133 "parabolic_extraction.instr"
+#line 133 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 133 "parabolic_extraction.instr"
+#line 133 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 133 "parabolic_extraction.instr"
-    (0)*DEG2RAD);
+#line 133 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
+    (90)*DEG2RAD);
 #line 10762 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotasource, mcrotaparabolic_optic_before_guide_h);
   rot_transpose(mcrotaparabolic_optic_before_guide_v, mctr1);
   rot_mul(mcrotaparabolic_optic_before_guide_h, mctr1, mcrotrparabolic_optic_before_guide_h);
   mctc1 = coords_set(
-#line 132 "parabolic_extraction.instr"
+#line 132 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 132 "parabolic_extraction.instr"
+#line 132 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 132 "parabolic_extraction.instr"
+#line 132 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length);
 #line 10773 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
@@ -10795,11 +10795,11 @@ void mcinit(void) {
   rot_transpose(mcrotaparabolic_optic_before_guide_h, mctr1);
   rot_mul(mcrotaafter_optic_source, mctr1, mcrotrafter_optic_source);
   mctc1 = coords_set(
-#line 138 "parabolic_extraction.instr"
+#line 138 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 138 "parabolic_extraction.instr"
+#line 138 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 138 "parabolic_extraction.instr"
+#line 138 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length + 1);
 #line 10804 "./parabolic_extraction.c"
   rot_transpose(mcrotasource, mctr1);
@@ -10815,25 +10815,25 @@ void mcinit(void) {
     /* Component psd_monitor_afteropticsource. */
   /* Setting parameters for component psd_monitor_afteropticsource. */
   SIG_MESSAGE("psd_monitor_afteropticsource (Init:SetPar)");
-#line 144 "parabolic_extraction.instr"
+#line 144 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_nx = mcippixels;
-#line 145 "parabolic_extraction.instr"
+#line 145 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_ny = mcippixels;
-#line 141 "parabolic_extraction.instr"
+#line 141 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("sourceafteroptic_psd.dat") strncpy(mccpsd_monitor_afteropticsource_filename, "sourceafteroptic_psd.dat" ? "sourceafteroptic_psd.dat" : "", 16384); else mccpsd_monitor_afteropticsource_filename[0]='\0';
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_xmin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_xmax = 0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_ymin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_ymax = 0.05;
-#line 142 "parabolic_extraction.instr"
+#line 142 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_xwidth = mcipdet_width;
-#line 143 "parabolic_extraction.instr"
+#line 143 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_yheight = mcipdet_width;
-#line 146 "parabolic_extraction.instr"
+#line 146 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_afteropticsource_restore_neutron = 1;
 #line 10838 "./parabolic_extraction.c"
 
@@ -10847,11 +10847,11 @@ void mcinit(void) {
   rot_transpose(mcrotaafter_optic_source, mctr1);
   rot_mul(mcrotapsd_monitor_afteropticsource, mctr1, mcrotrpsd_monitor_afteropticsource);
   mctc1 = coords_set(
-#line 147 "parabolic_extraction.instr"
+#line 147 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 147 "parabolic_extraction.instr"
+#line 147 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 147 "parabolic_extraction.instr"
+#line 147 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 10856 "./parabolic_extraction.c"
   rot_transpose(mcrotaafter_optic_source, mctr1);
@@ -10867,73 +10867,73 @@ void mcinit(void) {
     /* Component guide_gravity_1. */
   /* Setting parameters for component guide_gravity_1. */
   SIG_MESSAGE("guide_gravity_1 (Init:SetPar)");
-#line 152 "parabolic_extraction.instr"
+#line 152 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_w1 = mcipguide_width;
-#line 153 "parabolic_extraction.instr"
+#line 153 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_h1 = mcipguide_width;
-#line 113 "parabolic_extraction.instr"
+#line 113 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_w2 = 0;
-#line 113 "parabolic_extraction.instr"
+#line 113 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_h2 = 0;
-#line 156 "parabolic_extraction.instr"
+#line 156 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_l = mcipguide_length;
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_R0 = 0.995;
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_Qc = 0.0218;
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_alpha = 4.38;
-#line 155 "parabolic_extraction.instr"
+#line 155 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_m = 2;
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_W = 0.003;
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_nslit = 1;
-#line 114 "parabolic_extraction.instr"
+#line 114 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_d = 0.0005;
-#line 115 "parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_mleft = -1;
-#line 115 "parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_mright = -1;
-#line 115 "parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_mtop = -1;
-#line 115 "parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_mbottom = -1;
-#line 115 "parabolic_extraction.instr"
+#line 115 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_nhslit = 1;
-#line 154 "parabolic_extraction.instr"
+#line 154 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_G = mcipg;
-#line 116 "parabolic_extraction.instr"
+#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_aleft = -1;
-#line 116 "parabolic_extraction.instr"
+#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_aright = -1;
-#line 116 "parabolic_extraction.instr"
+#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_atop = -1;
-#line 116 "parabolic_extraction.instr"
+#line 116 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_abottom = -1;
-#line 117 "parabolic_extraction.instr"
+#line 117 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_wavy = 0;
-#line 117 "parabolic_extraction.instr"
+#line 117 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_wavy_z = 0;
-#line 117 "parabolic_extraction.instr"
+#line 117 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_wavy_tb = 0;
-#line 117 "parabolic_extraction.instr"
+#line 117 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_wavy_lr = 0;
-#line 118 "parabolic_extraction.instr"
+#line 118 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_chamfers = 0;
-#line 118 "parabolic_extraction.instr"
+#line 118 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_chamfers_z = 0;
-#line 118 "parabolic_extraction.instr"
+#line 118 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_chamfers_lr = 0;
-#line 118 "parabolic_extraction.instr"
+#line 118 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_chamfers_tb = 0;
-#line 118 "parabolic_extraction.instr"
+#line 118 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_nelements = 1;
-#line 119 "parabolic_extraction.instr"
+#line 119 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_nu = 0;
-#line 119 "parabolic_extraction.instr"
+#line 119 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccguide_gravity_1_phase = 0;
-#line 119 "parabolic_extraction.instr"
+#line 119 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("NULL") strncpy(mccguide_gravity_1_reflect, "NULL" ? "NULL" : "", 16384); else mccguide_gravity_1_reflect[0]='\0';
 #line 10938 "./parabolic_extraction.c"
 
@@ -10947,11 +10947,11 @@ void mcinit(void) {
   rot_transpose(mcrotapsd_monitor_afteropticsource, mctr1);
   rot_mul(mcrotaguide_gravity_1, mctr1, mcrotrguide_gravity_1);
   mctc1 = coords_set(
-#line 157 "parabolic_extraction.instr"
+#line 157 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 157 "parabolic_extraction.instr"
+#line 157 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 157 "parabolic_extraction.instr"
+#line 157 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 10956 "./parabolic_extraction.c"
   rot_transpose(mcrotaafter_optic_source, mctr1);
@@ -10978,11 +10978,11 @@ void mcinit(void) {
   rot_transpose(mcrotaguide_gravity_1, mctr1);
   rot_mul(mcrotamonitor_1, mctr1, mcrotrmonitor_1);
   mctc1 = coords_set(
-#line 160 "parabolic_extraction.instr"
+#line 160 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 160 "parabolic_extraction.instr"
+#line 160 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 160 "parabolic_extraction.instr"
+#line 160 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipguide_length + 0.0001);
 #line 10987 "./parabolic_extraction.c"
   rot_transpose(mcrotaafter_optic_source, mctr1);
@@ -10998,52 +10998,52 @@ void mcinit(void) {
     /* Component divpos_monitor. */
   /* Setting parameters for component divpos_monitor. */
   SIG_MESSAGE("divpos_monitor (Init:SetPar)");
-#line 165 "parabolic_extraction.instr"
+#line 165 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("g1_divpos.dat") strncpy(mccdivpos_monitor_filename, "g1_divpos.dat" ? "g1_divpos.dat" : "", 16384); else mccdivpos_monitor_filename[0]='\0';
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_xmin = -0.05;
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_xmax = 0.05;
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_ymin = -0.05;
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_ymax = 0.05;
-#line 166 "parabolic_extraction.instr"
+#line 166 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_xwidth = mcipdet_width;
-#line 167 "parabolic_extraction.instr"
+#line 167 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_yheight = mcipdet_width;
-#line 168 "parabolic_extraction.instr"
+#line 168 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_maxdiv_h = mcipdivergence_max * 2;
-#line 169 "parabolic_extraction.instr"
+#line 169 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_restore_neutron = 1;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_nx = 0;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_ny = 0;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_nz = 1;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivpos_monitor_nowritefile = 0;
 #line 11027 "./parabolic_extraction.c"
 
   SIG_MESSAGE("divpos_monitor (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 171 "parabolic_extraction.instr"
+#line 171 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 171 "parabolic_extraction.instr"
+#line 171 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 171 "parabolic_extraction.instr"
+#line 171 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
 #line 11037 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotadivpos_monitor);
   rot_transpose(mcrotamonitor_1, mctr1);
   rot_mul(mcrotadivpos_monitor, mctr1, mcrotrdivpos_monitor);
   mctc1 = coords_set(
-#line 170 "parabolic_extraction.instr"
+#line 170 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 170 "parabolic_extraction.instr"
+#line 170 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 170 "parabolic_extraction.instr"
+#line 170 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11048 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
@@ -11059,25 +11059,25 @@ void mcinit(void) {
     /* Component psd_monitor_g1. */
   /* Setting parameters for component psd_monitor_g1. */
   SIG_MESSAGE("psd_monitor_g1 (Init:SetPar)");
-#line 234 "parabolic_extraction.instr"
+#line 234 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_nx = mcippixels;
-#line 235 "parabolic_extraction.instr"
+#line 235 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_ny = mcippixels;
-#line 231 "parabolic_extraction.instr"
+#line 231 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("g1_psd.dat") strncpy(mccpsd_monitor_g1_filename, "g1_psd.dat" ? "g1_psd.dat" : "", 16384); else mccpsd_monitor_g1_filename[0]='\0';
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_xmin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_xmax = 0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_ymin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_ymax = 0.05;
-#line 232 "parabolic_extraction.instr"
+#line 232 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_xwidth = mcipdet_width;
-#line 233 "parabolic_extraction.instr"
+#line 233 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_yheight = mcipdet_width;
-#line 236 "parabolic_extraction.instr"
+#line 236 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_g1_restore_neutron = 1;
 #line 11082 "./parabolic_extraction.c"
 
@@ -11091,11 +11091,11 @@ void mcinit(void) {
   rot_transpose(mcrotadivpos_monitor, mctr1);
   rot_mul(mcrotapsd_monitor_g1, mctr1, mcrotrpsd_monitor_g1);
   mctc1 = coords_set(
-#line 237 "parabolic_extraction.instr"
+#line 237 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 237 "parabolic_extraction.instr"
+#line 237 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 237 "parabolic_extraction.instr"
+#line 237 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11100 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
@@ -11111,56 +11111,56 @@ void mcinit(void) {
     /* Component divhlambda_monitor_g1. */
   /* Setting parameters for component divhlambda_monitor_g1. */
   SIG_MESSAGE("divhlambda_monitor_g1 (Init:SetPar)");
-#line 242 "parabolic_extraction.instr"
+#line 242 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("g1_divv_lambda.dat") strncpy(mccdivhlambda_monitor_g1_filename, "g1_divv_lambda.dat" ? "g1_divv_lambda.dat" : "", 16384); else mccdivhlambda_monitor_g1_filename[0]='\0';
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_xmin = -0.05;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_xmax = 0.05;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_ymin = -0.05;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_ymax = 0.05;
-#line 243 "parabolic_extraction.instr"
+#line 243 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_xwidth = mcipdet_width;
-#line 244 "parabolic_extraction.instr"
+#line 244 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_yheight = mcipdet_width;
-#line 245 "parabolic_extraction.instr"
+#line 245 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_maxdiv_h = mcipdivergence_max * 2;
-#line 246 "parabolic_extraction.instr"
+#line 246 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_Lmin = mcipL_min;
-#line 247 "parabolic_extraction.instr"
+#line 247 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_Lmax = mcipL_max;
-#line 248 "parabolic_extraction.instr"
+#line 248 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_restore_neutron = 1;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_nx = 0;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_ny = 0;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_nz = 1;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_g1_nowritefile = 0;
 #line 11144 "./parabolic_extraction.c"
 
   SIG_MESSAGE("divhlambda_monitor_g1 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 250 "parabolic_extraction.instr"
+#line 250 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 250 "parabolic_extraction.instr"
+#line 250 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 250 "parabolic_extraction.instr"
+#line 250 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
 #line 11154 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotadivhlambda_monitor_g1);
   rot_transpose(mcrotapsd_monitor_g1, mctr1);
   rot_mul(mcrotadivhlambda_monitor_g1, mctr1, mcrotrdivhlambda_monitor_g1);
   mctc1 = coords_set(
-#line 249 "parabolic_extraction.instr"
+#line 249 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 249 "parabolic_extraction.instr"
+#line 249 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 249 "parabolic_extraction.instr"
+#line 249 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11165 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
@@ -11176,48 +11176,48 @@ void mcinit(void) {
     /* Component parabolic_optic1. */
   /* Setting parameters for component parabolic_optic1. */
   SIG_MESSAGE("parabolic_optic1 (Init:SetPar)");
-#line 268 "parabolic_extraction.instr"
+#line 268 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_sourceDist = - mcipincoming_length;
-#line 269 "parabolic_extraction.instr"
+#line 269 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_LStart = - mcipincoming_length;
-#line 270 "parabolic_extraction.instr"
+#line 270 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_LEnd = mcipfocal_length + 0.6;
-#line 271 "parabolic_extraction.instr"
+#line 271 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_lStart = 0;
-#line 272 "parabolic_extraction.instr"
+#line 272 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_lEnd = 0.6;
-#line 273 "parabolic_extraction.instr"
+#line 273 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_r_0 = mcipguide_width / 2 + 0.005;
-#line 275 "parabolic_extraction.instr"
+#line 275 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_nummirror = mcipmirrors;
-#line 277 "parabolic_extraction.instr"
+#line 277 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_mf = 4.1;
-#line 278 "parabolic_extraction.instr"
+#line 278 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_mb = 0;
-#line 274 "parabolic_extraction.instr"
+#line 274 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_mirror_width = 0;
-#line 276 "parabolic_extraction.instr"
+#line 276 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic1_doubleReflections = 1;
 #line 11201 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic1 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 282 "parabolic_extraction.instr"
+#line 282 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 282 "parabolic_extraction.instr"
+#line 282 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 282 "parabolic_extraction.instr"
+#line 282 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
 #line 11211 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotaparabolic_optic1);
   rot_transpose(mcrotadivhlambda_monitor_g1, mctr1);
   rot_mul(mcrotaparabolic_optic1, mctr1, mcrotrparabolic_optic1);
   mctc1 = coords_set(
-#line 281 "parabolic_extraction.instr"
+#line 281 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 281 "parabolic_extraction.instr"
+#line 281 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 281 "parabolic_extraction.instr"
+#line 281 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11222 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
@@ -11233,48 +11233,48 @@ void mcinit(void) {
     /* Component parabolic_optic2. */
   /* Setting parameters for component parabolic_optic2. */
   SIG_MESSAGE("parabolic_optic2 (Init:SetPar)");
-#line 285 "parabolic_extraction.instr"
+#line 285 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_sourceDist = - mcipincoming_length -0.6;
-#line 286 "parabolic_extraction.instr"
+#line 286 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_LStart = - mcipincoming_length -0.6;
-#line 287 "parabolic_extraction.instr"
+#line 287 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_LEnd = mcipfocal_length;
-#line 288 "parabolic_extraction.instr"
+#line 288 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_lStart = 0;
-#line 289 "parabolic_extraction.instr"
+#line 289 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_lEnd = 0.6;
-#line 290 "parabolic_extraction.instr"
+#line 290 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_r_0 = mcipguide_width / 2 + 0.005;
-#line 292 "parabolic_extraction.instr"
+#line 292 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_nummirror = mcipmirrors;
-#line 294 "parabolic_extraction.instr"
+#line 294 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_mf = 4.1;
-#line 295 "parabolic_extraction.instr"
+#line 295 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_mb = 0;
-#line 291 "parabolic_extraction.instr"
+#line 291 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_mirror_width = 0;
-#line 293 "parabolic_extraction.instr"
+#line 293 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccparabolic_optic2_doubleReflections = 1;
 #line 11258 "./parabolic_extraction.c"
 
   SIG_MESSAGE("parabolic_optic2 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 299 "parabolic_extraction.instr"
+#line 299 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 299 "parabolic_extraction.instr"
+#line 299 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 299 "parabolic_extraction.instr"
+#line 299 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
 #line 11268 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotaparabolic_optic2);
   rot_transpose(mcrotaparabolic_optic1, mctr1);
   rot_mul(mcrotaparabolic_optic2, mctr1, mcrotrparabolic_optic2);
   mctc1 = coords_set(
-#line 298 "parabolic_extraction.instr"
+#line 298 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 298 "parabolic_extraction.instr"
+#line 298 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 298 "parabolic_extraction.instr"
+#line 298 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0.6);
 #line 11279 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
@@ -11293,22 +11293,22 @@ void mcinit(void) {
 
   SIG_MESSAGE("monitor_2 (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 306 "parabolic_extraction.instr"
+#line 306 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 306 "parabolic_extraction.instr"
+#line 306 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 306 "parabolic_extraction.instr"
+#line 306 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
 #line 11302 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_1, mcrotamonitor_2);
   rot_transpose(mcrotaparabolic_optic2, mctr1);
   rot_mul(mcrotamonitor_2, mctr1, mcrotrmonitor_2);
   mctc1 = coords_set(
-#line 305 "parabolic_extraction.instr"
+#line 305 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 305 "parabolic_extraction.instr"
+#line 305 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 305 "parabolic_extraction.instr"
+#line 305 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     mcipfocal_length + 0.6);
 #line 11313 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_1, mctr1);
@@ -11324,46 +11324,46 @@ void mcinit(void) {
     /* Component psd_monitor_f_zoom. */
   /* Setting parameters for component psd_monitor_f_zoom. */
   SIG_MESSAGE("psd_monitor_f_zoom (Init:SetPar)");
-#line 368 "parabolic_extraction.instr"
+#line 368 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_nx = mcippixels;
-#line 369 "parabolic_extraction.instr"
+#line 369 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_ny = mcippixels;
-#line 365 "parabolic_extraction.instr"
+#line 365 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_psd_zoom.dat") strncpy(mccpsd_monitor_f_zoom_filename, "f_psd_zoom.dat" ? "f_psd_zoom.dat" : "", 16384); else mccpsd_monitor_f_zoom_filename[0]='\0';
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_xmin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_xmax = 0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_ymin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_ymax = 0.05;
-#line 366 "parabolic_extraction.instr"
+#line 366 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_xwidth = mcipdet_width_focus;
-#line 367 "parabolic_extraction.instr"
+#line 367 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_yheight = mcipdet_width_focus;
-#line 370 "parabolic_extraction.instr"
+#line 370 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_zoom_restore_neutron = 1;
 #line 11347 "./parabolic_extraction.c"
 
   SIG_MESSAGE("psd_monitor_f_zoom (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 372 "parabolic_extraction.instr"
+#line 372 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 372 "parabolic_extraction.instr"
+#line 372 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 372 "parabolic_extraction.instr"
+#line 372 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
 #line 11357 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotapsd_monitor_f_zoom);
   rot_transpose(mcrotamonitor_2, mctr1);
   rot_mul(mcrotapsd_monitor_f_zoom, mctr1, mcrotrpsd_monitor_f_zoom);
   mctc1 = coords_set(
-#line 371 "parabolic_extraction.instr"
+#line 371 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 371 "parabolic_extraction.instr"
+#line 371 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 371 "parabolic_extraction.instr"
+#line 371 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11368 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
@@ -11379,46 +11379,46 @@ void mcinit(void) {
     /* Component psd_monitor_f. */
   /* Setting parameters for component psd_monitor_f. */
   SIG_MESSAGE("psd_monitor_f (Init:SetPar)");
-#line 378 "parabolic_extraction.instr"
+#line 378 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_nx = mcippixels;
-#line 379 "parabolic_extraction.instr"
+#line 379 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_ny = mcippixels;
-#line 375 "parabolic_extraction.instr"
+#line 375 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_psd.dat") strncpy(mccpsd_monitor_f_filename, "f_psd.dat" ? "f_psd.dat" : "", 16384); else mccpsd_monitor_f_filename[0]='\0';
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_xmin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_xmax = 0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_ymin = -0.05;
-#line 50 "parabolic_extraction.instr"
+#line 50 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_ymax = 0.05;
-#line 376 "parabolic_extraction.instr"
+#line 376 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_xwidth = mcipdet_width;
-#line 377 "parabolic_extraction.instr"
+#line 377 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_yheight = mcipdet_width;
-#line 380 "parabolic_extraction.instr"
+#line 380 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccpsd_monitor_f_restore_neutron = 1;
 #line 11402 "./parabolic_extraction.c"
 
   SIG_MESSAGE("psd_monitor_f (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 382 "parabolic_extraction.instr"
+#line 382 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 382 "parabolic_extraction.instr"
+#line 382 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 382 "parabolic_extraction.instr"
+#line 382 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD);
 #line 11412 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotapsd_monitor_f);
   rot_transpose(mcrotapsd_monitor_f_zoom, mctr1);
   rot_mul(mcrotapsd_monitor_f, mctr1, mcrotrpsd_monitor_f);
   mctc1 = coords_set(
-#line 381 "parabolic_extraction.instr"
+#line 381 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 381 "parabolic_extraction.instr"
+#line 381 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 381 "parabolic_extraction.instr"
+#line 381 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11423 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
@@ -11434,52 +11434,52 @@ void mcinit(void) {
     /* Component f_divpos. */
   /* Setting parameters for component f_divpos. */
   SIG_MESSAGE("f_divpos (Init:SetPar)");
-#line 387 "parabolic_extraction.instr"
+#line 387 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_divpos.dat") strncpy(mccf_divpos_filename, "f_divpos.dat" ? "f_divpos.dat" : "", 16384); else mccf_divpos_filename[0]='\0';
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_xmin = -0.05;
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_xmax = 0.05;
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_ymin = -0.05;
-#line 55 "parabolic_extraction.instr"
+#line 55 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_ymax = 0.05;
-#line 388 "parabolic_extraction.instr"
+#line 388 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_xwidth = mcipdet_width_focus;
-#line 389 "parabolic_extraction.instr"
+#line 389 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_yheight = mcipdet_width_focus;
-#line 390 "parabolic_extraction.instr"
+#line 390 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_maxdiv_h = mcipdivergence_max * 2;
-#line 391 "parabolic_extraction.instr"
+#line 391 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_restore_neutron = 1;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_nx = 0;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_ny = 0;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_nz = 1;
-#line 56 "parabolic_extraction.instr"
+#line 56 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccf_divpos_nowritefile = 0;
 #line 11463 "./parabolic_extraction.c"
 
   SIG_MESSAGE("f_divpos (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 393 "parabolic_extraction.instr"
+#line 393 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 393 "parabolic_extraction.instr"
+#line 393 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 393 "parabolic_extraction.instr"
+#line 393 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
 #line 11473 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotaf_divpos);
   rot_transpose(mcrotapsd_monitor_f, mctr1);
   rot_mul(mcrotaf_divpos, mctr1, mcrotrf_divpos);
   mctc1 = coords_set(
-#line 392 "parabolic_extraction.instr"
+#line 392 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 392 "parabolic_extraction.instr"
+#line 392 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 392 "parabolic_extraction.instr"
+#line 392 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11484 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
@@ -11495,56 +11495,56 @@ void mcinit(void) {
     /* Component divhlambda_monitor_f. */
   /* Setting parameters for component divhlambda_monitor_f. */
   SIG_MESSAGE("divhlambda_monitor_f (Init:SetPar)");
-#line 398 "parabolic_extraction.instr"
+#line 398 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   if("f_divv_lambda.dat") strncpy(mccdivhlambda_monitor_f_filename, "f_divv_lambda.dat" ? "f_divv_lambda.dat" : "", 16384); else mccdivhlambda_monitor_f_filename[0]='\0';
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_xmin = -0.05;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_xmax = 0.05;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_ymin = -0.05;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_ymax = 0.05;
-#line 399 "parabolic_extraction.instr"
+#line 399 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_xwidth = mcipdet_width_focus;
-#line 400 "parabolic_extraction.instr"
+#line 400 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_yheight = mcipdet_width_focus;
-#line 401 "parabolic_extraction.instr"
+#line 401 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_maxdiv_h = mcipdivergence_max * 2;
-#line 402 "parabolic_extraction.instr"
+#line 402 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_Lmin = mcipL_min;
-#line 403 "parabolic_extraction.instr"
+#line 403 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_Lmax = mcipL_max;
-#line 404 "parabolic_extraction.instr"
+#line 404 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_restore_neutron = 1;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_nx = 0;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_ny = 0;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_nz = 1;
-#line 57 "parabolic_extraction.instr"
+#line 57 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
   mccdivhlambda_monitor_f_nowritefile = 0;
 #line 11528 "./parabolic_extraction.c"
 
   SIG_MESSAGE("divhlambda_monitor_f (Init:Place/Rotate)");
   rot_set_rotation(mctr1,
-#line 406 "parabolic_extraction.instr"
+#line 406 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 406 "parabolic_extraction.instr"
+#line 406 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (0)*DEG2RAD,
-#line 406 "parabolic_extraction.instr"
+#line 406 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     (90)*DEG2RAD);
 #line 11538 "./parabolic_extraction.c"
   rot_mul(mctr1, mcrotamonitor_2, mcrotadivhlambda_monitor_f);
   rot_transpose(mcrotaf_divpos, mctr1);
   rot_mul(mcrotadivhlambda_monitor_f, mctr1, mcrotrdivhlambda_monitor_f);
   mctc1 = coords_set(
-#line 405 "parabolic_extraction.instr"
+#line 405 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 405 "parabolic_extraction.instr"
+#line 405 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0,
-#line 405 "parabolic_extraction.instr"
+#line 405 "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr"
     0);
 #line 11549 "./parabolic_extraction.c"
   rot_transpose(mcrotamonitor_2, mctr1);
@@ -11888,7 +11888,7 @@ if (xwidth > 0)  {
 #line 79 "FlatEllipse_finite_mirror.comp"
 {
     if (sourceDist == 0){
-        sourceDist = sqrt(LStart*LStart);
+        sourceDist = LStart;
     }
     pointer_lStart = &lStart;
     //Load Reflectivity Data File
@@ -12019,7 +12019,7 @@ if (xwidth > 0)  {
 #line 79 "FlatEllipse_finite_mirror.comp"
 {
     if (sourceDist == 0){
-        sourceDist = sqrt(LStart*LStart);
+        sourceDist = LStart;
     }
     pointer_lStart = &lStart;
     //Load Reflectivity Data File
@@ -12553,7 +12553,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #line 79 "FlatEllipse_finite_mirror.comp"
 {
     if (sourceDist == 0){
-        sourceDist = sqrt(LStart*LStart);
+        sourceDist = LStart;
     }
     pointer_lStart = &lStart;
     //Load Reflectivity Data File
@@ -12684,7 +12684,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #line 79 "FlatEllipse_finite_mirror.comp"
 {
     if (sourceDist == 0){
-        sourceDist = sqrt(LStart*LStart);
+        sourceDist = LStart;
     }
     pointer_lStart = &lStart;
     //Load Reflectivity Data File

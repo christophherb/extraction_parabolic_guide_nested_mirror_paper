@@ -112,7 +112,7 @@ COMPONENT parabolic_optic_before_guide_v = FlatEllipse_finite_mirror(
 )
 WHEN (placeholder>0)
 AT (0, 0, focal_length-0.6) RELATIVE source
-ROTATED (0, 0, 90) RELATIVE source
+ROTATED (0, 0, 0) RELATIVE source
 
 
 COMPONENT parabolic_optic_before_guide_h = FlatEllipse_finite_mirror(
@@ -130,7 +130,7 @@ COMPONENT parabolic_optic_before_guide_h = FlatEllipse_finite_mirror(
 )
 WHEN (placeholder>0)
 AT (0, 0, focal_length) RELATIVE source
-ROTATED (0, 0, 0) RELATIVE source
+ROTATED (0, 0, 90) RELATIVE source
 
 // ----------------------------------- Checking the output from the guide
 
