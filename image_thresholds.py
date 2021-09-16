@@ -92,7 +92,7 @@ def plot_thresholds(array, fig=None, ax=None, thresholds=None, extent=None, circ
     return fig, ax
 
 
-def return_thresholds_circle(array: np.array, xmid_px, ymid_px, extent: tuple=None, thresholds: list=None) -> np.array:
+def return_thresholds_circle(array: np.array, xmid_px, ymid_px, extent: tuple=None, thresholds: list=None, normfunction=None) -> np.array:
     """finds and returns the radii of circles crossing certain thresholds
 
     Args:
@@ -108,12 +108,13 @@ def return_thresholds_circle(array: np.array, xmid_px, ymid_px, extent: tuple=No
     threshold_radii = []
     total = np.sum(array)
     radius = 0
+    if normfunction is None:
+        normfunction = lambda x, y, r: (x)**2+(y)**2 < r**2
     for ind, threshold in enumerate(thresholds):
         for r in range(radius, max([array.shape[0], array.shape[1]])):
             try:
-                X, Y = np.meshgrid(range(array.shape[0]), range(array.shape[1]))
-                mask = ((X-xmid_px)**2 + (Y-ymid_px)**2 < r**2)
-                if np.sum(array[mask])/total > threshold:
+                integrated_area = return_integrated_area(array, r, normfunction, xmid_px, ymid_px)
+                if integrated_area/total > threshold:
                     threshold_radii.append((ind, threshold, r))
                     radius = r
                     break
@@ -121,7 +122,7 @@ def return_thresholds_circle(array: np.array, xmid_px, ymid_px, extent: tuple=No
                 break
         else:
             print('no suc', threshold)
-    return threshold_radii
+    return np.array(threshold_radii)
 
 def plot_thresholds_circle(array: np.array, xmid_px=None, ymid_px=None, extent: tuple=None, thresholds: list=None, figax=None):
     if extent is None:
@@ -148,7 +149,8 @@ def plot_thresholds_circle(array: np.array, xmid_px=None, ymid_px=None, extent: 
     return fig, ax
 
 
-def radius_vs_content(array: np.array, mid_x: float=None, mid_y: float=None, radii=None):
+
+def radius_vs_content(array: np.array, mid_x: float=None, mid_y: float=None, radii=None, normfunction=None):
     """takes an array and returns the radius of the cirle vs the incorporated content
 
     Args:
@@ -169,47 +171,24 @@ def radius_vs_content(array: np.array, mid_x: float=None, mid_y: float=None, rad
         mid_y = (width)/2
     if radii is None:
         radii = range(0, max([height, width]))
+    if normfunction is None:
+        normfunction = lambda x, y, r: (x)**2+(y)**2 <= r**2
     X, Y = np.meshgrid(range(height), range(width))
     for radius in radii:
-        #fig, ax = plt.subplots(1)
-
-        circle = ((X-mid_x)**2 + (Y-mid_y)**2 < radius**2)
-
-        #ax.imshow(array, interpolation ='none')
-
-        #print(np.sum(array[circle]))
-        fraction = np.sum(array[circle])/total
+        fraction = return_integrated_area(array, radius, normfunction, mid_x, mid_y)/total
         rad_int.append((radius, fraction))
     return rad_int
-test_array = np.ones((100, 100))
-print(radius_vs_content(test_array, radii = [1,5, 10, 15], mid_x=60, mid_y=49.5))
 
-#with open('data/data_finite_g_length160finite_beamspot.txt', 'rb') as myFile:
-#    data_dict = pickle.load(myFile)
-#with open('data/meta_data_finite_g_length160finite_beamspot.txt', 'rb') as myFile:
-#    meta_dict = pickle.load(myFile)
-##X, Y = np.meshgrid(range(100), range(100))
-##circ = ((X-2)**2 + (Y-34)**2 <= 30**2)
-##test_array[circ] += 1
-#
-#extent = (-21.8/2, 21.8/2, -21.8/2, 21.8/2)
-#print(data_dict.keys())
-##test_array = data_dict['f_psd.dat'][:100]
-##X, Y = np.meshgrid(range(100), range(100))
-##circ = ((X-40)**2 + (Y-12)**2 <= 30**2)
-##test_array[circ] *= 20
-##
-##circ = ((X-1)**2 + (Y-12)**2 <= 5**2)
-##test_array[circ] *= 20000
-#fig, ax = plt.subplots(1)
-#im = ax.imshow(test_array[::], interpolation='none')
-#midy, midx = return_com_array(test_array)
-##midy, midx = midy/99*21.8-21.8/2, midx/99*21.8-21.8/2
-#print(midy, midx)
-#plot_thresholds_circle(test_array, xmid_px=midx, ymid_px=midy, extent=extent, thresholds=[0.30, 0.5, 0.70])
-#print('center of mass', return_com_array(test_array))
-##fig, ax = plot_thresholds_circle(test_array)
-##print(return_thresholds_circle(test_array))
-##plt.show()
-##print('done')
-#plt.show()
+def return_integrated_area(array, r, function, xmid, ymid):
+    height, width = array.shape
+    X, Y = np.meshgrid(range(width), range(height))
+    mask = norm((X-xmid), (Y-ymid),  r, function)
+    return np.sum(array[mask])
+
+
+def norm(X, Y, r, function):
+    return function(X, Y, r)
+
+a = np.ones((1000, 1000))
+norm2 = lambda x, y, r: (x)**2+(y)**2 < r**2
+print('this', return_integrated_area(a, 100, norm2, 500, 500))
