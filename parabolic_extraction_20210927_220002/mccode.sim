@@ -1,0 +1,263 @@
+McStas simulation description file for template_simple.
+Date:    Mon Sep 27 22:00:06 2021
+Program: McStas 2.7 - Nov. 27, 2020
+
+begin instrument: template_simple
+  File: parabolic_extraction_20210927_220002/mccode
+  Source: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr
+  Parameters:  det_width(double) det_width_focus(double) source_width(double) guide_width(double) L_source(double) guide_length(double) dL(double) L_min(double) L_max(double) source_divergence(double) divergence_max(double) focal_length(double) mirrors(double) incoming_length(double) g(double) max_div(double) pixels(double) flux(double) placeholder(double)
+  Trace_enabled: yes
+  Default_main: yes
+  Embedded_runtime: yes
+end instrument
+
+begin simulation: parabolic_extraction_20210927_220002
+  Format: McCode with text headers
+  URL: http://www.mccode.org
+  Creator: McStas 2.7 - Nov. 27, 2020
+  Instrument: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr
+  Ncount: 50000000
+  Trace: no
+  Gravitation: no
+  Seed: 1632779146
+  Directory: parabolic_extraction_20210927_220002
+  Param: det_width=0.218
+  Param: det_width_focus=0.03
+  Param: source_width=3
+  Param: guide_width=0.218
+  Param: L_source=5
+  Param: guide_length=160
+  Param: dL=3
+  Param: L_min=2
+  Param: L_max=8
+  Param: source_divergence=2.5
+  Param: divergence_max=1
+  Param: focal_length=6
+  Param: mirrors=60
+  Param: incoming_length=5000
+  Param: g=0
+  Param: max_div=10
+  Param: pixels=100
+  Param: flux=5e+07
+  Param: placeholder=1
+end simulation
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: psd_monitor_source
+  position: 0 0 0
+  title: PSD monitor
+  Ncount: 50000000
+  filename: source_psd.dat
+  statistics: X0=0.0123272; dX=6.28955; Y0=-0.00561902; dY=6.28818;
+  signal: Min=9252.02; Max=50372.1; Mean=27150.5;
+  values: 2.71505e+08 528306 264109
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: psd_monitor_source_before_optic
+  position: 0 0 5.4
+  title: PSD monitor
+  Ncount: 50000000
+  filename: source_psd_beforeoptic.dat
+  statistics: X0=-0.001929; dX=6.24203; Y0=-0.0142466; dY=6.24266;
+  signal: Min=9252.02; Max=49344.1; Mean=26733;
+  values: 2.6733e+08 524229 260048
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.8157 10.8157 -10.8157 10.8157
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: psd_monitor_afteropticsource
+  position: 0 0 7
+  title: PSD monitor
+  Ncount: 50000000
+  filename: sourceafteroptic_psd.dat
+  statistics: X0=0.0230581; dX=6.4219; Y0=-0.0178646; dY=6.33777;
+  signal: Min=7196.02; Max=48316.1; Mean=23884.3;
+  values: 2.38843e+08 495511 232337
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: divpos_monitor
+  position: 0 0 167
+  title: Position-divergence monitor
+  Ncount: 50000000
+  filename: g1_divpos.dat
+  statistics: X0=9.0904e-06; dX=0.062912; Y0=-0.000119956; dY=0.511362;
+  signal: Min=0; Max=39140.2; Mean=9010.32;
+  values: 9.01032e+07 273432 197999
+  xvar: pos
+  yvar: divergence
+  xlabel: pos [m]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -0.109 0.109 -2 2
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: psd_monitor_g1
+  position: 0 0 167
+  title: PSD monitor
+  Ncount: 50000000
+  filename: g1_psd.dat
+  statistics: X0=-0.0103392; dX=6.29015; Y0=0.00090904; dY=6.2912;
+  signal: Min=796.478; Max=21213.7; Mean=9010.32;
+  values: 9.01032e+07 273432 198001
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: divhlambda_monitor_g1
+  position: 0 0 167
+  title: Wavelength-divergence monitor
+  Ncount: 50000000
+  filename: g1_divv_lambda.dat
+  statistics: X0=5.84455; dX=1.5207; Y0=-0.000119956; dY=0.511362;
+  signal: Min=0; Max=47959.4; Mean=9010.32;
+  values: 9.01032e+07 273432 197999
+  xvar: Wavelength
+  yvar: divergence
+  xlabel: Wavelength [AA]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: 2 8 -2 2
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: psd_monitor_f_zoom
+  position: 0 0 173.6
+  title: PSD monitor
+  Ncount: 50000000
+  filename: f_psd_zoom.dat
+  statistics: X0=-0.00362533; dX=0.848261; Y0=-0.0156392; dY=0.854993;
+  signal: Min=0; Max=5038.38; Mean=309.129;
+  values: 3.09129e+06 55257.3 3399
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -1.5 1.5 -1.5 1.5
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: psd_monitor_f
+  position: 0 0 173.6
+  title: PSD monitor
+  Ncount: 50000000
+  filename: f_psd.dat
+  statistics: X0=-0.00673442; dX=5.18597; Y0=-0.00303745; dY=5.39676;
+  signal: Min=0; Max=28250.6; Mean=6910.51;
+  values: 6.91051e+07 244024 119158
+  xvar: X
+  yvar: Y
+  xlabel: X position [cm]
+  ylabel: Y position [cm]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -10.9 10.9 -10.9 10.9
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: f_divpos
+  position: 0 0 173.6
+  title: Position-divergence monitor
+  Ncount: 50000000
+  filename: f_divpos.dat
+  statistics: X0=-0.000156392; dX=0.00854993; Y0=-0.00859989; dY=0.55683;
+  signal: Min=0; Max=4962.75; Mean=309.129;
+  values: 3.09129e+06 55257.3 3399
+  xvar: pos
+  yvar: divergence
+  xlabel: pos [m]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: -0.015 0.015 -2 2
+  variables: I I_err N
+end data
+
+begin data
+  Date: Mon Sep 27 22:08:41 2021 (1632773321)
+  type: array_2d(100, 100)
+  Source: template_simple (/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr)
+  component: divhlambda_monitor_f
+  position: 0 0 173.6
+  title: Wavelength-divergence monitor
+  Ncount: 50000000
+  filename: f_divv_lambda.dat
+  statistics: X0=5.18518; dX=1.70104; Y0=-0.00859989; dY=0.55683;
+  signal: Min=0; Max=4081.25; Mean=309.129;
+  values: 3.09129e+06 55257.3 3399
+  xvar: Wavelength
+  yvar: divergence
+  xlabel: Wavelength [AA]
+  ylabel: divergence [deg]
+  zvar: I
+  zlabel: Signal per bin
+  xylimits: 2 8 -2 2
+  variables: I I_err N
+end data
