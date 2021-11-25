@@ -156,8 +156,25 @@ COMPONENT guide_gravity_1 = Guide_gravity(
     l=guide_length)
 AT (0, 0, 0) RELATIVE after_optic_source
 
-COMPONENT monitor_1 = Arm()
+COMPONENT monitor_0_1 = Arm()
 AT (0, 0, guide_length+0.0001) RELATIVE after_optic_source
+
+//---------------------------------------- Collimator for testing ---------------------------------------
+
+COMPONENT collimator_linear = Collimator_linear(
+    xmin=-guide_width/2,
+    xmax=guide_width/2,
+    ymin=-guide_width/2,
+    ymax=guide_width/2,
+    length=0.2,
+    divergence=max_div,
+    divergenceV=max_div)
+AT (0, 0, 0) RELATIVE monitor_0_1
+
+
+
+COMPONENT monitor_1 = Arm()
+AT (0, 0, 0.2001) RELATIVE monitor_0_1
 
 COMPONENT divpos_monitor = DivPos_monitor(
     nh=100,
@@ -249,17 +266,6 @@ COMPONENT divhlambda_monitor_g1 = DivLambda_monitor(
 AT (0, 0, 0) RELATIVE monitor_1
 ROTATED (0, 0, 90) RELATIVE monitor_1
 
-//---------------------------------------- Collimator for testing ---------------------------------------
-
-//COMPONENT collimator_linear = Collimator_linear(
-//    xmin=-guide_width/2,
-//    xmax=guide_width/2,
-//    ymin=-guide_width/2,
-//    ymax=guide_width/2,
-//    length=0.2,
-//    divergence=max_div,
-//    divergenceV=max_div)
-//AT (0, 0, 0) RELATIVE monitor_1
 
 
 //----------------------------------------- Parabolic optic --------------------------------------------

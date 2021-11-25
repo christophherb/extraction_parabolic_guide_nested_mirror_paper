@@ -538,8 +538,8 @@ typedef struct {
 \brief Structure to contain z-axis symetric flat sections
 
 Contains flat geometries which can be expressed as
-@f$ x = k_1 + k_2 z + k_3 z^2 @f$ or
-@f$ y = k_1 + k_2 z + k_3 z^2 @f$
+@f$ x^2 = k_1 + k_2 z + k_3 z^2 @f$ or
+@f$ y^2 = k_1 + k_2 z + k_3 z^2 @f$
 
 @warning Do not directly modify values in this structure directly */
 typedef struct {
