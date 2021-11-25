@@ -2,14 +2,14 @@
  * Format:     ANSI C source code
  * Creator:    McStas <http://www.mcstas.org>
  * Instrument: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr (template_simple)
- * Date:       Wed Sep 15 15:25:02 2021
+ * Date:       Mon Sep 27 22:00:02 2021
  * File:       ./parabolic_extraction.c
  * Compile:    cc -o template_simple.out ./parabolic_extraction.c 
  * CFLAGS=
  */
 
 
-#define MCCODE_STRING "McStas 2.6.1 - May. 04, 2020"
+#define MCCODE_STRING "McStas 2.7 - Nov. 27, 2020"
 #define FLAVOR "mcstas"
 #define FLAVOR_UPPER "MCSTAS"
 #define MC_USE_DEFAULT_MAIN
@@ -29,7 +29,7 @@
 * %Identification
 * Written by: KN
 * Date:    Aug 29, 1997
-* Release: McStas 2.6.1
+* Release: McStas 2.7
 * Version: $Revision$
 *
 * Runtime system header for McStas/McXtrace.
@@ -112,15 +112,15 @@
 
 /* the version string is replaced when building distribution with mkdist */
 #ifndef MCCODE_STRING
-#define MCCODE_STRING "McStas 2.6.1 - May. 04, 2020"
+#define MCCODE_STRING "McStas 2.7 - Nov. 27, 2020"
 #endif
 
 #ifndef MCCODE_DATE
-#define MCCODE_DATE "May. 04, 2020"
+#define MCCODE_DATE "Nov. 27, 2020"
 #endif
 
 #ifndef MCCODE_VERSION
-#define MCCODE_VERSION "2.6.1"
+#define MCCODE_VERSION "2.7"
 #endif
 
 #ifndef MCCODE_NAME
@@ -750,7 +750,7 @@ NXhandle nxhandle;
 #ifndef MCSTAS_R_H
 #define MCSTAS_R_H "$Revision$"
 
-/* Following part is only embedded when not redundent with mcstas.h ========= */
+/* Following part is only embedded when not redundant with mcstas.h ========= */
 
 #ifndef MCCODE_H
 
@@ -1462,7 +1462,7 @@ MCDETECTOR mcdetector_statistics(
   MCDETECTOR detector)
 {
 
-  if (!detector.p1 || !detector.m || !detector.filename)
+  if (!detector.p1 || !detector.m)
     return(detector);
   
   /* compute statistics and update MCDETECTOR structure ===================== */
@@ -5340,7 +5340,7 @@ int mctraceenabled = 1;
 #else
 int mctraceenabled = 0;
 #endif
-#define MCSTAS "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../"
+#define MCSTAS "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../"
 int mcdefaultmain = 1;
 char mcinstrument_name[] = "template_simple";
 char mcinstrument_source[] = "/home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr";
@@ -5353,7 +5353,7 @@ void mcfinally(void);
 void mcdisplay(void);
 
 /* Shared user declarations for all components 'PSD_monitor'. */
-#line 57 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 57 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 
 #ifndef ARRAYS_H
 #define ARRAYS_H
@@ -7195,7 +7195,7 @@ double * get_r_at_z0(int number, double z_0, double r_0, double LStart, double L
 #line 7195 "./parabolic_extraction.c"
 
 /* Shared user declarations for all components 'Guide_gravity'. */
-#line 124 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 124 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 /*****************************************************************************
 *
 * McStas, neutron ray-tracing package
@@ -8163,8 +8163,8 @@ double Table_Value(t_Table Table, double X, long j)
       } /* end for Index */
   }
 
-  Y1 = Table_Index(Table,Index-1,j);
-  Y2 = Table_Index(Table,Index  ,j);
+  Y1 = Table_Index(Table,Index, j);
+  Y2 = Table_Index(Table,Index+1, j);
 
   if (!strcmp(Table.method,"linear")) {
     ret = Table_Interp1d(X, X1,Y1, X2,Y2);
@@ -9390,7 +9390,7 @@ int mccdivhlambda_monitor_f_nowritefile;
 #define percent mccorigin_percent
 #define flag_save mccorigin_flag_save
 #define minutes mccorigin_minutes
-#line 44 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 44 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 #ifndef PROGRESS_BAR
 #define PROGRESS_BAR
 #else
@@ -9446,7 +9446,7 @@ time_t CurrentTime;
 #define dlambda mccsource_div_dlambda
 #define gauss mccsource_div_gauss
 #define flux mccsource_div_flux
-#line 69 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 69 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, focus_yh;
 #line 9451 "./parabolic_extraction.c"
 #undef flux
@@ -9512,7 +9512,7 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define xwidth mccpsd_monitor_source_xwidth
 #define yheight mccpsd_monitor_source_yheight
 #define restore_neutron mccpsd_monitor_source_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
@@ -9551,7 +9551,7 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define xwidth mccpsd_monitor_source_before_optic_xwidth
 #define yheight mccpsd_monitor_source_before_optic_yheight
 #define restore_neutron mccpsd_monitor_source_before_optic_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
@@ -9724,7 +9724,7 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define xwidth mccpsd_monitor_afteropticsource_xwidth
 #define yheight mccpsd_monitor_afteropticsource_yheight
 #define restore_neutron mccpsd_monitor_afteropticsource_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
@@ -9786,7 +9786,7 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define nu mccguide_gravity_1_nu
 #define phase mccguide_gravity_1_phase
 #define reflect mccguide_gravity_1_reflect
-#line 334 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 334 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
   Gravity_guide_Vars_type GVars;
   t_Table pTable;
 #line 9792 "./parabolic_extraction.c"
@@ -9860,7 +9860,7 @@ double thetah, thetav, sigmah, sigmav, tan_h, tan_v, p_init, dist, focus_xw, foc
 #define ny mccdivpos_monitor_ny
 #define nz mccdivpos_monitor_nz
 #define nowritefile mccdivpos_monitor_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 double Div_N[nh][ndiv];
 double Div_p[nh][ndiv];
 double Div_p2[nh][ndiv];
@@ -9904,7 +9904,7 @@ double Div_p2[nh][ndiv];
 #define xwidth mccpsd_monitor_g1_xwidth
 #define yheight mccpsd_monitor_g1_yheight
 #define restore_neutron mccpsd_monitor_g1_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
@@ -9950,7 +9950,7 @@ double Div_p2[nh][ndiv];
 #define ny mccdivhlambda_monitor_g1_ny
 #define nz mccdivhlambda_monitor_g1_nz
 #define nowritefile mccdivhlambda_monitor_g1_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 double Div_N[nL][nh];
 double Div_p[nL][nh];
 double Div_p2[nL][nh];
@@ -10130,7 +10130,7 @@ double Div_p2[nL][nh];
 #define xwidth mccpsd_monitor_f_zoom_xwidth
 #define yheight mccpsd_monitor_f_zoom_yheight
 #define restore_neutron mccpsd_monitor_f_zoom_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
@@ -10169,7 +10169,7 @@ double Div_p2[nL][nh];
 #define xwidth mccpsd_monitor_f_xwidth
 #define yheight mccpsd_monitor_f_yheight
 #define restore_neutron mccpsd_monitor_f_restore_neutron
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
   DArray2d PSD_N;
   DArray2d PSD_p;
   DArray2d PSD_p2;
@@ -10213,7 +10213,7 @@ double Div_p2[nL][nh];
 #define ny mccf_divpos_ny
 #define nz mccf_divpos_nz
 #define nowritefile mccf_divpos_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 double Div_N[nh][ndiv];
 double Div_p[nh][ndiv];
 double Div_p2[nh][ndiv];
@@ -10264,7 +10264,7 @@ double Div_p2[nh][ndiv];
 #define ny mccdivhlambda_monitor_f_ny
 #define nz mccdivhlambda_monitor_f_nz
 #define nowritefile mccdivhlambda_monitor_f_nowritefile
-#line 62 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 62 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 double Div_N[nL][nh];
 double Div_p[nL][nh];
 double Div_p2[nL][nh];
@@ -11571,7 +11571,7 @@ void mcinit(void) {
 #define percent mccorigin_percent
 #define flag_save mccorigin_flag_save
 #define minutes mccorigin_minutes
-#line 57 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 57 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
 IntermediateCnts=0;
 StartTime=0;
@@ -11624,7 +11624,7 @@ fprintf(stdout, "[%s] Initialize\n", mcinstrument_name);
 #define dlambda mccsource_div_dlambda
 #define gauss mccsource_div_gauss
 #define flux mccsource_div_flux
-#line 72 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 72 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 {
 sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
   sigmav = DEG2RAD*focus_ah/(sqrt(8.0*log(2.0)));
@@ -11707,7 +11707,7 @@ sigmah = DEG2RAD*focus_aw/(sqrt(8.0*log(2.0)));
 #define radius mccslit_radius
 #define xwidth mccslit_xwidth
 #define yheight mccslit_yheight
-#line 50 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
+#line 50 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
 {
 if (xwidth > 0)  { 
   if (!xmin && !xmax) {
@@ -11757,7 +11757,7 @@ if (xwidth > 0)  {
 #define xwidth mccpsd_monitor_source_xwidth
 #define yheight mccpsd_monitor_source_yheight
 #define restore_neutron mccpsd_monitor_source_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -11818,7 +11818,7 @@ if (xwidth > 0)  {
 #define xwidth mccpsd_monitor_source_before_optic_xwidth
 #define yheight mccpsd_monitor_source_before_optic_yheight
 #define restore_neutron mccpsd_monitor_source_before_optic_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12144,7 +12144,7 @@ if (xwidth > 0)  {
 #define xwidth mccpsd_monitor_afteropticsource_xwidth
 #define yheight mccpsd_monitor_afteropticsource_yheight
 #define restore_neutron mccpsd_monitor_afteropticsource_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12228,7 +12228,7 @@ if (xwidth > 0)  {
 #define nu mccguide_gravity_1_nu
 #define phase mccguide_gravity_1_phase
 #define reflect mccguide_gravity_1_reflect
-#line 339 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 339 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
   double Gx=0, Gy=-GRAVITY, Gz=0;
   Coords mcLocG;
@@ -12347,7 +12347,7 @@ if (xwidth > 0)  {
 #define ny mccdivpos_monitor_ny
 #define nz mccdivpos_monitor_nz
 #define nowritefile mccdivpos_monitor_nowritefile
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
 int i,j;
 
@@ -12411,7 +12411,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define xwidth mccpsd_monitor_g1_xwidth
 #define yheight mccpsd_monitor_g1_yheight
 #define restore_neutron mccpsd_monitor_g1_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12479,7 +12479,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define ny mccdivhlambda_monitor_g1_ny
 #define nz mccdivhlambda_monitor_g1_nz
 #define nowritefile mccdivhlambda_monitor_g1_nowritefile
-#line 67 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 67 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
   int i,j;
 
@@ -12809,7 +12809,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define xwidth mccpsd_monitor_f_zoom_xwidth
 #define yheight mccpsd_monitor_f_zoom_yheight
 #define restore_neutron mccpsd_monitor_f_zoom_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12870,7 +12870,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define xwidth mccpsd_monitor_f_xwidth
 #define yheight mccpsd_monitor_f_yheight
 #define restore_neutron mccpsd_monitor_f_restore_neutron
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
   if (yheight > 0) { ymax = yheight/2; ymin = -ymax; }
@@ -12936,7 +12936,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define ny mccf_divpos_ny
 #define nz mccf_divpos_nz
 #define nowritefile mccf_divpos_nowritefile
-#line 68 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 68 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
 int i,j;
 
@@ -13007,7 +13007,7 @@ if (xwidth  > 0) { xmax = xwidth/2;  xmin = -xmax; }
 #define ny mccdivhlambda_monitor_f_ny
 #define nz mccdivhlambda_monitor_f_nz
 #define nowritefile mccdivhlambda_monitor_f_nowritefile
-#line 67 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 67 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
   int i,j;
 
@@ -13163,7 +13163,7 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 70 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 70 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   double ncount;
   ncount = mcget_run_num();
@@ -13440,7 +13440,7 @@ MCNUM lambda0 = mccsource_div_lambda0;
 MCNUM dlambda = mccsource_div_dlambda;
 MCNUM gauss = mccsource_div_gauss;
 MCNUM flux = mccsource_div_flux;
-#line 118 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 118 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 {
   double E,lambda,v;
 
@@ -13611,7 +13611,7 @@ MCNUM ymax = mccslit_ymax;
 MCNUM radius = mccslit_radius;
 MCNUM xwidth = mccslit_xwidth;
 MCNUM yheight = mccslit_yheight;
-#line 71 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
+#line 71 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
 {
     PROP_Z0;
     if (((radius == 0) && (x<xmin || x>xmax || y<ymin || y>ymax))
@@ -13741,7 +13741,7 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -13878,7 +13878,7 @@ MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
 MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
 MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -14486,7 +14486,7 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -14646,7 +14646,7 @@ MCNUM nelements = mccguide_gravity_1_nelements;
 MCNUM nu = mccguide_gravity_1_nu;
 MCNUM phase = mccguide_gravity_1_phase;
 char* reflect = mccguide_gravity_1_reflect;
-#line 392 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 392 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
   if (l > 0 && nelements > 0) {
     double B, C, dt;
@@ -15044,7 +15044,7 @@ MCNUM nx = mccdivpos_monitor_nx;
 MCNUM ny = mccdivpos_monitor_ny;
 MCNUM nz = mccdivpos_monitor_nz;
 int nowritefile = mccdivpos_monitor_nowritefile;
-#line 92 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 92 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     int i,j;
     double div;
@@ -15195,7 +15195,7 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -15339,7 +15339,7 @@ MCNUM nx = mccdivhlambda_monitor_g1_nx;
 MCNUM ny = mccdivhlambda_monitor_g1_ny;
 MCNUM nz = mccdivhlambda_monitor_g1_nz;
 int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
-#line 89 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 89 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     int i,j;
     double div;
@@ -15964,7 +15964,7 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -16101,7 +16101,7 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 94 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 94 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   PROP_Z0;
   if (x>xmin && x<xmax && y>ymin && y<ymax){
@@ -16243,7 +16243,7 @@ MCNUM nx = mccf_divpos_nx;
 MCNUM ny = mccf_divpos_ny;
 MCNUM nz = mccf_divpos_nz;
 int nowritefile = mccf_divpos_nowritefile;
-#line 92 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 92 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     int i,j;
     double div;
@@ -16401,7 +16401,7 @@ MCNUM nx = mccdivhlambda_monitor_f_nx;
 MCNUM ny = mccdivhlambda_monitor_f_ny;
 MCNUM nz = mccdivhlambda_monitor_f_nz;
 int nowritefile = mccdivhlambda_monitor_f_nowritefile;
-#line 89 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 89 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     int i,j;
     double div;
@@ -16528,7 +16528,7 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 115 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 115 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   MPI_MASTER(fprintf(stdout, "\nSave [%s]\n", mcinstrument_name););
   if (profile && strlen(profile) && strcmp(profile,"NULL") && strcmp(profile,"0")) {
@@ -16574,7 +16574,7 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16613,7 +16613,7 @@ MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
 MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
 MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16652,7 +16652,7 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16696,7 +16696,7 @@ MCNUM nx = mccdivpos_monitor_nx;
 MCNUM ny = mccdivpos_monitor_ny;
 MCNUM nz = mccdivpos_monitor_nz;
 int nowritefile = mccdivpos_monitor_nowritefile;
-#line 120 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 120 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -16739,7 +16739,7 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16785,7 +16785,7 @@ MCNUM nx = mccdivhlambda_monitor_g1_nx;
 MCNUM ny = mccdivhlambda_monitor_g1_ny;
 MCNUM nz = mccdivhlambda_monitor_g1_nz;
 int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
-#line 119 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 119 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -16828,7 +16828,7 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16867,7 +16867,7 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 110 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 110 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   DETECTOR_OUT_2D(
     "PSD monitor",
@@ -16911,7 +16911,7 @@ MCNUM nx = mccf_divpos_nx;
 MCNUM ny = mccf_divpos_ny;
 MCNUM nz = mccf_divpos_nz;
 int nowritefile = mccf_divpos_nowritefile;
-#line 120 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 120 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -16961,7 +16961,7 @@ MCNUM nx = mccdivhlambda_monitor_f_nx;
 MCNUM ny = mccdivhlambda_monitor_f_ny;
 MCNUM nz = mccdivhlambda_monitor_f_nz;
 int nowritefile = mccdivhlambda_monitor_f_nowritefile;
-#line 119 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 119 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
     if (!nowritefile) {
     DETECTOR_OUT_2D(
@@ -17006,7 +17006,7 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 133 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 133 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   time_t NowTime;
   time(&NowTime);
@@ -17060,7 +17060,7 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
@@ -17097,7 +17097,7 @@ MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
 MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
 MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
@@ -17231,7 +17231,7 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
@@ -17291,7 +17291,7 @@ MCNUM nelements = mccguide_gravity_1_nelements;
 MCNUM nu = mccguide_gravity_1_nu;
 MCNUM phase = mccguide_gravity_1_phase;
 char* reflect = mccguide_gravity_1_reflect;
-#line 562 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 562 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
 if (GVars.warnings > 100) {
   fprintf(stderr,"%s: warning: neutron has entered guide, but can not exit !\n", GVars.compcurname);
@@ -17334,7 +17334,7 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
@@ -17471,7 +17471,7 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
@@ -17508,7 +17508,7 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 122 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 122 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   destroy_darr2d(PSD_N);
   destroy_darr2d(PSD_p);
@@ -17562,7 +17562,7 @@ char* profile = mccorigin_profile;
 MCNUM percent = mccorigin_percent;
 MCNUM flag_save = mccorigin_flag_save;
 MCNUM minutes = mccorigin_minutes;
-#line 147 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
+#line 147 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../misc/Progress_bar.comp"
 {
   
 }
@@ -17582,7 +17582,7 @@ MCNUM minutes = mccorigin_minutes;
 #define mccompcurname  source
 #define mccompcurtype  Arm
 #define mccompcurindex 2
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -17622,7 +17622,7 @@ MCNUM lambda0 = mccsource_div_lambda0;
 MCNUM dlambda = mccsource_div_dlambda;
 MCNUM gauss = mccsource_div_gauss;
 MCNUM flux = mccsource_div_flux;
-#line 167 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
+#line 167 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../sources/Source_div.comp"
 {
   
   multiline(5, -xwidth/2.0, -yheight/2.0, 0.0,
@@ -17667,7 +17667,7 @@ MCNUM ymax = mccslit_ymax;
 MCNUM radius = mccslit_radius;
 MCNUM xwidth = mccslit_xwidth;
 MCNUM yheight = mccslit_yheight;
-#line 83 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
+#line 83 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Slit.comp"
 {
   
   if (radius == 0) {
@@ -17716,7 +17716,7 @@ MCNUM ymax = mccpsd_monitor_source_ymax;
 MCNUM xwidth = mccpsd_monitor_source_xwidth;
 MCNUM yheight = mccpsd_monitor_source_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -17754,7 +17754,7 @@ MCNUM ymax = mccpsd_monitor_source_before_optic_ymax;
 MCNUM xwidth = mccpsd_monitor_source_before_optic_xwidth;
 MCNUM yheight = mccpsd_monitor_source_before_optic_yheight;
 MCNUM restore_neutron = mccpsd_monitor_source_before_optic_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -17920,7 +17920,7 @@ MCNUM doubleReflections = mccparabolic_optic_before_guide_h_doubleReflections;
 #define mccompcurname  after_optic_source
 #define mccompcurtype  Arm
 #define mccompcurindex 9
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -17953,7 +17953,7 @@ MCNUM ymax = mccpsd_monitor_afteropticsource_ymax;
 MCNUM xwidth = mccpsd_monitor_afteropticsource_xwidth;
 MCNUM yheight = mccpsd_monitor_afteropticsource_yheight;
 MCNUM restore_neutron = mccpsd_monitor_afteropticsource_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -18014,7 +18014,7 @@ MCNUM nelements = mccguide_gravity_1_nelements;
 MCNUM nu = mccguide_gravity_1_nu;
 MCNUM phase = mccguide_gravity_1_phase;
 char* reflect = mccguide_gravity_1_reflect;
-#line 571 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
+#line 571 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Guide_gravity.comp"
 {
 
   if (l > 0 && nelements > 0) {
@@ -18023,7 +18023,7 @@ char* reflect = mccguide_gravity_1_reflect;
     double y1,y2,y3,y4;
     double nel = (nelements > 11 ? 11 : nelements);
 
-
+    
     for (n=0; n<nel; n++)
     {
       double z0, z1;
@@ -18070,7 +18070,7 @@ char* reflect = mccguide_gravity_1_reflect;
   }
   else {
     /* A bit ugly; hard-coded dimensions. */
-
+    
     line(0,0,0,0.2,0,0);
     line(0,0,0,0,0.2,0);
     line(0,0,0,0,0,0.2);
@@ -18091,7 +18091,7 @@ char* reflect = mccguide_gravity_1_reflect;
 #define mccompcurname  monitor_1
 #define mccompcurtype  Arm
 #define mccompcurindex 12
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -18129,7 +18129,7 @@ MCNUM nx = mccdivpos_monitor_nx;
 MCNUM ny = mccdivpos_monitor_ny;
 MCNUM nz = mccdivpos_monitor_nz;
 int nowritefile = mccdivpos_monitor_nowritefile;
-#line 134 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 134 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     
     multiline(5, (double)xmin, (double)ymin, 0.0,
@@ -18169,7 +18169,7 @@ MCNUM ymax = mccpsd_monitor_g1_ymax;
 MCNUM xwidth = mccpsd_monitor_g1_xwidth;
 MCNUM yheight = mccpsd_monitor_g1_yheight;
 MCNUM restore_neutron = mccpsd_monitor_g1_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -18214,9 +18214,9 @@ MCNUM nx = mccdivhlambda_monitor_g1_nx;
 MCNUM ny = mccdivhlambda_monitor_g1_ny;
 MCNUM nz = mccdivhlambda_monitor_g1_nz;
 int nowritefile = mccdivhlambda_monitor_g1_nowritefile;
-#line 133 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 133 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
-
+    
     multiline(5, (double)xmin, (double)ymin, 0.0,
                  (double)xmax, (double)ymin, 0.0,
                  (double)xmax, (double)ymax, 0.0,
@@ -18382,7 +18382,7 @@ MCNUM doubleReflections = mccparabolic_optic2_doubleReflections;
 #define mccompcurname  monitor_2
 #define mccompcurtype  Arm
 #define mccompcurindex 18
-#line 40 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
+#line 40 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../optics/Arm.comp"
 {
   /* A bit ugly; hard-coded dimensions. */
   
@@ -18415,7 +18415,7 @@ MCNUM ymax = mccpsd_monitor_f_zoom_ymax;
 MCNUM xwidth = mccpsd_monitor_f_zoom_xwidth;
 MCNUM yheight = mccpsd_monitor_f_zoom_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_zoom_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -18453,7 +18453,7 @@ MCNUM ymax = mccpsd_monitor_f_ymax;
 MCNUM xwidth = mccpsd_monitor_f_xwidth;
 MCNUM yheight = mccpsd_monitor_f_yheight;
 MCNUM restore_neutron = mccpsd_monitor_f_restore_neutron;
-#line 129 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
+#line 129 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/PSD_monitor.comp"
 {
   multiline(5,
     (double)xmin, (double)ymin, 0.0,
@@ -18496,7 +18496,7 @@ MCNUM nx = mccf_divpos_nx;
 MCNUM ny = mccf_divpos_ny;
 MCNUM nz = mccf_divpos_nz;
 int nowritefile = mccf_divpos_nowritefile;
-#line 134 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
+#line 134 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivPos_monitor.comp"
 {
     
     multiline(5, (double)xmin, (double)ymin, 0.0,
@@ -18543,9 +18543,9 @@ MCNUM nx = mccdivhlambda_monitor_f_nx;
 MCNUM ny = mccdivhlambda_monitor_f_ny;
 MCNUM nz = mccdivhlambda_monitor_f_nz;
 int nowritefile = mccdivhlambda_monitor_f_nowritefile;
-#line 133 "/usr/share/mcstas/2.6.1/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
+#line 133 "/usr/share/mcstas/2.7/tools/Python/mcrun/../mccodelib/../../../monitors/DivLambda_monitor.comp"
 {
-
+    
     multiline(5, (double)xmin, (double)ymin, 0.0,
                  (double)xmax, (double)ymin, 0.0,
                  (double)xmax, (double)ymax, 0.0,
