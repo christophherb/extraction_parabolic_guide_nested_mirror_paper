@@ -2,7 +2,7 @@
  * Format:     ANSI C source code
  * Creator:    McStas <http://www.mcstas.org>
  * Instrument: /home/cherb/Documents/McStas/extraction_parabolic_guide_nested_mirror_paper/parabolic_extraction.instr (template_simple)
- * Date:       Mon Sep 27 22:00:02 2021
+ * Date:       Wed Nov  3 21:00:07 2021
  * File:       ./parabolic_extraction.c
  * Compile:    cc -o template_simple.out ./parabolic_extraction.c 
  * CFLAGS=
