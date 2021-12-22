@@ -161,15 +161,15 @@ AT (0, 0, guide_length+0.0001) RELATIVE after_optic_source
 
 //---------------------------------------- Collimator for testing ---------------------------------------
 
-COMPONENT collimator_linear = Collimator_linear(
-    xmin=-guide_width/2,
-    xmax=guide_width/2,
-    ymin=-guide_width/2,
-    ymax=guide_width/2,
-    length=0.2,
-    divergence=max_div,
-    divergenceV=max_div)
-AT (0, 0, 0) RELATIVE monitor_0_1
+//COMPONENT collimator_linear = Collimator_linear(
+//    xmin=-guide_width/2,
+//    xmax=guide_width/2,
+//    ymin=-guide_width/2,
+//    ymax=guide_width/2,
+//    length=0.2,
+//    divergence=max_div,
+//    divergenceV=max_div)
+//AT (0, 0, 0) RELATIVE monitor_0_1
 
 
 
